@@ -7,7 +7,7 @@ An online E-store system built in Java 8=>11 and ___ _replace with other platfor
 
 Justin Talbot
 Justin Wade
-- MEMBER3
+Kalen Luraschi
 - MEMBER4
 
 
