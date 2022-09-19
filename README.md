@@ -5,7 +5,7 @@ An online E-store system built in Java 8=>11 and ___ _replace with other platfor
   
 ## Team
 
-- MEMBER1
+- Caden Franklin
 - MEMBER2
 - MEMBER3
 - MEMBER4
