@@ -7,13 +7,8 @@ An online E-store system built in Java 8=>11 and ___ _replace with other platfor
 
 Justin Talbot
 Justin Wade
-<<<<<<< HEAD
 Caden Franklin
 Kalen Luraschi
-=======
-Kalen Luraschi
-- Caden Franklin
->>>>>>> c7f635540ed48b80f84a8933292e1f54318184db
 
 
 ## Prerequisites
