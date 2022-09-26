@@ -4,11 +4,12 @@
 An online E-store system built in Java 8=>11 and ___ _replace with other platform requirements_ ___
   
 ## Team
-
-Justin Talbot
-Justin Wade
-Caden Franklin
-Kalen Luraschi
+* Team name: CTN
+* Team members
+  * Justin Talbot
+  * Justin Wade
+  * Caden Franklin
+  * Kalen Luraschi
 
 
 ## Prerequisites
