@@ -1,4 +1,4 @@
-package com.estore.api.estoreapi.controller;
+package com.estore.api.estoreapi.model;
 
 public class Item {
     int itemId;
