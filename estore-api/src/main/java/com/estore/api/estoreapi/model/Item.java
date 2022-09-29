@@ -1,9 +1,14 @@
 package com.estore.api.estoreapi.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Item {
-    int itemId;
-    String itemName;
-    int quantity; 
+    @JsonProperty("id") private int id;
+    @JsonProperty("name") private String name;
+    @JsonProperty("quantity") private int quantity;
+
+    // @JsonProperty("id") private int id;
+    // @JsonProperty("name") private String name;
 
     /**
      * Constructor for an item object
@@ -11,9 +16,9 @@ public class Item {
      * @param name a label for the item as a string
      * @param quantity the amount of the item in stock as an int
      */
-    public Item(int id, String name, int quantity) {
-        this.itemId = id;
-        this.itemName = name;
+    public Item( @JsonProperty("id") int id, @JsonProperty("name") String name, @JsonProperty("quantity") int quantity) {
+        this.id = id;
+        this.name = name;
         this.quantity = quantity;
     };
 
@@ -22,7 +27,7 @@ public class Item {
      * @return the identifying number for an item
      */
     public int getId() {
-        return this.itemId;
+        return this.id;
     }
 
     /**
@@ -30,7 +35,7 @@ public class Item {
      * @return the string representation of the object's label
      */
     public String getName() {
-        return this.itemName;
+        return this.name;
     }
 
     /**
@@ -39,5 +44,9 @@ public class Item {
      */
     public int getQuantity() {
         return this.quantity;
+    }
+
+    public String toString(){
+        return ("Product id = " + id + "\n Product name = " + name + " \n Product Quantity = " + quantity);
     }
 }
