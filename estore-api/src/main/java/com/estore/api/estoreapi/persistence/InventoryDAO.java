@@ -47,7 +47,7 @@ public interface InventoryDAO {
     /**
      * Creates and saves a {@linkplain Item item}
      * 
-     * @param name {@linkplain Item item} object to be created and saved
+     * @param item {@linkplain Item item} object to be created and saved
      * <br>
      * The name of the item object is ignored and a new unique name is assigned
      *
