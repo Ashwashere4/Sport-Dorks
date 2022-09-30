@@ -47,19 +47,19 @@ public class InventoryController {
     }
 
     /**
-     * Responds to the GET request for a {@linkplain Item item} for the given id
+     * Responds to the GET request for a {@linkplain Item item} for the given name
      * 
-     * @param id The id used to locate the {@link Item item}
+     * @param name The id used to locate the {@link Item item}
      * 
      * @return ResponseEntity with {@link Item item} object and HTTP status of OK if found<br>
      * ResponseEntity with HTTP status of NOT_FOUND if not found<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @GetMapping("/{id}")
-    public ResponseEntity<Item> getItem(@PathVariable int id) {
-        LOG.info("GET /inventory/" + id);
+    public ResponseEntity<Item> getItem(@PathVariable String name) {
+        LOG.info("GET /inventory/" + name);
         try {
-            Item item = inventoryDAO.getItem(id);
+            Item item = inventoryDAO.getItem(name);
             if (item != null)
                 return new ResponseEntity<Item>(item,HttpStatus.OK);
             else
@@ -108,16 +108,16 @@ public class InventoryController {
     }
 
     /**
-     * Creates a {@linkplain Item item} with the provided hero object
+     * Creates a {@linkplain Item item} with the provided item object
      * 
-     * @param hero - The {@link Item item} to create
+     * @param item - The {@link Item item} to create
      * 
      * @return ResponseEntity with created {@link Item item} object and HTTP status of CREATED<br>
      * ResponseEntity with HTTP status of CONFLICT if {@link Item item} object already exists<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @PostMapping("")
-    public ResponseEntity<Item> createHero(@RequestBody Item item) {
+    public ResponseEntity<Item> createItem(@RequestBody Item item) {
         LOG.info("POST /inventory " + item);
 
         // Replace below with your implementation

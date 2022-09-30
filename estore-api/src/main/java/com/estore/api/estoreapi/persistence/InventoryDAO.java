@@ -32,24 +32,24 @@ public interface InventoryDAO {
     Item[] findItems(String containsText) throws IOException;
 
     /**
-     * Retrieves a {@linkplain Item items} with the given id
+     * Retrieves a {@linkplain Item items} with the given name
      * 
-     * @param id The id of the {@link Item items} to get
+     * @param name The name of the {@link Item items} to get
      * 
-     * @return a {@link Item item} object with the matching id
+     * @return a {@link Item item} object with the matching name
      * <br>
-     * null if no {@link Item item} with a matching id is found
+     * null if no {@link Item item} with a matching name is found
      * 
      * @throws IOException if an issue with underlying storage
      */
-    Item getItem(int id) throws IOException;
+    Item getItem(String name) throws IOException;
 
     /**
      * Creates and saves a {@linkplain Item item}
      * 
-     * @param hero {@linkplain Item item} object to be created and saved
+     * @param name {@linkplain Item item} object to be created and saved
      * <br>
-     * The id of the hero object is ignored and a new uniqe id is assigned
+     * The name of the item object is ignored and a new unique name is assigned
      *
      * @return new {@link Item item} if successful, false otherwise 
      * 
