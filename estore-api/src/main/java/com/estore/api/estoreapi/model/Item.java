@@ -3,31 +3,30 @@ package com.estore.api.estoreapi.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Item {
-    @JsonProperty("id") private int id;
     @JsonProperty("name") private String name;
     @JsonProperty("quantity") private int quantity;
+    @JsonProperty("cost") private int cost;
 
     // @JsonProperty("id") private int id;
     // @JsonProperty("name") private String name;
 
     /**
      * Constructor for an item object
-     * @param id an identifying number for an item to make it easier to find
      * @param name a label for the item as a string
      * @param quantity the amount of the item in stock as an int
+     * @param cost the price of a product as an int
      */
-    public Item( @JsonProperty("id") int id, @JsonProperty("name") String name, @JsonProperty("quantity") int quantity) {
-        this.id = id;
+    public Item(@JsonProperty("name") String name, @JsonProperty("quantity") int quantity, @JsonProperty("cost") int cost) {
         this.name = name;
         this.quantity = quantity;
     };
 
     /**
-     * Accessor for the id of an item
-     * @return the identifying number for an item
+     * Accessor for the cost of a product
+     * @return the price of an item as an int
      */
-    public int getId() {
-        return this.id;
+    public int getCost() {
+        return this.cost;
     }
 
     /**
@@ -46,7 +45,10 @@ public class Item {
         return this.quantity;
     }
 
+    /**
+     * Method to get the string representation of an item object
+     */
     public String toString(){
-        return ("Product id = " + id + "\n Product name = " + name + " \n Product Quantity = " + quantity);
+        return ("Product name = " + name + "\nProduct Quantity = " + quantity + "\nProduct Price = " + cost);
     }
 }

@@ -1,8 +1,8 @@
-package com.estore.api.estoreapi.controller.inventory;
+package com.estore.api.estoreapi.persistence;
 
 import java.util.HashMap;
 
-import com.estore.api.estoreapi.controller.Item;
+import com.estore.api.estoreapi.model.Item;
 
 public class Inventory {
     /** A hashmap representation of the inventory where the key is the name
@@ -15,15 +15,6 @@ public class Inventory {
      */
     public Inventory(HashMap<String, Item> inventory) {
         this.inventory = inventory;
-    }
-}
-
-public class product{
-
-    public product(String item_name, int cost, int amount){
-        this.item_name = item_name;
-        this.cost = cost;
-        this.amount = amount;
     }
 }
 
