@@ -105,8 +105,28 @@ public class InventoryController {
     public ResponseEntity<Item[]> searchItem(@RequestParam String name) {
         LOG.info("GET /inventory/?name="+name);
 
+       
+
+        try {
+            Item[] items = inventoryDAO.getitems();
+            Item[] foundItems = new Item[items.length];
+            
+            int j =0;
+            for (int i = 0; i < items.length; i++) {
+                if(items[i].getName() == name) {
+                    foundItems[j] = items[i];
+                    j++;
+                }
+            }
+            return new ResponseEntity<Item[]>(foundItems,HttpStatus.OK);
+
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+
+        }
+
+
         // Replace below with your implementation
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
     /**
