@@ -64,7 +64,8 @@ public class InventoryController {
             if (item != null)
                 return new ResponseEntity<Item>(item,HttpStatus.OK);
             else
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+                System.out.println("Item does not exist.");
+                return new ResponseEntity<>(HttpStatus.OK);
         }
         catch(IOException e) {
             LOG.log(Level.SEVERE,e.getLocalizedMessage());
