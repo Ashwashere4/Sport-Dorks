@@ -129,18 +129,24 @@ public class InventoryController {
     /**
      * Updates the {@linkplain Item item} with the provided {@linkplain Item item} object, if it exists
      * 
-     * @param hero The {@link Item item} to update
+     * @param item The {@link Item item} to update
      * 
      * @return ResponseEntity with updated {@link Item item} object and HTTP status of OK if updated<br>
-     * ResponseEntity with HTTP status of NOT_FOUND if not found<br>
+     * ResponseEntity with HTTP status of OK if not found<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @PutMapping("")
     public ResponseEntity<Item> updateHero(@RequestBody Item item) {
         LOG.info("PUT /inventory " + item);
-
-        // Replace below with your implementation
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+        if(getItem(item.getName()) != null) {
+            Item newItem = new Item(item.getName(), item.getQuantity(), item.getCost());
+            Inventory.inventory.put(item.getName(), newItem);
+            return new ResponseEntity<Item>(newItem,HttpStatus.OK);
+        } else {
+            System.out.println("Item does not exist.");
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        
     }
 
     /**
