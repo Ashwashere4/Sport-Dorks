@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.estore.api.estoreapi.model.Item;
+import com.estore.api.estoreapi.persistence.Inventory;
 import com.estore.api.estoreapi.persistence.InventoryDAO;
 
 import java.io.IOException;
@@ -79,7 +80,7 @@ public class InventoryController {
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @GetMapping("")
-    public ResponseEntity<Item[]> getItem() {
+    public ResponseEntity<Item[]> getItems() {
         LOG.info("GET /inventory");
 
         // Replace below with your implementation
@@ -119,9 +120,9 @@ public class InventoryController {
     @PostMapping("")
     public ResponseEntity<Item> createItem(@RequestBody Item item) {
         LOG.info("POST /inventory " + item);
-
-        // Replace below with your implementation
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+        Item newItem = new Item(item.getName(), item.getQuantity(), item.getCost());
+        Inventory.inventory.put(item.getName(), newItem);
+        return new ResponseEntity<Item>(item,HttpStatus.CREATED);
     }
 
     /**
