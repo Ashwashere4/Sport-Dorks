@@ -124,7 +124,7 @@ public class InventoryController {
         if (Inventory.inventory.containsKey(item.getName())){
 
             System.out.println("Item already exists in Inventory");
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
 
         LOG.info("POST /inventory " + item);
