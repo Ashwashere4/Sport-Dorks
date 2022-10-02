@@ -72,7 +72,7 @@ public interface InventoryDAO {
     /**
      * Deletes a {@linkplain Item item} with the given id
      * 
-     * @param id The id of the {@link Item item}
+     * @param name The id of the {@link Item item}
      * 
      * @return true if the {@link Item item} was deleted
      * <br>
@@ -80,5 +80,5 @@ public interface InventoryDAO {
      * 
      * @throws IOException if underlying storage cannot be accessed
      */
-    boolean deleteItem(int id) throws IOException;
+    boolean deleteItem(String name) throws IOException;
 }

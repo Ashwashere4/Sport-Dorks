@@ -104,9 +104,6 @@ public class InventoryController {
     @GetMapping("/")
     public ResponseEntity<Item[]> searchItem(@RequestParam String name) {
         LOG.info("GET /inventory/?name="+name);
-
-       
-
         try {
             Item[] items = inventoryDAO.getitems();
             Item[] foundItems = new Item[items.length];
@@ -122,7 +119,6 @@ public class InventoryController {
 
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-
         }
 
 
@@ -188,14 +184,11 @@ public class InventoryController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Item> deleteItem(@PathVariable String name) {
         LOG.info("DELETE /inventory/" + name);
-        int id;
-
         try {
             Item deleteItem = this.inventoryDAO.getItem(name);
-            this.inventoryDAO.deleteItem(id);
-            return new ResponseEntity<Item>(deleteItem, HttpStatus.OK)
+            this.inventoryDAO.deleteItem(name);
+            return new ResponseEntity<Item>(deleteItem, HttpStatus.OK);
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
             return new ResponseEntity<Item>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
