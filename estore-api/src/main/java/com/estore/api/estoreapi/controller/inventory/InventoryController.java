@@ -110,7 +110,7 @@ public class InventoryController {
         try {
             Item[] items = inventoryDAO.getitems();
             Item[] foundItems = new Item[items.length];
-            
+
             int j =0;
             for (int i = 0; i < items.length; i++) {
                 if(items[i].getName() == name) {
@@ -186,10 +186,19 @@ public class InventoryController {
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<Item> deleteItem(@PathVariable int id) {
-        LOG.info("DELETE /inventory/" + id);
+    public ResponseEntity<Item> deleteItem(@PathVariable String name) {
+        LOG.info("DELETE /inventory/" + name);
+        int id;
 
-        // Replace below with your implementation
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+        try {
+            Item deleteItem = this.inventoryDAO.getItem(name);
+            this.inventoryDAO.deleteItem(id);
+            return new ResponseEntity<Item>(deleteItem, HttpStatus.OK)
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return new ResponseEntity<Item>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
     }
 }
