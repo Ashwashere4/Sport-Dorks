@@ -120,6 +120,13 @@ public class InventoryController {
      */
     @PostMapping("")
     public ResponseEntity<Item> createItem(@RequestBody Item item) {
+
+        if (Inventory.inventory.containsKey(item.getName())){
+
+            System.out.println("Item already exists in Inventory");
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+
         LOG.info("POST /inventory " + item);
         Item newItem = new Item(item.getName(), item.getQuantity(), item.getCost());
         Inventory.inventory.put(item.getName(), newItem);
@@ -136,7 +143,7 @@ public class InventoryController {
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @PutMapping("")
-    public ResponseEntity<Item> updateHero(@RequestBody Item item) {
+    public ResponseEntity<Item> updateItem(@RequestBody Item item) {
         LOG.info("PUT /inventory " + item);
         if(getItem(item.getName()) != null) {
             Item newItem = new Item(item.getName(), item.getQuantity(), item.getCost());
@@ -159,7 +166,7 @@ public class InventoryController {
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<Item> deleteHero(@PathVariable int id) {
+    public ResponseEntity<Item> deleteItem(@PathVariable int id) {
         LOG.info("DELETE /inventory/" + id);
 
         // Replace below with your implementation
