@@ -31,7 +31,7 @@ import java.util.logging.Logger;
  */
 
 @RestController
-@RequestMapping("heroes")
+@RequestMapping("Inventory")
 public class InventoryController {
     private static final Logger LOG = Logger.getLogger(InventoryController.class.getName());
     private InventoryDAO inventoryDAO;
@@ -56,7 +56,7 @@ public class InventoryController {
      * ResponseEntity with HTTP status of NOT_FOUND if not found<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
-    @GetMapping("/{id}")
+    @GetMapping("/{name}")
     public ResponseEntity<Item> getItem(@PathVariable String name) {
         LOG.info("GET /inventory/" + name);
         try {
@@ -185,16 +185,15 @@ public class InventoryController {
      * ResponseEntity with HTTP status of NOT_FOUND if not found<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Item> deleteItem(@PathVariable String name) {
+    @DeleteMapping("/{name}")
+    public ResponseEntity<Boolean> deleteItem(@PathVariable String name) {
         LOG.info("DELETE /inventory/" + name);
         try {
-            Item deleteItem = this.inventoryDAO.getItem(name);
             this.inventoryDAO.deleteItem(name);
-            return new ResponseEntity<Item>(deleteItem, HttpStatus.OK);
+            return new ResponseEntity<Boolean>(true,HttpStatus.OK);
         } catch (IOException e) {
-            e.printStackTrace();
-            return new ResponseEntity<Item>(HttpStatus.INTERNAL_SERVER_ERROR);
+            System.out.println("Item not found.");
+            return new ResponseEntity<Boolean>(false,HttpStatus.OK);
         }
 
     }
