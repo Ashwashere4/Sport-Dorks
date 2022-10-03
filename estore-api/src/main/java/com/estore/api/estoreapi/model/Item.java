@@ -20,6 +20,7 @@ public class Item {
     public Item(@JsonProperty("id") int id, @JsonProperty("name") String name, @JsonProperty("quantity") int quantity, @JsonProperty("cost") int cost) {
         this.name = name;
         this.quantity = quantity;
+        this.cost = cost;
     };
 
     public int getID() {
