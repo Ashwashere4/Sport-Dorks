@@ -17,7 +17,7 @@ public class Item {
      * @param quantity the amount of the item in stock as an int
      * @param cost the price of a product as an int
      */
-    public Item(@JsonProperty("id") int id, @JsonProperty("name") String name, @JsonProperty("quantity") int quantity, @JsonProperty("cost") int cost) {
+    public Item(@JsonProperty("name") String name, @JsonProperty("quantity") int quantity, @JsonProperty("cost") int cost) {
         this.name = name;
         this.quantity = quantity;
         this.cost = cost;

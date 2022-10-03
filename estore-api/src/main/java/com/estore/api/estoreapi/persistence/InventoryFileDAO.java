@@ -78,7 +78,7 @@ public class InventoryFileDAO implements InventoryDAO {
 
     @Override
     public Item createItem(Item item) throws IOException {
-        Item newItem = new Item(nextId(), item.getName(), item.getQuantity(), item.getCost());
+        Item newItem = new Item(item.getName(), item.getQuantity(), item.getCost());
         inventory.put(item.getName(), newItem);
         saveInventory();
         return newItem;
@@ -114,7 +114,7 @@ public class InventoryFileDAO implements InventoryDAO {
     @Override
     public Item updateItem(Item item) throws IOException {
         Item localItem = inventory.get(item.getName());
-        Item newItem = new Item(localItem.getID(), item.getName(), item.getQuantity(), item.getCost());
+        Item newItem = new Item(item.getName(), item.getQuantity(), item.getCost());
         inventory.put(localItem.getName(), newItem);
         return newItem;
     }
