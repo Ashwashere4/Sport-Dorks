@@ -130,7 +130,7 @@ public class InventoryController {
      */
     @PostMapping("")
     public ResponseEntity<Item> createItem(@RequestBody Item item) {
-        LOG.info("POST /inventory " + item);
+        LOG.info("POST /inventory" + item);
         try {
             Item newItem = inventoryDAO.createItem(item);
             return new ResponseEntity<Item>(newItem,HttpStatus.CREATED);
@@ -153,7 +153,7 @@ public class InventoryController {
      */
     @PutMapping("")
     public ResponseEntity<Item> updateItem(@RequestBody Item item) {
-        LOG.info("PUT /inventory " + item);
+        LOG.info("PUT /inventory" + item);
         if(getItem(item.getName()) != null) {
             try {
                 Item newItem = inventoryDAO.updateItem(item);
