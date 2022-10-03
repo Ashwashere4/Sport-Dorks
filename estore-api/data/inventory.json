@@ -1,1 +1,45 @@
-[{"id":0,"name":"Baseball","quantity":200,"cost":0},{"id":0,"name":"Baseball Bat","quantity":25,"cost":0},{"id":0,"name":"Cleats","quantity":15,"cost":0},{"id":0,"name":"Football","quantity":45,"cost":0},{"id":0,"name":"Hat","quantity":75,"cost":0},{"id":0,"name":"HockeyPuck","quantity":3,"cost":0},{"id":0,"name":"Jersey","quantity":50,"cost":0},{"id":0,"name":"Jump Rope","quantity":5,"cost":0},{"id":0,"name":"Mug","quantity":30,"cost":0},{"id":0,"name":"Tennis Ball","quantity":500,"cost":0},{"id":0,"name":"Tennis Racket","quantity":10,"cost":0}]
+[
+    {"name":"Baseball",
+    "quantity":200,
+    "cost":5},
+
+    {"name":"Baseball Bat",
+    "quantity":25,
+    "cost":0},
+
+    {"name":"Cleats",
+    "quantity":15,
+    "cost":0},
+
+    {"name":"Football",
+    "quantity":45,
+    "cost":0},
+
+    {"name":"Hat",
+    "quantity":75,
+    "cost":0},
+
+    {"name":"HockeyPuck",
+    "quantity":3,
+    "cost":0},
+
+    {"name":"Jersey",
+    "quantity":50,
+    "cost":0},
+
+    {"name":"Jump Rope",
+    "quantity":5,
+    "cost":0},
+
+    {"name":"Mug",
+    "quantity":30,
+    "cost":0},
+
+    {"name":"Tennis Ball",
+    "quantity":500,
+    "cost":0},
+
+    {"name":"Tennis Racket",
+    "quantity":10,
+    "cost":0}
+]
