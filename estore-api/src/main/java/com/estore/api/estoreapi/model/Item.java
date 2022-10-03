@@ -6,9 +6,7 @@ public class Item {
     @JsonProperty("name") private String name;
     @JsonProperty("quantity") private int quantity;
     @JsonProperty("cost") private int cost;
-    @JsonProperty("id") private int id;
 
-    // @JsonProperty("id") private int id;
     // @JsonProperty("name") private String name;
 
     /**
@@ -22,10 +20,6 @@ public class Item {
         this.quantity = quantity;
         this.cost = cost;
     };
-
-    public int getID() {
-        return this.id;
-    }
 
     /**
      * Accessor for the cost of a product

@@ -70,13 +70,13 @@ public interface InventoryDAO {
     Item updateItem(Item item) throws IOException;
 
     /**
-     * Deletes a {@linkplain Item item} with the given id
+     * Deletes a {@linkplain Item item} with the given name
      * 
-     * @param name The id of the {@link Item item}
+     * @param name The name of the {@link Item item}
      * 
      * @return true if the {@link Item item} was deleted
      * <br>
-     * false if item with the given id does not exist
+     * false if item with the given name does not exist
      * 
      * @throws IOException if underlying storage cannot be accessed
      */

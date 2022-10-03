@@ -49,7 +49,7 @@ public class InventoryController {
     /**
      * Responds to the GET request for a {@linkplain Item item} for the given name
      * 
-     * @param name The id used to locate the {@link Item item}
+     * @param name The string used to locate the {@link Item item}
      * 
      * @return ResponseEntity with {@link Item item} object and HTTP status of OK if found<br>
      * ResponseEntity with HTTP status of NOT_FOUND if not found<br>
@@ -171,9 +171,9 @@ public class InventoryController {
     }
 
     /**
-     * Deletes a {@linkplain Item item} with the given id
+     * Deletes a {@linkplain Item item} with the given name
      * 
-     * @param id The id of the {@link Item item} to deleted
+     * @param name The name of the {@link Item item} to deleted
      * 
      * @return ResponseEntity HTTP status of OK if deleted<br>
      * ResponseEntity with HTTP status of NOT_FOUND if not found<br>
