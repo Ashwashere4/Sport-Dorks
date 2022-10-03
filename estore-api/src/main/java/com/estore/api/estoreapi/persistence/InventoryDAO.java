@@ -18,7 +18,7 @@ public interface InventoryDAO {
      * 
      * @throws IOException if an issue with underlying storage
      */
-    Item[] getitems() throws IOException;
+    Item[] getItems() throws IOException;
 
     /**
      * Finds all {@linkplain Item items} whose name contains the given text
@@ -29,7 +29,7 @@ public interface InventoryDAO {
      * 
      * @throws IOException if an issue with underlying storage
      */
-    Item[] findItems(String containsText) throws IOException;
+    Item[] searchItems(String containsText) throws IOException;
 
     /**
      * Retrieves a {@linkplain Item items} with the given name
@@ -47,7 +47,7 @@ public interface InventoryDAO {
     /**
      * Creates and saves a {@linkplain Item item}
      * 
-     * @param item {@linkplain Item item} object to be created and saved
+     * @param name {@linkplain Item item} object to be created and saved
      * <br>
      * The name of the item object is ignored and a new unique name is assigned
      *
