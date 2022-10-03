@@ -32,11 +32,6 @@ public class InventoryFileDAO implements InventoryDAO {
     private ObjectMapper objectMapper;
 
     /**
-     * The next id to assign to a product.
-     */
-    private int nextId;
-
-    /**
      * 
      * @param inventory
      */
@@ -45,15 +40,6 @@ public class InventoryFileDAO implements InventoryDAO {
             this.objectMapper = objectMapper;
             loadInventory();
         }
-
-     /**
-     * Gets the next id to assign to a product.
-     * 
-     * @return the next id to assign to a product
-     */
-    private synchronized int nextId() {
-        return nextId++;
-    }
 
     private ArrayList<Item> getInventoryArray() {
         return new ArrayList<>(inventory.values());
@@ -129,10 +115,6 @@ public class InventoryFileDAO implements InventoryDAO {
         Item[] inventoryArray = objectMapper.readValue(new File(filename), Item[].class);
         for (Item item : inventoryArray) {
             inventory.put(item.getName(), item);
-            if (item.getID() > nextId()) {
-                nextId = item.getID();
-            }
-            ++nextId;
         }
     }
-    }
+}
