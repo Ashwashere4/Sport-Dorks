@@ -83,9 +83,13 @@ public class InventoryController {
     @GetMapping("")
     public ResponseEntity<Item[]> getItems() {
         LOG.info("GET /inventory");
-
-        // Replace below with your implementation
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+        Item[] items;
+        try {
+            items = inventoryDAO.getitems();
+        } catch (IOException e) {
+            items = new Item[0];
+        }
+        return new ResponseEntity<Item[]>(items, HttpStatus.OK);
     }
 
     /**
