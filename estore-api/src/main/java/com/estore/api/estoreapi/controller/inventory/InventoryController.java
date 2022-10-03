@@ -31,7 +31,7 @@ import java.util.logging.Logger;
  */
 
 @RestController
-@RequestMapping("heroes")
+@RequestMapping("inventory")
 public class InventoryController {
     private static final Logger LOG = Logger.getLogger(InventoryController.class.getName());
     private InventoryDAO inventoryDAO;
