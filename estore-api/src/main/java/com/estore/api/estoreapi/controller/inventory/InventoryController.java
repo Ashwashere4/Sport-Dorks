@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.estore.api.estoreapi.model.Item;
-import com.estore.api.estoreapi.persistence.Inventory;
 import com.estore.api.estoreapi.persistence.InventoryDAO;
 
 import java.io.IOException;
@@ -57,10 +56,10 @@ public class InventoryController {
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @GetMapping("/{id}")
-    public ResponseEntity<Item> getItem(@PathVariable String name) {
-        LOG.info("GET /inventory/" + name);
+    public ResponseEntity<Item> getItem(@PathVariable Integer id) {
+        LOG.info("GET /inventory/" + id);
         try {
-            Item item = inventoryDAO.getItem(name);
+            Item item = inventoryDAO.getItem(id);
             if (item != null)
                 return new ResponseEntity<Item>(item,HttpStatus.OK);
             else
@@ -85,7 +84,7 @@ public class InventoryController {
         LOG.info("GET /inventory");
         Item[] items;
         try {
-            items = inventoryDAO.getitems();
+            items = inventoryDAO.getItems();
         } catch (IOException e) {
             items = new Item[0];
         }
@@ -109,17 +108,8 @@ public class InventoryController {
     public ResponseEntity<Item[]> searchItem(@RequestParam String name) {
         LOG.info("GET /inventory/?name="+name);
         try {
-            Item[] items = inventoryDAO.getitems();
-            Item[] foundItems = new Item[items.length];
-
-            int j =0;
-            for (int i = 0; i < items.length; i++) {
-                if(items[i].getName() == name) {
-                    foundItems[j] = items[i];
-                    j++;
-                }
-            }
-            return new ResponseEntity<Item[]>(foundItems,HttpStatus.OK);
+            Item[] items = inventoryDAO.searchItems(name);
+            return new ResponseEntity<Item[]>(items,HttpStatus.OK);
 
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -140,17 +130,16 @@ public class InventoryController {
      */
     @PostMapping("")
     public ResponseEntity<Item> createItem(@RequestBody Item item) {
-
-        if (Inventory.inventory.containsKey(item.getName())){
-
-            System.out.println("Item already exists in Inventory");
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
-        }
-
         LOG.info("POST /inventory " + item);
-        Item newItem = new Item(item.getName(), item.getQuantity(), item.getCost());
-        Inventory.inventory.put(item.getName(), newItem);
-        return new ResponseEntity<Item>(item,HttpStatus.CREATED);
+        try {
+            Item newItem = inventoryDAO.createItem(item);
+            return new ResponseEntity<Item>(newItem,HttpStatus.CREATED);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+            return new ResponseEntity<Item>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        
     }
 
     /**
@@ -165,10 +154,15 @@ public class InventoryController {
     @PutMapping("")
     public ResponseEntity<Item> updateItem(@RequestBody Item item) {
         LOG.info("PUT /inventory " + item);
-        if(getItem(item.getName()) != null) {
-            Item newItem = new Item(item.getName(), item.getQuantity(), item.getCost());
-            Inventory.inventory.put(item.getName(), newItem);
-            return new ResponseEntity<Item>(newItem,HttpStatus.OK);
+        if(getItem(item.getID()) != null) {
+            try {
+                Item newItem = inventoryDAO.updateItem(item);
+                return new ResponseEntity<Item>(newItem,HttpStatus.OK);
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+                return new ResponseEntity<Item>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
         } else {
             System.out.println("Item does not exist.");
             return new ResponseEntity<>(HttpStatus.OK);
@@ -186,11 +180,11 @@ public class InventoryController {
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<Item> deleteItem(@PathVariable String name) {
-        LOG.info("DELETE /inventory/" + name);
+    public ResponseEntity<Item> deleteItem(@PathVariable Integer id) {
+        LOG.info("DELETE /inventory/" + id);
         try {
-            Item deleteItem = this.inventoryDAO.getItem(name);
-            this.inventoryDAO.deleteItem(name);
+            Item deleteItem = this.inventoryDAO.getItem(id);
+            this.inventoryDAO.deleteItem(id);
             return new ResponseEntity<Item>(deleteItem, HttpStatus.OK);
         } catch (IOException e) {
             e.printStackTrace();
