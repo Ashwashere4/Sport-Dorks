@@ -152,11 +152,11 @@ public class InventoryController {
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @PutMapping("")
-    public ResponseEntity<Item> updateItem(@RequestBody Item item) {
+    public ResponseEntity<Item> updateItem(@RequestBody Item item, String name, int quantity, int cost) {
         LOG.info("PUT /inventory " + item);
         if(getItem(item.getName()) != null) {
             try {
-                Item newItem = inventoryDAO.updateItem(item);
+                Item newItem = inventoryDAO.updateItem(item, name, quantity, cost);
                 return new ResponseEntity<Item>(newItem,HttpStatus.OK);
             }
             catch (IOException e) {
