@@ -81,7 +81,6 @@ public class InventoryFileDAO implements InventoryDAO {
     @Override
     public boolean deleteItem(String name) throws IOException{
             inventory.remove(name);
-            
             return true;
         }
 
