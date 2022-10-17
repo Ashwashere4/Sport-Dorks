@@ -1,7 +1,9 @@
 package com.estore.api.estoreapi.persistence;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.io.IOException;
 
@@ -30,11 +32,11 @@ class InventoryFileDAOTests {
         assertEquals(store.searchItems("jordans").length, 1);
 
         // Checks to see if all the items were added properly (11 from original file, 4 from test = 15)
-        assertEquals(store.getItems().length, 15);
+        assertEquals(store.getItems().length, 16);
 
         // Checks to see if nikes was deleted properly (15-1 = 14), since nike doesn't exist it returns null
         store.deleteItem("nikes");
-        assertEquals(store.getItems().length, 14);
+        assertEquals(store.getItems().length, 15);
         assertEquals(store.getItem("nikes"), null);
 
         //Finally, checks to see if idkman is updated into the ultimate drip, with the quantity of 100, and the price of 10,000
@@ -49,6 +51,23 @@ class InventoryFileDAOTests {
 
 
 
+    }
+
+    @Test
+    void testCreateDeleteItem() throws IOException{
+
+        InventoryFileDAO store = new InventoryFileDAO(name, objectMapper);
+        //tests create item class
+        store.createItem("baseballHat", 12, 10);
+
+        assertEquals(store.searchItems("baseballHat").length, 1);        
+        assertNotNull(store.getItem("baseballHat"));
+        assertNotNull(store.getItems());
+
+        //tests delete item class
+        store.deleteItem("baseballHat");
+        assertNull(store.getItem("baseballHat")); 
+        assertNotEquals(store.searchItems("baseballHat").length, 1);
     }
     
 }
