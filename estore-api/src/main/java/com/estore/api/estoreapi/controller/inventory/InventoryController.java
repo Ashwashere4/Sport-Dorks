@@ -85,8 +85,9 @@ public class InventoryController {
         Item[] items;
         try {
             items = inventoryDAO.getItems();
+
         } catch (IOException e) {
-            items = new Item[0];
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return new ResponseEntity<Item[]>(items, HttpStatus.OK);
     }
@@ -133,6 +134,9 @@ public class InventoryController {
         LOG.info("POST /inventory " + item);
         try {
             Item newItem = inventoryDAO.createItem(item);
+            if (this.inventoryDAO.createItem(newItem) == null){
+                return new ResponseEntity<Item>(HttpStatus.CONFLICT);
+            }
             return new ResponseEntity<Item>(newItem,HttpStatus.CREATED);
         }
         catch (IOException e) {
@@ -165,7 +169,7 @@ public class InventoryController {
         }
         } else {
             System.out.println("Item does not exist.");
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
         
     }
@@ -184,11 +188,16 @@ public class InventoryController {
         LOG.info("DELETE /inventory/" + name);
         try {
             this.inventoryDAO.deleteItem(name);
+            if (this.inventoryDAO.deleteItem(name) == false){
+                return new ResponseEntity<Boolean>(false, HttpStatus.NOT_FOUND);
+            }
             return new ResponseEntity<Boolean>(true,HttpStatus.OK);
         } catch (IOException e) {
             System.out.println("Item not found.");
-            return new ResponseEntity<Boolean>(false,HttpStatus.OK);
+            return new ResponseEntity<Boolean>(false,HttpStatus.INTERNAL_SERVER_ERROR);
         }
+
+        
 
     }
 }
