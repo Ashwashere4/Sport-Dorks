@@ -16,7 +16,7 @@ public class ItemTest {
         int expected_quantity = 10;
         String expected_name = "This wild Drip";
 
-        Item item = new Item(expected_name,expected_cost,expected_quantity);
+        Item item = new Item(expected_name,expected_quantity,expected_cost);
 
         assertEquals(expected_name, item.getName());
         assertEquals(expected_cost, item.getCost());
