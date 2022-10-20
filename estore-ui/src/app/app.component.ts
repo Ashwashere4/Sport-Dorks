@@ -13,10 +13,10 @@ export class AppComponent {
   title = 'estore-ui';
   
   constructor(
-    private http: HttpClient,
-    private messageService: MessageService) { }
+    private http: HttpClient) { }
 
   getItems(): Observable<Item[]> {
-    return this.http<Item[]>(this.itemsUrlUrl)
+    return this.http.get<Item[]>(this.itemsUrl);
+  }
 
 }
