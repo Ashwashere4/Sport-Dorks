@@ -9,7 +9,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  private itemsUrl = 'http://localhost:8080/items';
+  public itemsUrl = 'http://localhost:8080/items';
   title = 'estore-ui';
   
   constructor(
@@ -18,5 +18,8 @@ export class AppComponent {
   getItems(): Observable<Item[]> {
     return this.http.get<Item[]>(this.itemsUrl);
   }
+
+ 
+
 
 }
