@@ -9,15 +9,17 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  public itemsUrl = 'http://localhost:8080/items';
+  itemsUrl = 'http://localhost:8080/items';
   title = 'estore-ui';
-  
-  constructor(
-    private http: HttpClient) { }
+  json = require('./items.json')
 
-  getItems(): Observable<Item[]> {
-    return this.http.get<Item[]>(this.itemsUrl);
-  }
+  
+  // constructor(
+  //   private http: HttpClient) { }
+
+  // getItems(): Observable<Item[]> {
+  //   return this.http.get<Item[]>(this.itemsUrl);
+  // }
 
  
 
