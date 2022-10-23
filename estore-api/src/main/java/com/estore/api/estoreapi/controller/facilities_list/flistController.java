@@ -12,13 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.estore.api.estoreapi.controller.inventory.InventoryController;
-import com.estore.api.estoreapi.model.Item;
-import com.estore.api.estoreapi.persistence.InventoryDAO;
+import com.estore.api.estoreapi.model.Facilities;
+import com.estore.api.estoreapi.persistence.FlistDAO;
 
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+
 
 
 @RestController
@@ -30,30 +31,28 @@ public class flistController {
     /**
      * Creates a REST API controller to reponds to requests
      * 
-     * @param inventoryDAO The {@link InventoryDAO inventory Data Access Object} to perform CRUD operations
+     * @param flistDAO The {@link flistDAO inventory Data Access Object} to perform CRUD operations
      * <br>
      * This dependency is injected by the Spring Framework
      */
-    public InventoryController(InventoryDAO inventoryDAO) {
-        this.inventoryDAO = inventoryDAO;
+    public flistController(FlistDAO flistDAO) {
+        this.flistDAO = flistDAO;
     }
 
-    /**
-     * Responds to the GET request for a {@linkplain Item item} for the given name
+    /**     * 
+     * @param name The string used to locate the {@link Facilities Team}
      * 
-     * @param name The string used to locate the {@link Item item}
-     * 
-     * @return ResponseEntity with {@link Item item} object and HTTP status of OK if found<br>
+     * @return ResponseEntity with {@link Facilities Team} object and HTTP status of OK if found<br>
      * ResponseEntity with HTTP status of NOT_FOUND if not found<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @GetMapping("/{name}")
-    public ResponseEntity<Item> getItem(@PathVariable String name) {
-        LOG.info("GET /inventory/" + name);
+    public ResponseEntity<Facilities> getTeam(@PathVariable int code) {
+        LOG.info("GET /flist/" + code);
         try {
-            Item item = inventoryDAO.getItem(name);
-            if (item != null)
-                return new ResponseEntity<Item>(item,HttpStatus.OK);
+            Facilities team = flistDAO.getTeam(code);
+            if (team != null)
+                return new ResponseEntity<Facilities>(team,HttpStatus.OK);
             else
                 System.out.println("Item does not exist.");
                 return new ResponseEntity<>(HttpStatus.OK);
@@ -65,32 +64,32 @@ public class flistController {
     }
 
     /**
-     * Responds to the GET request for all {@linkplain Item item}
+     * Responds to the GET request for all {@linkplain Facilities Team}
      * 
-     * @return ResponseEntity with array of {@link Item item} objects (may be empty) and
+     * @return ResponseEntity with array of {@link Facilities Team} objects (may be empty) and
      * HTTP status of OK<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @GetMapping("")
-    public ResponseEntity<Item[]> getItems() {
-        LOG.info("GET /inventory");
-        Item[] items;
+    public ResponseEntity<Facilities[]> getTeams() {
+        LOG.info("GET /flist");
+        Facilities[] team;
         try {
-            items = inventoryDAO.getItems();
+            team = flistDAO.getTeams();
 
         } catch (IOException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<Item[]>(items, HttpStatus.OK);
+        return new ResponseEntity<Facilities[]>(team, HttpStatus.OK);
     }
 
     /**
-     * Responds to the GET request for all {@linkplain Item item} whose name contains
+     * Responds to the GET request for all {@linkplain Facilities Team} whose name contains
      * the text in name
      * 
-     * @param name The name parameter which contains the text used to find the {@link Item item}
+     * @param name The name parameter which contains the text used to find the {@link Facilities Team}
      * 
-     * @return ResponseEntity with array of {@link Item item} objects (may be empty) and
+     * @return ResponseEntity with array of {@link Facilities Team} objects (may be empty) and
      * HTTP status of OK<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      * <p>
@@ -98,11 +97,11 @@ public class flistController {
      * GET http://localhost:8080/heroes/?name=ma
      */
     @GetMapping("/")
-    public ResponseEntity<Item[]> searchItem(@RequestParam String name) {
-        LOG.info("GET /inventory/?name="+name);
+    public ResponseEntity<Facilities[]> searchTeam(@RequestParam String name) {
+        LOG.info("GET /flist/?name="+name);
         try {
-            Item[] items = inventoryDAO.searchItems(name);
-            return new ResponseEntity<Item[]>(items,HttpStatus.OK);
+            Facilities[] teams = flistDAO.searchTeams(name);
+            return new ResponseEntity<Facilities[]>(teams,HttpStatus.OK);
 
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -113,51 +112,51 @@ public class flistController {
     }
 
     /**
-     * Creates a {@linkplain Item item} with the provided item object
+     * Creates a {@linkplain Facilities teams} with the provided item object
      * 
-     * @param item - The {@link Item item} to create
+     * @param item - The {@link Facilities Team} to create
      * 
-     * @return ResponseEntity with created {@link Item item} object and HTTP status of CREATED<br>
-     * ResponseEntity with HTTP status of CONFLICT if {@link Item item} object already exists<br>
+     * @return ResponseEntity with created {@link Facilities Team} object and HTTP status of CREATED<br>
+     * ResponseEntity with HTTP status of CONFLICT if {@link Facilities Team} object already exists<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @PostMapping("")
-    public ResponseEntity<Item> createItem(@RequestBody Item item) {
-        LOG.info("POST /inventory " + item);
+    public ResponseEntity<Facilities> createTeam(@RequestBody String name, int team_code, int player_count) {
+        LOG.info("POST /flist " + name + team_code + player_count);
         try {
-            Item newItem = inventoryDAO.createItem(item);
-            if (this.inventoryDAO.createItem(newItem) == null){
-                return new ResponseEntity<Item>(HttpStatus.CONFLICT);
+            Facilities newteam = flistDAO.createTeam(name, team_code, player_count);
+            if (this.flistDAO.createTeam(name, team_code, player_count) == null){
+                return new ResponseEntity<Facilities>(HttpStatus.CONFLICT);
             }
-            return new ResponseEntity<Item>(newItem,HttpStatus.CREATED);
+            return new ResponseEntity<Facilities>(newteam,HttpStatus.CREATED);
         }
         catch (IOException e) {
             e.printStackTrace();
-            return new ResponseEntity<Item>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<Facilities>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
         
     }
 
     /**
-     * Updates the {@linkplain Item item} with the provided {@linkplain Item item} object, if it exists
+     * Updates the {@linkplain Facilities team} with the provided {@linkplain Facilties team} object, if it exists
      * 
-     * @param item The {@link Item item} to update
+     * @param item The {@link Facilities team} to update
      * 
-     * @return ResponseEntity with updated {@link Item item} object and HTTP status of OK if updated<br>
+     * @return ResponseEntity with updated {@link Facilities team} object and HTTP status of OK if updated<br>
      * ResponseEntity with HTTP status of OK if not found<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @PutMapping("")
-    public ResponseEntity<Item> updateItem(@RequestBody Item item, String name, int quantity, int cost) {
-        LOG.info("PUT /inventory " + item);
-        if(getItem(item.getName()) != null) {
+    public ResponseEntity<Facilities> updateTeam(@RequestBody Facilities team, String name, int team_code, int player_count) {
+        LOG.info("PUT /inventory " + team);
+        if(getTeam(team.getTeamcode()) != null) {
             try {
-                Item newItem = inventoryDAO.updateItem(item, name, quantity, cost);
-                return new ResponseEntity<Item>(newItem,HttpStatus.OK);
+                Facilities updatedteam = flistDAO.updateTeam(team, name, team_code, player_count);
+                return new ResponseEntity<Facilities>(updatedteam,HttpStatus.OK);
             }
             catch (IOException e) {
                 e.printStackTrace();
-                return new ResponseEntity<Item>(HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<Facilities>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
         } else {
             System.out.println("Item does not exist.");
@@ -167,20 +166,20 @@ public class flistController {
     }
 
     /**
-     * Deletes a {@linkplain Item item} with the given name
+     * Deletes a {@linkplain Facilities Team} with the given name
      * 
-     * @param name The name of the {@link Item item} to deleted
+     * @param name The name of the {@link Facilities team} to deleted
      * 
      * @return ResponseEntity HTTP status of OK if deleted<br>
      * ResponseEntity with HTTP status of NOT_FOUND if not found<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @DeleteMapping("/{name}")
-    public ResponseEntity<Boolean> deleteItem(@PathVariable String name) {
-        LOG.info("DELETE /inventory/" + name);
+    public ResponseEntity<Boolean> deleteTeam(@PathVariable int code) {
+        LOG.info("DELETE /inventory/" + code);
         try {
-            this.inventoryDAO.deleteItem(name);
-            if (this.inventoryDAO.deleteItem(name) == false){
+            this.flistDAO.deleteTeam(code);
+            if (this.flistDAO.deleteTeam(code) == false){
                 return new ResponseEntity<Boolean>(false, HttpStatus.NOT_FOUND);
             }
             return new ResponseEntity<Boolean>(true,HttpStatus.OK);
