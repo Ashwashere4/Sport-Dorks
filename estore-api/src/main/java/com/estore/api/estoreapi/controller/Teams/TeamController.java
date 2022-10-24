@@ -46,7 +46,7 @@ public class TeamController {
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @GetMapping("/{name}")
-    public ResponseEntity<Player> getItem(@PathVariable String name) {
+    public ResponseEntity<Player> getPlayer(@PathVariable String name) {
         LOG.info("GET /inventory/" + name);
         try {
             Player player = teamDAO.getPlayer(name);
