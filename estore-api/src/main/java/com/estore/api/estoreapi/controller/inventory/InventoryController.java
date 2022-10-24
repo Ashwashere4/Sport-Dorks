@@ -21,7 +21,7 @@ import java.util.logging.Logger;
 
 
 /**
- * Handles the REST API requests for the Hero resource
+ * Handles the REST API requests for the Inventory resource
  * <p>
  * {@literal @}RestController Spring annotation identifies this class as a REST API
  * method handler to the Spring framework
