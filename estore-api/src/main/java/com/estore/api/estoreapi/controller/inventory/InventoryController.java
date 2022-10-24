@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.estore.api.estoreapi.model.Item;
-import com.estore.api.estoreapi.persistence.InventoryDAO;
+import com.estore.api.estoreapi.model.Inventory.Item;
+import com.estore.api.estoreapi.persistence.Inventory.InventoryDAO;
 
 import java.io.IOException;
 import java.util.logging.Level;

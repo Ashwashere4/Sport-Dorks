@@ -1,12 +1,12 @@
-package com.estore.api.estoreapi.persistence;
+package com.estore.api.estoreapi.persistence.Inventory;
 
 import java.io.IOException;
 
-import com.estore.api.estoreapi.model.Item;
+import com.estore.api.estoreapi.model.Inventory.Item;
 
 
 /**
- * Defines the interface for Hero object persistence
+ * Defines the interface for Inventory object persistence
  * 
  * @author SWEN Faculty
  */
