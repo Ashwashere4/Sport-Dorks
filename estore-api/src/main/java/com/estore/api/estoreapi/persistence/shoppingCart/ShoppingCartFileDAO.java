@@ -1,4 +1,4 @@
-package com.estore.api.estoreapi.persistence;
+package com.estore.api.estoreapi.persistence.shoppingCart;
 
 import java.io.File;
 import java.io.IOException;

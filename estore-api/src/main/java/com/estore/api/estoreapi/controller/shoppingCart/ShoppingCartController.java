@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.estore.api.estoreapi.model.Item;
 import com.estore.api.estoreapi.persistence.InventoryDAO;
-import com.estore.api.estoreapi.persistence.ShoppingCartDAO;
+import com.estore.api.estoreapi.persistence.shoppingCart.ShoppingCartDAO;
 
 import java.io.IOException;
 import java.util.logging.Logger;
