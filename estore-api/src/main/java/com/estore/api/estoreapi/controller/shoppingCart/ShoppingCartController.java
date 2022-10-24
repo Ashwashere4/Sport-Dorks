@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.estore.api.estoreapi.model.Item;
+import com.estore.api.estoreapi.persistence.InventoryDAO;
 import com.estore.api.estoreapi.persistence.ShoppingCartDAO;
 
 import java.io.IOException;
@@ -30,6 +31,7 @@ import java.util.logging.Logger;
 public class ShoppingCartController {
     private static final Logger LOG = Logger.getLogger(ShoppingCartController.class.getName());
     private ShoppingCartDAO shoppingCartDAO;
+    private InventoryDAO inventoryDAO;
 
     /**
      * Creates a REST API controller to reponds to requests
@@ -102,6 +104,32 @@ public class ShoppingCartController {
         LOG.info("DELETE /shoppingCart/" + name);
         try {
             this.shoppingCartDAO.deleteItem(name);
+            if (this.shoppingCartDAO.deleteItem(name) == false){
+                return new ResponseEntity<Boolean>(false, HttpStatus.NOT_FOUND);
+            }
+            return new ResponseEntity<Boolean>(true,HttpStatus.OK);
+        } catch (IOException e) {
+            System.out.println("Item not found.");
+            return new ResponseEntity<Boolean>(false,HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    /**
+     * purchases a {@linkplain Item item} with the given name
+     * 
+     * @param name The name of the {@link Item item} to purchased and removes from inventory and shopping cart
+     * 
+     * @return ResponseEntity HTTP status of OK if deleted<br>
+     * ResponseEntity with HTTP status of NOT_FOUND if not found<br>
+     * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     */
+    @DeleteMapping("/{name}")
+    public ResponseEntity<Boolean> purchaseItem(@PathVariable String name) {
+        LOG.info("PURCHASE /shoppingCart/" + name);
+        try {
+            this.shoppingCartDAO.deleteItem(name);
+            this.inventoryDAO.deleteItem(name);
+            this.shoppingCartDAO.purchaseItem(name);
             if (this.shoppingCartDAO.deleteItem(name) == false){
                 return new ResponseEntity<Boolean>(false, HttpStatus.NOT_FOUND);
             }

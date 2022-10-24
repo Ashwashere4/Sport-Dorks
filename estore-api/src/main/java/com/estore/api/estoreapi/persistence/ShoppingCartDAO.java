@@ -43,4 +43,17 @@ public interface ShoppingCartDAO {
      * @throws IOException if underlying storage cannot be accessed
      */
     boolean deleteItem(String name) throws IOException;
+
+    /**
+     * purchases a {@linkplain Item item} with the given name
+     * 
+     * @param name The name of the {@link Item item}
+     * 
+     * @return true if the {@link Item item} was purchased
+     * <br>
+     * false if item with the given name does not exist
+     * 
+     * @throws IOException if underlying storage cannot be accessed
+     */
+    boolean purchaseItem(String name) throws IOException;
 }
