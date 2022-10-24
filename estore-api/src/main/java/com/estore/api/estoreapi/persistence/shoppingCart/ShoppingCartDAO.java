@@ -2,8 +2,7 @@ package com.estore.api.estoreapi.persistence.shoppingCart;
 
 import java.io.IOException;
 
-import com.estore.api.estoreapi.model.Item;
-
+import com.estore.api.estoreapi.model.Inventory.Item;
 
 /**
  * Defines the interface for ShoppingCart object persistence

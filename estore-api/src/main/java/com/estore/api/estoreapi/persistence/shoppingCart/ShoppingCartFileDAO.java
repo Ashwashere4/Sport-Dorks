@@ -9,7 +9,7 @@ import java.util.TreeMap;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import com.estore.api.estoreapi.model.Item;
+import com.estore.api.estoreapi.model.Inventory.Item;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Component

@@ -1,5 +1,5 @@
 package com.estore.api.estoreapi.controller.shoppingCart;
-import com.estore.api.estoreapi.model.Item;
+import com.estore.api.estoreapi.model.Inventory.Item;
 
 import java.util.HashMap;
 

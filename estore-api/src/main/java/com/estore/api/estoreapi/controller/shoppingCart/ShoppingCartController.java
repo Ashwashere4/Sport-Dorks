@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.estore.api.estoreapi.model.Item;
-import com.estore.api.estoreapi.persistence.InventoryDAO;
+import com.estore.api.estoreapi.model.Inventory.Item;
+
+import com.estore.api.estoreapi.persistence.Inventory.InventoryDAO;
 import com.estore.api.estoreapi.persistence.shoppingCart.ShoppingCartDAO;
 
 import java.io.IOException;

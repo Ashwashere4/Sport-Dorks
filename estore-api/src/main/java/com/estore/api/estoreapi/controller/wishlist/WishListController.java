@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.estore.api.estoreapi.model.Inventory.Item;
-//import com.estore.api.estoreapi.persistence.shoppingcart.ShoppingCartDAO;
+import com.estore.api.estoreapi.persistence.shoppingCart.ShoppingCartDAO;
 import com.estore.api.estoreapi.persistence.wishList.WishListDAO;
 
 
@@ -32,7 +32,7 @@ import java.util.logging.Logger;
 public class WishListController {
     private static final Logger LOG = Logger.getLogger(WishListController.class.getName());
     private WishListDAO wishListDAO;
-    //private ShoppingCartDAO shoppingCartDAO;
+    private ShoppingCartDAO shoppingCartDAO;
     
     /**
      * Creates a REST API controller to reponds to requests
