@@ -13,8 +13,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import com.estore.api.estoreapi.controller.inventory.InventoryController;
-import com.estore.api.estoreapi.model.Item;
-import com.estore.api.estoreapi.persistence.InventoryDAO;
+import com.estore.api.estoreapi.model.Inventory.Item;
+import com.estore.api.estoreapi.persistence.Inventory.InventoryDAO;
 
 public class InventoryControllerTest {
 

@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+import com.estore.api.estoreapi.model.Inventory.Item;
+
 @Tag("Model-tier")
 public class ItemTest {
 

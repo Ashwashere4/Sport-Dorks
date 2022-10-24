@@ -1,7 +1,7 @@
 package com.estore.api.estoreapi.controller.inventory;
-import com.estore.api.estoreapi.model.Item;
-
 import java.util.HashMap;
+
+import com.estore.api.estoreapi.model.Inventory.Item;
 
 public class Inventory {
     /** A hashmap representation of the inventory where the key is the name
