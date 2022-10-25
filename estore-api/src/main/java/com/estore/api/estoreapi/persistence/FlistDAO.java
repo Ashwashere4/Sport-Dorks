@@ -2,7 +2,7 @@ package com.estore.api.estoreapi.persistence;
 
 import java.io.IOException;
 
-// import com.estore.api.estoreapi.model.Item;
+import com.estore.api.estoreapi.model.Inventory.Item;
 import com.estore.api.estoreapi.model.Facilities;
 
 
