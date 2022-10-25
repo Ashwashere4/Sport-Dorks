@@ -34,7 +34,7 @@ public class TeamFileDAO implements TeamDAO {
      * 
      * @param inventory
      */
-    public TeamFileDAO(@Value("${inventory.filename}") String filename, ObjectMapper objectMapper) throws IOException {
+    public TeamFileDAO(@Value("${team.filename}") String filename, ObjectMapper objectMapper) throws IOException {
             this.filename = filename;
             this.objectMapper = objectMapper;
             loadTeam();

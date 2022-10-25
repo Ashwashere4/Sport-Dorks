@@ -13,68 +13,33 @@ import com.estore.api.estoreapi.model.Inventory.Item;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Component
-public class ShoppingCartFileDAO {
-     /**
-     * The current shoppingCart.
-     */
-    private Map<String, Item> shoppingCart;
+public class ShoppingCartFileDAO implements ShoppingCartDAO{
+    private Map<String,Item> shoppingCart;
 
-    /**
-     * The file name of the inventory file.
-     */
     private String filename;
 
-    /**
-     * The object mapper.
-     */
-
     private ObjectMapper objectMapper;
-
-    /**
-     * 
-     * @param shoppingCart
-     */
+    
     public ShoppingCartFileDAO(@Value("${shoppingCart.filename}") String filename, ObjectMapper objectMapper) throws IOException {
-            this.filename = filename;
-            this.objectMapper = objectMapper;
-            loadShoppingCart();
-        }
-
-    private ArrayList<Item> getShoppingCartArray() {
-        return new ArrayList<>(shoppingCart.values());
+        this.filename = filename;
+        this.objectMapper = objectMapper;
+        loadShoppingCart();
     }
 
-    public Item[] getItems() throws IOException {
-        return getShoppingCartArray().toArray(new Item[0]);
-    }
-
-    public Item addItem(Item item) throws IOException {
-        shoppingCart.put(item.getName(), item);
-        saveShoppingCart();
-        return item;
-    }
-
-    public boolean deleteItem(String name) throws IOException{
-        shoppingCart.remove(name);
-            return true;
-    }
-    
-    /**
-     * save the inventory to the file.
-    **/
-    private void saveShoppingCart() throws IOException {
-        objectMapper.writeValue(new File(filename), getShoppingCartArray());
-    }
-    
-    /**
-     * Load the inventory from the file.
-     */
     private void loadShoppingCart() throws IOException {
         shoppingCart = new TreeMap<>();
         Item[] shoppingCartArray = objectMapper.readValue(new File(filename), Item[].class);
         for (Item item : shoppingCartArray) {
-            shoppingCart
-            .put(item.getName(), item);
+            shoppingCart.put(item.getName(), item);
         }
+    }
+
+    private ArrayList<Item> getShoppingCartArray() {
+        return new ArrayList<>(shoppingCart.values());
+    }
+    
+    @Override
+    public Item[] getCart() throws IOException {
+        return getShoppingCartArray().toArray(new Item[0]);
     }
 }

@@ -20,7 +20,7 @@ import com.estore.api.estoreapi.model.Teams.Player;
 import com.estore.api.estoreapi.persistence.Teams.TeamDAO;
 
 @RestController
-@RequestMapping("Inventory")
+@RequestMapping("Team")
 public class TeamController {
     private static final Logger LOG = Logger.getLogger(TeamController.class.getName());
     private TeamDAO teamDAO;
@@ -47,7 +47,7 @@ public class TeamController {
      */
     @GetMapping("/{name}")
     public ResponseEntity<Player> getPlayer(@PathVariable String name) {
-        LOG.info("GET /inventory/" + name);
+        LOG.info("GET /team/" + name);
         try {
             Player player = teamDAO.getPlayer(name);
             if (player != null)
@@ -71,7 +71,7 @@ public class TeamController {
      */
     @GetMapping("")
     public ResponseEntity<Player[]> getPlayers() {
-        LOG.info("GET /inventory");
+        LOG.info("GET /team");
         Player[] players;
         try {
             players = teamDAO.getPlayers();
@@ -94,7 +94,7 @@ public class TeamController {
      */
     @GetMapping("/")
     public ResponseEntity<Player[]> searchTeam(@RequestParam String name) {
-        LOG.info("GET /inventory/?name="+name);
+        LOG.info("GET /team/?name="+name);
         try {
             Player[] players = teamDAO.searchTeam(name);
             return new ResponseEntity<Player[]>(players,HttpStatus.OK);
@@ -118,7 +118,7 @@ public class TeamController {
      */
     @PostMapping("")
     public ResponseEntity<Player> createPlayer(@RequestBody Player player) {
-        LOG.info("POST /inventory " + player);
+        LOG.info("POST /team " + player);
         try {
             Player newPlayer = teamDAO.createPlayer(player);
             if (this.teamDAO.createPlayer(newPlayer) == null){
@@ -145,7 +145,7 @@ public class TeamController {
      */
     @PutMapping("")
     public ResponseEntity<Player> updatePlayer(@RequestBody Player player, String name, int age, int rating) throws IOException {
-        LOG.info("PUT /inventory " + player);
+        LOG.info("PUT /team " + player);
         if(this.teamDAO.getPlayer(player.getName()) != null) {
             try {
                 Player newPlayer = teamDAO.updatePlayer(player, name, age, rating);
@@ -173,7 +173,7 @@ public class TeamController {
      */
     @DeleteMapping("/{name}")
     public ResponseEntity<Boolean> deletePlayer(@PathVariable String name) {
-        LOG.info("DELETE /inventory/" + name);
+        LOG.info("DELETE /team/" + name);
         try {
             this.teamDAO.deletePlayer(name);
             if (this.teamDAO.deletePlayer(name) == false){

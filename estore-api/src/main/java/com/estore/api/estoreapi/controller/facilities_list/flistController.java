@@ -148,7 +148,7 @@ public class flistController {
      */
     @PutMapping("")
     public ResponseEntity<Facilities> updateTeam(@RequestBody Facilities team, String name, int team_code, int player_count) {
-        LOG.info("PUT /inventory " + team);
+        LOG.info("PUT /flist " + team);
         if(getTeam(team.getTeamcode()) != null) {
             try {
                 Facilities updatedteam = flistDAO.updateTeam(team, name, team_code, player_count);
@@ -176,7 +176,7 @@ public class flistController {
      */
     @DeleteMapping("/{name}")
     public ResponseEntity<Boolean> deleteTeam(@PathVariable int code) {
-        LOG.info("DELETE /inventory/" + code);
+        LOG.info("DELETE /flist/" + code);
         try {
             this.flistDAO.deleteTeam(code);
             if (this.flistDAO.deleteTeam(code) == false){

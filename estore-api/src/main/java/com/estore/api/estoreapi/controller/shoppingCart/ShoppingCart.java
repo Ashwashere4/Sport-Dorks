@@ -8,10 +8,6 @@ public class ShoppingCart {
      * of the item and the value is the item object */
     HashMap<String, Item> shoppingCart;
 
-    /**
-     * 
-     * @param shoppingCart
-     */
     public ShoppingCart(HashMap<String, Item> shoppingCart) {
         this.shoppingCart = shoppingCart;
     }
