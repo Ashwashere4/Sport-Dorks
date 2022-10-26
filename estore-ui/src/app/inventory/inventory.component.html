@@ -16,7 +16,7 @@
 
 <ul class="items">
   <li *ngFor="let item of items">
-    <span class="badge">{{item.name}}</span> {{item.quantity}}, {{item.cost}}
+    <span class="badge"></span> {{item.name}}, {{item.quantity}}, {{item.cost}}
     <button type="button" class="delete" title="delete item"
       (click)="delete(item)">x</button>
   </li>
