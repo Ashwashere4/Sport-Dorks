@@ -9,7 +9,7 @@ geometry: margin=1in
 > and appear in the generated PDF in italics._
 
 ## Team Information
-* Team name: TEAMNAME
+* Team name: CTN
 * Team members
   * MEMBER1
   * MEMBER2
@@ -18,7 +18,7 @@ geometry: margin=1in
 
 ## Executive Summary
 
-This is a summary of the project.
+Team CTN will create a Team Sport Website. Users will be able to buy sports equipment along with joining a team.
 
 ### Purpose
 > _Provide a very brief statement about the project and the most
