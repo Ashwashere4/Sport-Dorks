@@ -12,6 +12,7 @@ import { ItemDetailComponent } from './item-detail/item-detail.component';
 import { MessagesComponent } from './messages/messages.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ItemSearchComponent } from './item-search/item-search.component';
+import { InventoryComponent } from './inventory/inventory.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ItemSearchComponent } from './item-search/item-search.component';
     ItemDetailComponent,
     MessagesComponent,
     ItemSearchComponent,
+    InventoryComponent
   ],
   imports: [
     BrowserModule,
