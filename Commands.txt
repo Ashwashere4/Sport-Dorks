@@ -1,0 +1,39 @@
+Inventory:
+
+list:    	curl -X GET "http://localhost:8080/Inventory" 
+
+create:  	curl -X POST -H "Content-Type:application/json" "http://localhost:8080/Inventory" -d "{\"name\": \"HockeyPuck\", \"quantity\": 3, \"cost\": 5}"
+
+list:     	curl -X GET "http://localhost:8080/Inventory" 
+
+delete:   	curl -i -X DELETE "http://localhost:8080/Inventory/HockeyPuck" 
+
+list:     	curl -X GET "http://localhost:8080/Inventory"
+
+specific: 	curl -X GET "http://localhost:8080/Inventory/Baseball"
+
+search:  	curl -X GET "http://localhost:8080/Inventory/?name=Base"
+
+Update:  	curl -X PUT -H "Content-Type:application/json" "http://localhost:8080/Inventory" -d "{\"name\": \"Baseball\", \"quantity\": 199, \"cost\": 2}"
+
+shopping cart:
+
+		    curl -X GET "http://localhost:8080/Inventory/Baseball"
+list		curl -X GET "http://localhost:8080/ShoppingCart"
+		
+add		    curl -X POST "http://localhost:8080/ShoppingCart/Baseball"
+
+delete      curl -X DELETE "http://localhost:8080/ShoppingCart/Baseball"
+
+purchase	curl -X PUT "http://localhost:8080/ShoppingCart/Baseball"
+
+wishlist:
+
+		    curl -X GET "http://localhost:8080/Inventory/Baseball"
+list		curl -X GET "http://localhost:8080/WishList"
+		
+add		    curl -X POST "http://localhost:8080/WishList/Baseball"
+
+delete      curl -X DELETE "http://localhost:8080/WishList/Baseball"
+
+add to cart	curl -X PUT "http://localhost:8080/WishList/Baseball"

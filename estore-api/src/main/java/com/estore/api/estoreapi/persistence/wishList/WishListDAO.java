@@ -14,4 +14,9 @@ public interface WishListDAO {
      */
     Item[] getItems() throws IOException;
 
+    Item addItem(String name) throws IOException;
+
+    boolean deleteItem(String name) throws IOException;
+
+    boolean addItemToCart(String name) throws IOException;
 }
