@@ -64,6 +64,10 @@ updateItem(item: Item): Observable<any> {
   );
 }
 
+createItem(name: string, quantity: number, cost: number): Item {
+  return {name, quantity, cost};
+}
+
 /** POST: add a new hero to the server */
 addItem(item: Item): Observable<Item> {
   return this.http.post<Item>(this.inventoryUrl, item, this.httpOptions).pipe(

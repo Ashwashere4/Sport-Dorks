@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Item } from '../item';
-import { CreateItem } from '../CreateItem'
 import { InventoryService } from '../inventory.service';
 import { MessageService } from '../message.service';
 import { Route, RouterOutlet } from '@angular/router';
@@ -16,8 +15,7 @@ export class InventoryComponent implements OnInit {
 
   constructor(
     private inventoryService: InventoryService, 
-    private messageService: MessageService,
-    private createItem: CreateItem) { }
+    private messageService: MessageService) { }
 
   selectedItem?: Item;
   json = require('../items.json')
@@ -40,8 +38,7 @@ export class InventoryComponent implements OnInit {
   add(name: string, quantity: number, cost: number): void {
     name = name.trim();
     if (!name) { return; }
-    this.createItem.constructor(name, quantity, cost);
-    const newItem = this.createItem.getNewItem
+    const newItem = this.inventoryService.createItem(name, quantity, cost);
     this.inventoryService.addItem({ newItem } as unknown as Item)
       .subscribe(item => {
         this.items.push(item);
