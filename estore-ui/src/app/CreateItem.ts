@@ -1,12 +1,12 @@
 import { Item } from "./item";
 
-export class CreateItem {
+export class CreateItem implements Item {
 
-    private name = '';
-    private quantity = 0;
-    private cost = 0;
+    public name = '';
+    public quantity = 0;
+    public cost = 0;
 
-    private newItem: any;
+    newItem: Item;
   
     constructor(itemName: string, itemQuantity: number, itemCost: number) {
       this.name = itemName
