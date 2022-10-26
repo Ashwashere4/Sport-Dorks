@@ -12,7 +12,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class InventoryService {
 
-  private inventoryUrl = 'http://localhost:8080/inventory';
+  private inventoryUrl = 'http://localhost:8080/Inventory';
 
   constructor(
     private messageService: MessageService,

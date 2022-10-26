@@ -1,3 +1,5 @@
+<h2>Inventory</h2>
+
 <div>
   <nav class="navbar navbar-expand-lg navbar-light bg-light ">
     <a class="navbar-brand" href="/">sports</a>
@@ -32,4 +34,27 @@
 
 </div>
 
+<div>
+  <label for="new-item">Item name: </label>
+  <input id="new-item" #itemName />
+  <label for="new-item">Item quantity: </label>
+  <input id="new-item" #itemQuantity />
+  <label for="new-item">Item cost: </label>
+  <input id="new-item" #itemCost />
+
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button type="button" class="add-button" (click)="add(itemName.value, itemQuantity.valueAsNumber, itemCost.valueAsNumber); itemName.value=''">
+    Add item
+  </button>
+</div>
+
+<ul class="items">
+  <li *ngFor="let item of items">
+    <a routerLink="/detail/{{item.name}}">
+      <span class="badge">{{item.name}}</span> {{item.quantity}}, {{item.cost}}
+    </a>
+    <button type="button" class="delete" title="delete item"
+      (click)="delete(item)">x</button>
+  </li>
+</ul>
 <router-outlet></router-outlet>

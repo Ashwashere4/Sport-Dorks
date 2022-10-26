@@ -1,30 +1,54 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+
 import { Item } from './item';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { CreateItem } from './CreateItem'
+import { InventoryService } from './inventory.service';
+import { MessageService } from './message.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-
 export class AppComponent implements OnInit {
-  itemsUrl = 'http://localhost:8080/items';
-  title = 'estore-ui';
+  title: any;
+
+  constructor(
+    private inventoryService: InventoryService, 
+    private messageService: MessageService,
+    private createItem: CreateItem    ) { }
+
+  selectedItem?: Item;
   json = require('./items.json')
 
-  
-  constructor(
-     private http: HttpClient) { }
-  
-     ngOnInit(): void {}
-
-  getItems(): Observable<Item[]> {
-     return this.http.get<Item[]>(this.itemsUrl);
+  ngOnInit(): void {
+    this.getItems();
   }
 
- 
+  items: Item[] = [];
 
+  onSelect(item: Item): void {
+    this.selectedItem = item;
+    this.messageService.add(`InventoryComponent: Selected item name=${item.name}`);
+  }
 
+  getItems(): void {
+    this.inventoryService.getInventory().subscribe(items => this.items = items);
+  }
+
+  add(name: string, quantity: number, cost: number): void {
+    name = name.trim();
+    if (!name) { return; }
+    this.createItem.constructor(name, quantity, cost);
+    const newItem = this.createItem.getNewItem
+    this.inventoryService.addItem({ newItem } as unknown as Item)
+      .subscribe(item => {
+        this.items.push(item);
+      });
+  }
+
+  delete(item: Item): void {
+    this.items = this.items.filter(i => i !== item);
+    this.inventoryService.deleteItem(item.name).subscribe();
+  }
 }
