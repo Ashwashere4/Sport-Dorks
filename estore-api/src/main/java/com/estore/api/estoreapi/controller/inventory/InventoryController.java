@@ -196,8 +196,5 @@ public class InventoryController {
             System.out.println("Item not found.");
             return new ResponseEntity<Boolean>(false,HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
-        
-
     }
 }

@@ -14,4 +14,9 @@ public interface ShoppingCartDAO {
      */
     Item[] getCart() throws IOException;
 
+    Item addItem(String name) throws IOException;
+
+    boolean deleteItem(String name) throws IOException;
+
+    boolean purchaseItem(String name) throws IOException;
 }
