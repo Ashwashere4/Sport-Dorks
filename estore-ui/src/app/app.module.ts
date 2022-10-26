@@ -22,8 +22,7 @@ import { InventoryComponent } from './inventory/inventory.component';
     RegisterComponent,
     ItemDetailComponent,
     MessagesComponent,
-    ItemSearchComponent,
-    InventoryComponent
+    ItemSearchComponent
   ],
   imports: [
     BrowserModule,
