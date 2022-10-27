@@ -18,7 +18,7 @@ geometry: margin=1in
 
 ## Executive Summary
 
-Team CTN will create a Team Sport Website. Users will be able to buy sports equipment along with joining a team.
+Team CTN will create a Team Sport Website. Users will be able to buy sports equipment along with joining a team. These teams will then be able to rent out facilities on the facilities page. 
 
 ### Purpose
 > _Provide a very brief statement about the project and the most
