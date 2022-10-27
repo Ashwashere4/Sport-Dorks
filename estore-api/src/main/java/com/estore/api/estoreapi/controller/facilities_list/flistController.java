@@ -47,14 +47,14 @@ public class flistController {
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @GetMapping("/{name}")
-    public ResponseEntity<Facilities> getTeam(@PathVariable int code) {
+    public ResponseEntity<Facilities> getFacility(@PathVariable int code) {
         LOG.info("GET /flist/" + code);
         try {
-            Facilities team = flistDAO.getTeam(code);
+            Facilities team = flistDAO.getFacility(code);
             if (team != null)
                 return new ResponseEntity<Facilities>(team,HttpStatus.OK);
             else
-                System.out.println("Item does not exist.");
+                System.out.println("Facility does not exist.");
                 return new ResponseEntity<>(HttpStatus.OK);
         }
         catch(IOException e) {
@@ -71,11 +71,11 @@ public class flistController {
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @GetMapping("")
-    public ResponseEntity<Facilities[]> getTeams() {
+    public ResponseEntity<Facilities[]> getFacilities() {
         LOG.info("GET /flist");
         Facilities[] team;
         try {
-            team = flistDAO.getTeams();
+            team = flistDAO.getFacilities();
 
         } catch (IOException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -97,10 +97,10 @@ public class flistController {
      * GET http://localhost:8080/heroes/?name=ma
      */
     @GetMapping("/")
-    public ResponseEntity<Facilities[]> searchTeam(@RequestParam String name) {
+    public ResponseEntity<Facilities[]> searchFacilities(@RequestParam String name) {
         LOG.info("GET /flist/?name="+name);
         try {
-            Facilities[] teams = flistDAO.searchTeams(name);
+            Facilities[] teams = flistDAO.searchFacilities(name);
             return new ResponseEntity<Facilities[]>(teams,HttpStatus.OK);
 
         } catch (Exception e) {
@@ -121,11 +121,11 @@ public class flistController {
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @PostMapping("")
-    public ResponseEntity<Facilities> createTeam(@RequestBody String name, int team_code, int player_count) {
-        LOG.info("POST /flist " + name + team_code + player_count);
+    public ResponseEntity<Facilities> createFacility(@RequestBody String name, String location, int facility_id) {
+        LOG.info("POST /flist " + name + location + facility_id);
         try {
-            Facilities newteam = flistDAO.createTeam(name, team_code, player_count);
-            if (this.flistDAO.createTeam(name, team_code, player_count) == null){
+            Facilities newteam = flistDAO.createFacility(name, location, facility_id);
+            if (this.flistDAO.createFacility(name, location, facility_id) == null){
                 return new ResponseEntity<Facilities>(HttpStatus.CONFLICT);
             }
             return new ResponseEntity<Facilities>(newteam,HttpStatus.CREATED);
@@ -147,11 +147,11 @@ public class flistController {
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @PutMapping("")
-    public ResponseEntity<Facilities> updateTeam(@RequestBody Facilities team, String name, int team_code, int player_count) {
+    public ResponseEntity<Facilities> updateFacility(@RequestBody Facilities team, String name, String location, int facility_id) {
         LOG.info("PUT /flist " + team);
-        if(getTeam(team.getTeamcode()) != null) {
+        if(getFacility(team.getFacilityid()) != null) {
             try {
-                Facilities updatedteam = flistDAO.updateTeam(team, name, team_code, player_count);
+                Facilities updatedteam = flistDAO.updateFacility(team, name, location, facility_id);
                 return new ResponseEntity<Facilities>(updatedteam,HttpStatus.OK);
             }
             catch (IOException e) {
@@ -159,7 +159,7 @@ public class flistController {
                 return new ResponseEntity<Facilities>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
         } else {
-            System.out.println("Item does not exist.");
+            System.out.println("Facility does not exist.");
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
         
@@ -178,13 +178,13 @@ public class flistController {
     public ResponseEntity<Boolean> deleteTeam(@PathVariable int code) {
         LOG.info("DELETE /flist/" + code);
         try {
-            this.flistDAO.deleteTeam(code);
-            if (this.flistDAO.deleteTeam(code) == false){
+            this.flistDAO.deleteFacility(code);
+            if (this.flistDAO.deleteFacility(code) == false){
                 return new ResponseEntity<Boolean>(false, HttpStatus.NOT_FOUND);
             }
             return new ResponseEntity<Boolean>(true,HttpStatus.OK);
         } catch (IOException e) {
-            System.out.println("Item not found.");
+            System.out.println("Facility not found.");
             return new ResponseEntity<Boolean>(false,HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
