@@ -11,15 +11,15 @@ geometry: margin=1in
 ## Team Information
 * Team name: CTN
 * Team members
-  * MEMBER1
-  * MEMBER2
-  * MEMBER3
-  * MEMBER4
+  * Justin Talbot
+  * Justin Wade
+  * Caden Franklin
+  * Kalen Luraschi
 
 ## Executive Summary
 
 Team CTN will create a Team Sport Website. Users will be able to buy sports equipment along with joining a team. These teams will then be able to rent out facilities on the facilities page. 
-
+This website is meant to help those who are interested in sports get a headstart in their careers.
 ### Purpose
 > _Provide a very brief statement about the project and the most
 > important user group and user goals._
@@ -54,11 +54,12 @@ This section describes the features of the application.
 
 This section describes the application domain.
 
-![Domain Model](domain-model-placeholder.png)
+![Domain Model](image.png)
 
-> _Provide a high-level overview of the domain for this application. You
-> can discuss the more important domain entities and their relationship
-> to each other._
+The owner of the website is able to control what facilities and what items are in stock. Customers are able to go either browse the shop or browse the team page.
+From there they are able to buy sports equipment along with seeing what teams are open for new players. Everyone is able to see the facilities page but only a Team
+manager is able to reserve a facilities. The facilities page is a group of facilities that companies offered for others to rent out. Each facility has their own process to rent out a field.
+
 
 
 ## Architecture and Design
