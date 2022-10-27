@@ -3,7 +3,7 @@ package com.estore.api.estoreapi.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Facilities {
-    @JsonProperty("facility_name") private String name;
+    @JsonProperty("name") private String name;
     @JsonProperty("location") private String location;
     @JsonProperty("facility_id") private int facility_id;
 
@@ -33,7 +33,7 @@ public class Facilities {
      * Accessor for the code of a team
      * @return the string representation of the object's label
      */
-    public int getFacilityid() {
+    public int getFacility_id() {
         return this.facility_id;
     }
 
@@ -41,7 +41,7 @@ public class Facilities {
      * Accessor for the count of a team
      * @return the amount of that item in stock
      */
-    public String getFacilityLocation() {
+    public String getLocation() {
         return this.location;
     }
 

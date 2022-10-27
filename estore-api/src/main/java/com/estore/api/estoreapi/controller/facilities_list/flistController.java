@@ -23,7 +23,7 @@ import java.util.logging.Logger;
 
 
 @RestController
-@RequestMapping("Facilities List")
+@RequestMapping("api/facilicies")
 public class flistController {
     private static final Logger LOG = Logger.getLogger(flistController.class.getName());
     private FlistDAO flistDAO;
@@ -70,17 +70,17 @@ public class flistController {
      * HTTP status of OK<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
-    @GetMapping("")
+    @GetMapping("/list")
     public ResponseEntity<Facilities[]> getFacilities() {
         LOG.info("GET /flist");
-        Facilities[] team;
+        Facilities[] facilicies;
         try {
-            team = flistDAO.getFacilities();
+            facilicies = flistDAO.getFacilities();
 
         } catch (IOException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<Facilities[]>(team, HttpStatus.OK);
+        return new ResponseEntity<Facilities[]>(facilicies, HttpStatus.OK);
     }
 
     /**
@@ -149,7 +149,7 @@ public class flistController {
     @PutMapping("")
     public ResponseEntity<Facilities> updateFacility(@RequestBody Facilities team, String name, String location, int facility_id) {
         LOG.info("PUT /flist " + team);
-        if(getFacility(team.getFacilityid()) != null) {
+        if(getFacility(team.getFacility_id()) != null) {
             try {
                 Facilities updatedteam = flistDAO.updateFacility(team, name, location, facility_id);
                 return new ResponseEntity<Facilities>(updatedteam,HttpStatus.OK);

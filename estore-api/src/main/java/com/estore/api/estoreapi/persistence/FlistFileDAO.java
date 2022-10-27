@@ -47,7 +47,7 @@ public class FlistFileDAO implements FlistDAO {
         flist = new TreeMap<>();
         Facilities[] flistArray = objectMapper.readValue(new File(filename), Facilities[].class);
         for (Facilities facilities : flistArray) {
-            flist.put(facilities.getFacilityid(), facilities);
+            flist.put(facilities.getFacility_id(), facilities);
         }
     }
 
@@ -105,9 +105,9 @@ public class FlistFileDAO implements FlistDAO {
         
         Facilities updatedTeam = new Facilities(name, location, facility_id);
 
-        deleteFacility(facilities.getFacilityid());
+        deleteFacility(facilities.getFacility_id());
 
-        flist.put(updatedTeam.getFacilityid(), updatedTeam);
+        flist.put(updatedTeam.getFacility_id(), updatedTeam);
 
         return updatedTeam;
     }

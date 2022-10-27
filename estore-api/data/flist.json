@@ -1,5 +1,11 @@
 [
 
-    {"name" : "Yankee Stadium", }
+    {"name" : "Yankee Stadium " , "location"  : "Bronx, New York ", "facility_id" : 1},
+
+    {"name" : "Mets Stadium ", "location"  : "Somewhere in the world ", "facility_id" : 2},
+
+    {"name" : "Boston Stadium ", "location"  : "Somewhere in the world ", "facility_id" : 3},
+
+    {"name" : "Batting Cages", "location" : "Somewhere in the word", "facility_id" : 4}
 
 ]
