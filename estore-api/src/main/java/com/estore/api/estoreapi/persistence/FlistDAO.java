@@ -18,7 +18,7 @@ public interface FlistDAO {
      * 
      * @throws IOException if an issue with underlying storage
      */
-    Facilities[] getTeams() throws IOException;
+    Facilities[] getFacilities() throws IOException;
 
     /**
      * Finds all {@linkplain Facilities facilities} whose name contains the given text
@@ -29,7 +29,7 @@ public interface FlistDAO {
      * 
      * @throws IOException if an issue with underlying storage
      */
-    Facilities[] searchTeams(String containsText) throws IOException;
+    Facilities[] searchFacilities(String containsText) throws IOException;
 
     /**
      * Retrieves a {@linkplain Facilities facilities} with the given name
@@ -42,7 +42,7 @@ public interface FlistDAO {
      * 
      * @throws IOException if an issue with underlying storage
      */
-    Facilities getTeam(int code) throws IOException;
+    Facilities getFacility(int code) throws IOException;
 
     /**
      * Creates and saves a {@linkplain Facilities facilities}
@@ -55,7 +55,7 @@ public interface FlistDAO {
      * 
      * @throws IOException if an issue with underlying storage
      */
-    Facilities createTeam(String name, int team_code, int player_count) throws IOException;
+    Facilities createFacility(String name, String location, int facility_id) throws IOException;
 
     /**
      * Updates and saves a {@linkplain Facilities facilities}
@@ -67,7 +67,7 @@ public interface FlistDAO {
      * 
      * @throws IOException if underlying storage cannot be accessed
      */
-    Facilities updateTeam(Facilities facilities, String name, int team_code, int player_count) throws IOException;
+    Facilities updateFacility(Facilities facilities, String name, String location, int facility_id) throws IOException;
 
     /**
      * Deletes a {@linkplain Facilities facilities} with the given name
@@ -80,6 +80,6 @@ public interface FlistDAO {
      * 
      * @throws IOException if underlying storage cannot be accessed
      */
-    boolean deleteTeam(int team_code) throws IOException;
+    boolean deleteFacility(int facility_id) throws IOException;
 }
 

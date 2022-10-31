@@ -47,7 +47,7 @@ public class FlistFileDAO implements FlistDAO {
         flist = new TreeMap<>();
         Facilities[] flistArray = objectMapper.readValue(new File(filename), Facilities[].class);
         for (Facilities facilities : flistArray) {
-            flist.put(facilities.getTeamcode(), facilities);
+            flist.put(facilities.getFacility_id(), facilities);
         }
     }
 
@@ -60,20 +60,20 @@ public class FlistFileDAO implements FlistDAO {
     }
 
     @Override
-    public Facilities[] getTeams() throws IOException {
+    public Facilities[] getFacilities() throws IOException {
         return getflistArray().toArray(new Facilities[0]);
     }
 
     @Override
-    public Facilities[] searchTeams(String text) throws IOException {
+    public Facilities[] searchFacilities(String text) throws IOException {
         if (text.length() == 0)
             return new Facilities[0];
 
         ArrayList<Facilities> facilities = new ArrayList<>();
 
-        for(Facilities teams : flist.values()){
-            if(teams.getName().toLowerCase().contains(text.toLowerCase())){
-                facilities.add(teams);
+        for(Facilities locations : flist.values()){
+            if(locations.getName().toLowerCase().contains(text.toLowerCase())){
+                facilities.add(locations);
                 
             }
         }
@@ -81,7 +81,7 @@ public class FlistFileDAO implements FlistDAO {
     }
 
     @Override
-    public Facilities getTeam(int code) throws IOException {
+    public Facilities getFacility(int code) throws IOException {
         Facilities facilities = flist.get(code);
 
         if (facilities != null)
@@ -92,29 +92,27 @@ public class FlistFileDAO implements FlistDAO {
     }
 
     @Override
-    public Facilities createTeam(String name, int team_code, int player_count) throws IOException {
-        Facilities newTeam = new Facilities(name, team_code, player_count);
-        flist.put(team_code, newTeam);
+    public Facilities createFacility(String name, String location, int facility_id) throws IOException {
+        Facilities newTeam = new Facilities(name, location, facility_id);
+        flist.put(facility_id, newTeam);
         saveInventory();
         return newTeam;
     }
 
     @Override
-    public Facilities updateTeam(Facilities facilities, String name, int team_code, int player_count)
+    public Facilities updateFacility(Facilities facilities, String name, String location, int facility_id)
             throws IOException {
         
-        Facilities updatedTeam = new Facilities(name, team_code, player_count);
+       facilities.setName(name);
+       facilities.setLocation(location);
+       facilities.setId(facility_id);
 
-        deleteTeam(facilities.getTeamcode());
-
-        flist.put(updatedTeam.getTeamcode(), updatedTeam);
-
-        return updatedTeam;
+        return facilities;
     }
 
     @Override
-    public boolean deleteTeam(int team_code) throws IOException {
-        flist.remove(team_code);
+    public boolean deleteFacility(int facility_id) throws IOException {
+        flist.remove(facility_id);
         return true;
     }
 
