@@ -1,13 +1,14 @@
 package com.estore.api.estoreapi.model;
 
 import com.estore.api.estoreapi.controller.Teams.Team;
+import com.estore.api.estoreapi.model.Teams.Player;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Facilities {
     @JsonProperty("name") private String name;
     @JsonProperty("location") private String location;
     @JsonProperty("facility_id") private int facility_id;
-    @JsonProperty("team_reserve") private Team team_reserve;
+    @JsonProperty("team_reserve") private Player team_reserve;
 
     // @JsonProperty("name") private String name;
 
@@ -62,11 +63,11 @@ public class Facilities {
         return true;
     }
 
-    public Boolean addTeamReserve(Team team){
+    public Boolean addTeamReserve(Player player){
 
         if (getReserveStatus() == false){
 
-            this.team_reserve = team;
+            this.team_reserve = player;
 
             return true;
         }
