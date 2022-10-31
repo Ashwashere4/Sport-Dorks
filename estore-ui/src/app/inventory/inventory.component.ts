@@ -26,6 +26,7 @@ export class InventoryComponent implements OnInit {
 
   items: Item[] = [];
 
+
   onSelect(item: Item): void {
     this.selectedItem = item;
     this.messageService.add(`InventoryComponent: Selected item name=${item.name}`);
@@ -38,15 +39,19 @@ export class InventoryComponent implements OnInit {
   add(name: string, quantity: number, cost: number): void {
     name = name.trim();
     if (!name) { return; }
-    const newItem = this.inventoryService.createItem(name, quantity, cost);
-    this.inventoryService.addItem({ newItem } as unknown as Item)
-      .subscribe(item => {
-        this.items.push(item);
+    const newItem = this.inventoryService.createItem(name, quantity, cost);;
+    this.inventoryService.addItem(newItem)
+      .subscribe(newItem => {
+        this.items.push(newItem);
       });
   }
 
   delete(item: Item): void {
     this.items = this.items.filter(i => i !== item);
     this.inventoryService.deleteItem(item.name).subscribe();
+  }
+
+  parseInt(string: string): number {
+    return parseInt(string);
   }
 }

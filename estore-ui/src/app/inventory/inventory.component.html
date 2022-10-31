@@ -1,23 +1,32 @@
 <h2>Inventory</h2>
 
-<div>
-  <label for="new-item">Item name: </label>
-  <input id="new-item" #itemName />
-  <label for="new-item">Item quantity: </label>
-  <input id="new-item" #itemQuantity />
-  <label for="new-item">Item cost: </label>
-  <input id="new-item" #itemCost />
+<form action="" method="post" class="new-item">
+  <div class="new-item">
+    <label for="name">Enter item name: </label>
+    <input type="text" itemName="name" id="name" required #itemName>
+  </div>
+  <div class="new-item">
+    <label for="quantity">Enter item quantity: </label>
+    <input type="number" itemQuantity="quantity" id="quantity" required #itemQuantity>
+  </div>
+  <div class="new-item">
+    <label for="cost">Enter item cost: </label>
+    <input type="number" itemCost="cost" id="cost" required #itemCost>
+  </div>
+  <div>
+    <!-- (click) passes input value to add() and then clears the input -->
+    <button type="button" class="add-button" (click)="add(itemName.value, parseInt(itemQuantity.value), parseInt(itemCost.value));">
+      Add
+    </button>
+  </div>
+</form>
 
-  <!-- (click) passes input value to add() and then clears the input -->
-  <button type="button" class="add-button" (click)="add(itemName.value, itemQuantity.valueAsNumber, itemCost.valueAsNumber); itemName.value=''">
-    Add item
-  </button>
-</div>
-
-<ul class="items">
-  <li *ngFor="let item of items">
-    <span class="badge"></span> {{item.name}}, {{item.quantity}}, {{item.cost}}
-    <button type="button" class="delete" title="delete item"
-      (click)="delete(item)">x</button>
-  </li>
-</ul>
+<body>
+  <ul class="items">
+    <li *ngFor="let item of items">
+      <span class="badge"></span> {{item.name}}, {{item.quantity}}, {{item.cost}}
+      <button type="button" class="delete" title="delete item"
+        (click)="delete(item)">x</button>
+    </li>
+  </ul>
+</body>
