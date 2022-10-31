@@ -1,11 +1,13 @@
 package com.estore.api.estoreapi.model;
 
+import com.estore.api.estoreapi.controller.Teams.Team;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Facilities {
     @JsonProperty("name") private String name;
     @JsonProperty("location") private String location;
     @JsonProperty("facility_id") private int facility_id;
+    @JsonProperty("team_reserve") private Team team_reserve;
 
     // @JsonProperty("name") private String name;
 
@@ -45,11 +47,37 @@ public class Facilities {
         return this.location;
     }
 
+    public Boolean getReserveStatus(){
+        return this.team_reserve != null;
+    }
+
+    public Team getTeamReserve(){
+
+        return this.team_reserve;
+    }
+
+    public Boolean removeTeamReserve(){
+        this.team_reserve = null;
+
+        return true;
+    }
+
+    public Boolean addTeamReserve(Team team){
+
+        if (getReserveStatus() == false){
+
+            this.team_reserve = team;
+
+            return true;
+        }
+
+        return false;
+    }
     /**
      * Method to get the string representation of an item object
      */
     public String toString(){
-        return ("Facility Name = " + name + "\nFacility Location= " + location + "\nFacility Id = " + facility_id);
+        return ("Facility Name = " + name + "\nFacility Location= " + location + "\nFacility Id = " + facility_id + "Reserved by: " + getTeamReserve());
     }
 }
 
