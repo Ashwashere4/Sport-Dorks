@@ -9,7 +9,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  itemsUrl = 'http://localhost:8080/items';
+  itemsUrl = 'http://localhost:8080/inventory';
   title = 'estore-ui';
   json = require('./items.json');
 }
