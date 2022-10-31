@@ -1,7 +1,10 @@
 package com.estore.api.estoreapi.model.Teams;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Player {
     @JsonProperty("name") private String name;
     @JsonProperty("age") private int age;
