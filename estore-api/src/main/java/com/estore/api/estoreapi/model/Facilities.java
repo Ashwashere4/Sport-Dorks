@@ -1,8 +1,12 @@
 package com.estore.api.estoreapi.model;
 
-import com.estore.api.estoreapi.controller.Teams.Team;
 import com.estore.api.estoreapi.model.Teams.Player;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+
 
 public class Facilities {
     @JsonProperty("name") private String name;
@@ -10,18 +14,18 @@ public class Facilities {
     @JsonProperty("facility_id") private int facility_id;
     @JsonProperty("team_reserve") private Player team_reserve;
 
-    // @JsonProperty("name") private String name;
-
     /**
      * Constructor for an item object
      * @param name a label for the item as a string
      * @param quantity the amount of the item in stock as an int
      * @param cost the price of a product as an int
      */
+
     public Facilities(@JsonProperty("name") String name, @JsonProperty("location") String location, @JsonProperty("facility_id") int facility_id) {
         this.name = name;
         this.location = location;
         this.facility_id = facility_id;
+        this.team_reserve = null;
     };
 
     /**
@@ -48,24 +52,24 @@ public class Facilities {
         return this.location;
     }
 
-    public Boolean getReserveStatus(){
+    public Boolean getReservestatus(){
         return this.team_reserve != null;
     }
 
-    public Team getTeamReserve(){
+    public Player getTeam_reserve(){
 
         return this.team_reserve;
     }
 
-    public Boolean removeTeamReserve(){
+    public Boolean removeTeam_reserve(){
         this.team_reserve = null;
 
         return true;
     }
 
-    public Boolean addTeamReserve(Player player){
+    public Boolean addTeam_reserve(Player player){
 
-        if (getReserveStatus() == false){
+        if (getReservestatus() == false){
 
             this.team_reserve = player;
 
@@ -74,11 +78,25 @@ public class Facilities {
 
         return false;
     }
+
+    public void setName(String name){
+        this.name = name;
+
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+        
+    }
+
+    public void setId(int id){
+        this.facility_id = id;
+    }
     /**
      * Method to get the string representation of an item object
      */
     public String toString(){
-        return ("Facility Name = " + name + "\nFacility Location= " + location + "\nFacility Id = " + facility_id + "Reserved by: " + getTeamReserve());
+        return ("Facility Name = " + name + "\nFacility Location= " + location + "\nFacility Id = " + facility_id + "Reserved by: " + getReservestatus());
     }
 }
 

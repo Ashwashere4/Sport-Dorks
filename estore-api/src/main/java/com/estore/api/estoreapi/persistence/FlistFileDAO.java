@@ -103,13 +103,11 @@ public class FlistFileDAO implements FlistDAO {
     public Facilities updateFacility(Facilities facilities, String name, String location, int facility_id)
             throws IOException {
         
-        Facilities updatedTeam = new Facilities(name, location, facility_id);
+       facilities.setName(name);
+       facilities.setLocation(location);
+       facilities.setId(facility_id);
 
-        deleteFacility(facilities.getFacility_id());
-
-        flist.put(updatedTeam.getFacility_id(), updatedTeam);
-
-        return updatedTeam;
+        return facilities;
     }
 
     @Override

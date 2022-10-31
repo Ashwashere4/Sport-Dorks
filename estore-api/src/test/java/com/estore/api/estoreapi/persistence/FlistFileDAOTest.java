@@ -7,7 +7,6 @@ import java.io.IOException;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.estore.api.estoreapi.controller.facilities_list.flist;
 import com.estore.api.estoreapi.model.Facilities;
 import com.estore.api.estoreapi.model.Teams.Player;
 import com.estore.api.estoreapi.persistence.Teams.TeamFileDAO;
@@ -27,16 +26,16 @@ void testFlistfileDAO() throws IOException{
         Facilities dummy_test = flist.createFacility("something cool", "Bronx", 002);
         flist.createFacility("something boring", "Bronx", 003);
 
-        // Checks to see if a facility exists for something (should return 2 because i am really original with names)
-        assertEquals(flist.searchFacilities("something").length, 2);
+        // Checks to see if a facility exists for something (should return 3 because i am really original with names)
+        assertEquals(flist.searchFacilities("something").length, 3);
 
 
-        // Checks to see if all the faciltites  were added properly (7, 4 from original file, 3 from test)
-        assertEquals(flist.getFacilities().length, 7);
+        // Checks to see if all the faciltites  were added properly (4 stadiums)
+        assertEquals(flist.getFacilities().length, 4);
 
         //deletes the one facility with a semi unique name because originally should be punished 
         flist.deleteFacility(001);
-        assertEquals(flist.getFacilities().length, 6);
+        assertEquals(flist.getFacilities().length, 3);
         assertEquals(flist.getFacility(001), null);
 
         //Since the facilities are now boycotting, something cool should become "The amazing stadium"
@@ -55,16 +54,28 @@ void testFlistfileDAO() throws IOException{
         
         TeamFileDAO team = new TeamFileDAO(name, objectMapper);
         Player test_player = team.createPlayer("Jordan", 17, 86);
+        Player test_player1 = team.createPlayer("Paul", 21, 66);
 
         // Some dude wants to reserve the Yankee Stadium for a more realistic practice
 
         Facilities test_facility = flist.getFacility(1);
 
-        assertEquals(test_facility.getReserveStatus(), false);
+        // reserve status should default to false always
+        assertEquals(test_facility.getReservestatus(), false);
 
-        test_facility.addTeamReserve(test_player)
+        // Jordan reserves the facility
+        test_facility.addTeam_reserve(test_player);
 
-        
+        //this becomes true
+        assertEquals(test_facility.getReservestatus(), true);
+
+        //this is false because jordan already reserved it
+        assertEquals(test_facility.addTeam_reserve(test_player1), false);
+
+        test_facility.removeTeam_reserve();
+
+        //with the removal of the team reserve, it is now available
+        assertEquals(test_facility.getReservestatus(), false);
 
     }
     
