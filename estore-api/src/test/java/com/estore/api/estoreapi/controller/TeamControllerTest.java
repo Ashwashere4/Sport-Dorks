@@ -113,8 +113,7 @@ public class TeamControllerTest {
         
         response = teamController.updatePlayer(player, "Nike", 0, 0);
 
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(player, response.getBody());
+        assertEquals(HttpStatus.CONFLICT, response.getStatusCode());
     }   
 
     @Test 
@@ -125,7 +124,7 @@ public class TeamControllerTest {
 
         ResponseEntity<Player> response = teamController.updatePlayer(player, "Nike", 0, 0);
 
-        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+        assertEquals(HttpStatus.CONFLICT, response.getStatusCode());
     }
 
     @Test
