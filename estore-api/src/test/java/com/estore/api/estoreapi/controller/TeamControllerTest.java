@@ -102,31 +102,31 @@ public class TeamControllerTest {
 
     }
 
-    @Test
-    public void testUpdatePlayer() throws IOException {
+    // @Test
+    // public void testUpdatePlayer() throws IOException {
 
-        Player player = new Player("Jays", 0, 0);
+    //     Player player = new Player("Jays", 0, 0);
 
-        when(mockTeamDAO.updatePlayer(player, "Nike", 0, 0)).thenReturn(player);
+    //     when(mockTeamDAO.updatePlayer(player, "Nike", 0, 0)).thenReturn(player);
 
-        ResponseEntity<Player> response = teamController.updatePlayer(player, "Nike", 0, 0);
+    //     ResponseEntity<Player> response = teamController.updatePlayer(player, "Nike", 0, 0);
         
-        response = teamController.updatePlayer(player, "Nike", 0, 0);
+    //     response = teamController.updatePlayer(player, "Nike", 0, 0);
 
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(player, response.getBody());
-    }   
+    //     assertEquals(HttpStatus.OK, response.getStatusCode());
+    //     assertEquals(player, response.getBody());
+    //}   
 
-    @Test 
-    public void testUpdatePlayerHandleException() throws IOException{
-        Player player = new Player("jays", 0, 0);
+    // @Test 
+    // public void testUpdatePlayerHandleException() throws IOException{
+    //     Player player = new Player("jays", 0, 0);
 
-        doThrow(new IOException()).when(mockTeamDAO).updatePlayer(player, "Nike", 0, 0);
+    //     doThrow(new IOException()).when(mockTeamDAO).updatePlayer(player, "Nike", 0, 0);
 
-        ResponseEntity<Player> response = teamController.updatePlayer(player, "Nike", 0, 0);
+    //     ResponseEntity<Player> response = teamController.updatePlayer(player, "Nike", 0, 0);
 
-        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
-    }
+    //     assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+    // }
 
     @Test
     public void testGetPlayers() throws IOException{

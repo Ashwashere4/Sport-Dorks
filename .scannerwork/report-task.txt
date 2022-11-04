@@ -1,0 +1,6 @@
+projectKey=CTN-app
+serverUrl=http://localhost:9000
+serverVersion=9.7.1.62043
+dashboardUrl=http://localhost:9000/dashboard?id=CTN-app
+ceTaskId=AYQ6KvTKJcUCXzJKq809
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYQ6KvTKJcUCXzJKq809
