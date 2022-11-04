@@ -37,7 +37,7 @@ class InventoryFileDAOTests {
 
         // Checks to see if nikes was deleted properly (15-1 = 14), since nike doesn't exist it returns null
         store.deleteItem("nikes");
-        // assertEquals(store.getItems().length, 15);
+        assertEquals(store.getItems().length, 15);
         assertEquals(store.getItem("nikes"), null);
 
         //Finally, checks to see if idkman is updated into the ultimate drip, with the quantity of 100, and the price of 10,000
