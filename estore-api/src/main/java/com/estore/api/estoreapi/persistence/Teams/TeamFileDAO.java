@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Component
 public class TeamFileDAO implements TeamDAO {
-     /**
+    /**
      * The current team roster.
      */
     private Map<String, Player> team;
@@ -57,7 +57,7 @@ public class TeamFileDAO implements TeamDAO {
             if (player != null)
                 return player;
             else
-                System.out.println("Item does not exist.");
+                System.out.println("player does not exist.");
                 return null;
     }
 
@@ -79,8 +79,13 @@ public class TeamFileDAO implements TeamDAO {
 
     @Override
     public boolean deletePlayer(String name) throws IOException{
-            team.remove(name);
-            return true;
+            if(team.containsKey(name)) {
+                team.remove(name);
+                saveTeam();
+                return true;
+            } else {
+                return false;
+            }
         }
 
     
