@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
-
 import org.springframework.beans.factory.annotation.Value;
 
 import com.estore.api.estoreapi.model.Teams.Player;
@@ -130,7 +128,7 @@ public class LeagueFileDAO implements LeagueDAO{
      * Load the inventory from the file.
      */
     private void loadLeague() throws IOException {
-        league = new TreeMap<>();
+        league = new HashMap<>();
         Team[] leagueArray = objectMapper.readValue(new File(filename), Team[].class);
         for (Team team : leagueArray) {
             league.put(nextId(), team);

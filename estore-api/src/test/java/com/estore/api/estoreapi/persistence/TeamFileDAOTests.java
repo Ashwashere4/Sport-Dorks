@@ -21,7 +21,7 @@ class TeamFileDAOTests {
     String name = "data/team.json";
     
     @Test 
-    void testInventoryFileDAO() throws IOException{
+    void testTeamFileDAO() throws IOException{
 
         TeamFileDAO team = new TeamFileDAO(name, objectMapper);
         team.createPlayer("Jordan", 17, 86);
@@ -55,14 +55,14 @@ class TeamFileDAOTests {
     void testCreateDeletePlayer() throws IOException{
 
         TeamFileDAO team = new TeamFileDAO(name, objectMapper);
-        //tests create item class
+        //tests create player class
         team.createPlayer("Pablo", 19, 88);
 
         assertEquals(team.searchTeam("Pablo").length, 1);        
         assertNotNull(team.getPlayer("Pablo"));
         assertNotNull(team.getPlayers());
 
-        //tests delete item class
+        //tests delete player class
         team.deletePlayer("Pablo");
         assertNull(team.getPlayer("Pablo")); 
         assertNotEquals(team.searchTeam("Pablo").length, 1);

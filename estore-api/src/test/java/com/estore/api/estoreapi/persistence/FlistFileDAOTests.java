@@ -13,7 +13,7 @@ import com.estore.api.estoreapi.persistence.Teams.TeamFileDAO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @SpringBootTest
-public class FlistFileDAOTest {
+public class FlistFileDAOTests {
     
     ObjectMapper objectMapper = new ObjectMapper();
     String name = "data/flist.json";

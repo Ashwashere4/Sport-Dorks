@@ -94,7 +94,7 @@ public class LeagueController {
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @GetMapping("/")
-    public ResponseEntity<Team[]> searchTeam(@RequestParam String term) {
+    public ResponseEntity<Team[]> searchLeague(@RequestParam String term) {
         LOG.info("GET /league/?id="+term);
         try {
             Team[] teams = leagueDAO.searchLeague(term);

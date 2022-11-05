@@ -180,7 +180,7 @@ public class TeamControllerTest {
     }
 
     @Test
-    public void testDeleteItems() throws IOException { 
+    public void testDeletePlayers() throws IOException { 
         
         String name = "Jays";
         
