@@ -1,4 +1,4 @@
-package com.estore.api.estoreapi.controller;
+package com.estore.api.estoreapi.controller.League;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.doThrow;
@@ -13,10 +13,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import com.estore.api.estoreapi.controller.Teams.LeagueController;
+import com.estore.api.estoreapi.controller.leagues.LeagueController;
 import com.estore.api.estoreapi.model.Teams.Player;
 import com.estore.api.estoreapi.model.Teams.Team;
-import com.estore.api.estoreapi.persistence.Teams.LeagueDAO;
+import com.estore.api.estoreapi.persistence.League.LeagueDAO;
 
 public class LeagueControllerTest {
 
@@ -101,7 +101,7 @@ public class LeagueControllerTest {
 
         Team team = new Team(roster, 51);
 
-        when(mockLeagueDAO.createTeam(roster, 51)).thenReturn(team);
+        when(mockLeagueDAO.createTeam(team)).thenReturn(team);
 
         ResponseEntity<Team> response = leagueController.createTeam(team);
 

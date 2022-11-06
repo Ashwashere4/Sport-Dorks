@@ -1,4 +1,4 @@
-package com.estore.api.estoreapi.controller.Teams;
+package com.estore.api.estoreapi.controller.leagues;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.estore.api.estoreapi.model.Teams.Player;
 import com.estore.api.estoreapi.model.Teams.Team;
-import com.estore.api.estoreapi.persistence.Teams.LeagueDAO;
+import com.estore.api.estoreapi.persistence.League.LeagueDAO;
 
 @RestController
 @RequestMapping("League")

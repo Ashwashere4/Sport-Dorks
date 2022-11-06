@@ -1,4 +1,4 @@
-package com.estore.api.estoreapi.persistence.Teams;
+package com.estore.api.estoreapi.persistence.League;
 
 import java.io.IOException;
 import java.util.HashMap;

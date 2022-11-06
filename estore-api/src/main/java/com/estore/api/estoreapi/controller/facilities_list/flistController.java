@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.estore.api.estoreapi.model.Facilities;
-import com.estore.api.estoreapi.persistence.FlistDAO;
+import com.estore.api.estoreapi.model.Facilities.Facilities;
+import com.estore.api.estoreapi.persistence.FacilitiesList.FlistDAO;
 
 import java.io.IOException;
 import java.util.logging.Level;
@@ -23,7 +23,7 @@ import java.util.logging.Logger;
 
 
 @RestController
-@RequestMapping("api/facilicies")
+@RequestMapping("Facilities")
 public class flistController {
     private static final Logger LOG = Logger.getLogger(flistController.class.getName());
     private FlistDAO flistDAO;

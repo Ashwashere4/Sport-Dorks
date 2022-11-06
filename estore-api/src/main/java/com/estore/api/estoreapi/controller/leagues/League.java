@@ -1,4 +1,4 @@
-package com.estore.api.estoreapi.controller.Teams;
+package com.estore.api.estoreapi.controller.leagues;
 
 import java.util.HashMap;
 

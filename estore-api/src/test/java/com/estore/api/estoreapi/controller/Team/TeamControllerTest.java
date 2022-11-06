@@ -1,4 +1,4 @@
-package com.estore.api.estoreapi.controller;
+package com.estore.api.estoreapi.controller.Team;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.doThrow;

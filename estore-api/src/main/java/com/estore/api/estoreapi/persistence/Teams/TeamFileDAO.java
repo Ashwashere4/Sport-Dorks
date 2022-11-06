@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.TreeMap;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -121,7 +121,7 @@ public class TeamFileDAO implements TeamDAO {
      * Load the inventory from the file.
      */
     private void loadTeam() throws IOException {
-        team = new TreeMap<>();
+        team = new HashMap<>();
         Player[] teamArray = objectMapper.readValue(new File(filename), Player[].class);
         for (Player player : teamArray) {
             team.put(player.getName(), player);

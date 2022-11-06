@@ -1,9 +1,9 @@
-package com.estore.api.estoreapi.persistence;
+package com.estore.api.estoreapi.persistence.FacilitiesList;
 
 import java.io.IOException;
 
+import com.estore.api.estoreapi.model.Facilities.Facilities;
 import com.estore.api.estoreapi.model.Inventory.Item;
-import com.estore.api.estoreapi.model.Facilities;
 
 
 /**

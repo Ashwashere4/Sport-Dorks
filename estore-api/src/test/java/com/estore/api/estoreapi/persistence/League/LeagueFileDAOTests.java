@@ -1,4 +1,4 @@
-package com.estore.api.estoreapi.persistence;
+package com.estore.api.estoreapi.persistence.League;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -11,12 +11,12 @@ import java.util.HashMap;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.estore.api.estoreapi.EstoreApiApplication;
 import com.estore.api.estoreapi.model.Teams.Player;
 import com.estore.api.estoreapi.model.Teams.Team;
-import com.estore.api.estoreapi.persistence.Teams.LeagueFileDAO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@SpringBootTest
+@SpringBootTest(classes=EstoreApiApplication.class)
 class LeagueFileDAOtests {
     
     ObjectMapper objectMapper = new ObjectMapper();
@@ -58,19 +58,15 @@ class LeagueFileDAOtests {
         assertEquals(league.getTeam(1).getTeam().get("Sam").getAge(), 18);
         assertEquals(league.getTeam(1).getTeam().get("Sam").getName(), "Sam");
         assertEquals(league.getTeam(1).getTeam().get("Sam").getRating(), 4);
-    }
-
-    @Test
-    void testCreateDeleteTeam() throws IOException{
-
-        LeagueFileDAO league = new LeagueFileDAO(fileName, objectMapper);
+    
+        league = new LeagueFileDAO(fileName, objectMapper);
         //tests create team class
-        HashMap<String,Player> roster = new HashMap<>();
-        roster.put("Ben", new Player("Ben", 19, 75));
-        roster.put("Kyle", new Player("Kyle", 19, 67));
-        roster.put("James", new Player("Jamse", 18, 88));
+        HashMap<String,Player> roster3 = new HashMap<>();
+        roster3.put("Ben", new Player("Ben", 19, 75));
+        roster3.put("Kyle", new Player("Kyle", 19, 67));
+        roster3.put("James", new Player("Jamse", 18, 88));
 
-        league.createTeam(roster, 3);
+        league.createTeam(roster3, 3);
 
         assertEquals(league.searchLeague("3").length, 1);        
         assertNotNull(league.getTeam(3));

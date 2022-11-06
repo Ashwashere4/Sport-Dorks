@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.TreeMap;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -33,7 +33,7 @@ public class WishListFileDAO implements WishListDAO{
     }
 
     private void loadWishList() throws IOException {
-        wishList = new TreeMap<>();
+        wishList = new HashMap<>();
         Item[] wishListArray = objectMapper.readValue(new File(filename), Item[].class);
         for (Item item : wishListArray) {
             wishList.put(item.getName(), item);

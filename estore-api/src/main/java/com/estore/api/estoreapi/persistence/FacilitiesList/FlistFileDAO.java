@@ -1,12 +1,13 @@
-package com.estore.api.estoreapi.persistence;
+package com.estore.api.estoreapi.persistence.FacilitiesList;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.TreeMap;
+import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import com.estore.api.estoreapi.model.Facilities;
+
+import com.estore.api.estoreapi.model.Facilities.Facilities;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Component
@@ -44,7 +45,7 @@ public class FlistFileDAO implements FlistDAO {
      */
 
     private void loadflist() throws IOException {
-        flist = new TreeMap<>();
+        flist = new HashMap<>();
         Facilities[] flistArray = objectMapper.readValue(new File(filename), Facilities[].class);
         for (Facilities facilities : flistArray) {
             flist.put(facilities.getFacility_id(), facilities);
