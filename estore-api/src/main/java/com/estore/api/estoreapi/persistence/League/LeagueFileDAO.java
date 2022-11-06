@@ -4,14 +4,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.estore.api.estoreapi.model.Teams.Player;
 import com.estore.api.estoreapi.model.Teams.Team;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Component
@@ -133,11 +131,8 @@ public class LeagueFileDAO implements LeagueDAO{
      */
     private void loadLeague() throws IOException {
         HashMap<Integer, Team> league = new HashMap<>();
-        TypeReference<List<HashMap<String,Player>>> typeRef 
-            = new TypeReference<List<HashMap<String,Player>>>() {};
-        List<HashMap<String,Player>> leagueArray = (List<HashMap<String,Player>>) objectMapper.readValue(new File(filename), typeRef);
-        for (HashMap<String,Player> roster : leagueArray) {
-            Team team = new Team(roster, 0);
+        Team[] leagueArray = objectMapper.readValue(new File(filename), Team[].class);
+        for (Team team : leagueArray) {
             league.put(nextId(), team);
         }
     }
