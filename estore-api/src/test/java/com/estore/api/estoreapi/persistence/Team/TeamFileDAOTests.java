@@ -1,4 +1,4 @@
-package com.estore.api.estoreapi.persistence;
+package com.estore.api.estoreapi.persistence.Team;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -10,18 +10,19 @@ import java.io.IOException;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.estore.api.estoreapi.EstoreApiApplication;
 import com.estore.api.estoreapi.model.Teams.Player;
 import com.estore.api.estoreapi.persistence.Teams.TeamFileDAO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@SpringBootTest
+@SpringBootTest(classes=EstoreApiApplication.class)
 class TeamFileDAOTests {
     
     ObjectMapper objectMapper = new ObjectMapper();
     String name = "data/team.json";
     
     @Test 
-    void testInventoryFileDAO() throws IOException{
+    void testTeamFileDAO() throws IOException{
 
         TeamFileDAO team = new TeamFileDAO(name, objectMapper);
         team.createPlayer("Jordan", 17, 86);
@@ -49,20 +50,16 @@ class TeamFileDAOTests {
         assertEquals(mike.getAge(), 20);
         assertEquals(mike.getName(), "Mike");
         assertEquals(mike.getRating(), 55);
-    }
 
-    @Test
-    void testCreateDeletePlayer() throws IOException{
-
-        TeamFileDAO team = new TeamFileDAO(name, objectMapper);
-        //tests create item class
+        team = new TeamFileDAO(name, objectMapper);
+        //tests create player class
         team.createPlayer("Pablo", 19, 88);
 
         assertEquals(team.searchTeam("Pablo").length, 1);        
         assertNotNull(team.getPlayer("Pablo"));
         assertNotNull(team.getPlayers());
 
-        //tests delete item class
+        //tests delete player class
         team.deletePlayer("Pablo");
         assertNull(team.getPlayer("Pablo")); 
         assertNotEquals(team.searchTeam("Pablo").length, 1);

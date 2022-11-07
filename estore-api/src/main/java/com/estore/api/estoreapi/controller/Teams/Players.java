@@ -4,16 +4,16 @@ import java.util.HashMap;
 
 import com.estore.api.estoreapi.model.Teams.Player;
 
-public class Team {
-    /** A hashmap representation of the inventory where the key is the name
-     * of the item and the value is the item object */
+public class Players {
+    /** A hashmap representation of the team roster where the key is the name
+     * of the player and the value is the player object */
     HashMap<String, Player> team;
 
     /**
      * 
      * @param inventory
      */
-    public Team(HashMap<String, Player> team) {
+    public Players(HashMap<String, Player> team) {
         this.team = team;
     }
 }

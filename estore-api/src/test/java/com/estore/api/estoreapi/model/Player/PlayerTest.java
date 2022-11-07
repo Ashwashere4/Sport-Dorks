@@ -1,4 +1,4 @@
-package com.estore.api.estoreapi.model;
+package com.estore.api.estoreapi.model.Player;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -9,14 +9,12 @@ import com.estore.api.estoreapi.model.Teams.Player;
 
 @Tag("Model-tier")
 public class PlayerTest {
-
-
     @Test
     public void testCtor(){
 
         int expected_age = 19;
         int expected_rating = 74;
-        String expected_name = "This wild Drip";
+        String expected_name = "Sam";
 
         Player player = new Player(expected_name,expected_age,expected_rating);
 

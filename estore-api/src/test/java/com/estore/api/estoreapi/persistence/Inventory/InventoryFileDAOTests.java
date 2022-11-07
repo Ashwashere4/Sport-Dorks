@@ -1,4 +1,4 @@
-package com.estore.api.estoreapi.persistence;
+package com.estore.api.estoreapi.persistence.Inventory;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -10,11 +10,11 @@ import java.io.IOException;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.estore.api.estoreapi.EstoreApiApplication;
 import com.estore.api.estoreapi.model.Inventory.Item;
-import com.estore.api.estoreapi.persistence.Inventory.InventoryFileDAO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@SpringBootTest
+@SpringBootTest(classes=EstoreApiApplication.class)
 class InventoryFileDAOTests {
     
     ObjectMapper objectMapper = new ObjectMapper();
@@ -50,14 +50,7 @@ class InventoryFileDAOTests {
         assertEquals(drip.getName(), "the ultimate drip");
         assertEquals(drip.getQuantity(), 100);
 
-
-
-    }
-
-    @Test
-    void testCreateDeleteItem() throws IOException{
-
-        InventoryFileDAO store = new InventoryFileDAO(name, objectMapper);
+        store = new InventoryFileDAO(name, objectMapper);
         //tests create item class
         store.createItem("baseballHat", 12, 10);
 

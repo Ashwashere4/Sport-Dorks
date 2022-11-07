@@ -102,9 +102,6 @@ public class TeamController {
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
-
-        // Replace below with your implementation
     }
 
     /**
@@ -136,7 +133,7 @@ public class TeamController {
     /**
      * Updates the {@linkplain Player player} with the provided {@linkplain Player player} object, if it exists
      * 
-     * @param item The {@link Player player} to update
+     * @param player The {@link Player player} to update
      * 
      * @return ResponseEntity with updated {@link Player player} object and HTTP status of OK if updated<br>
      * ResponseEntity with HTTP status of OK if not found<br>

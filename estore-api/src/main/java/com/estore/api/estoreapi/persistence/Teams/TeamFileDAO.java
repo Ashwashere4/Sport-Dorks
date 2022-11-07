@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.TreeMap;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Component
 public class TeamFileDAO implements TeamDAO {
-     /**
+    /**
      * The current team roster.
      */
     private Map<String, Player> team;
@@ -57,7 +57,7 @@ public class TeamFileDAO implements TeamDAO {
             if (player != null)
                 return player;
             else
-                System.out.println("Item does not exist.");
+                System.out.println("player does not exist.");
                 return null;
     }
 
@@ -79,8 +79,13 @@ public class TeamFileDAO implements TeamDAO {
 
     @Override
     public boolean deletePlayer(String name) throws IOException{
-            team.remove(name);
-            return true;
+            if(team.containsKey(name)) {
+                team.remove(name);
+                saveTeam();
+                return true;
+            } else {
+                return false;
+            }
         }
 
     
@@ -116,7 +121,7 @@ public class TeamFileDAO implements TeamDAO {
      * Load the inventory from the file.
      */
     private void loadTeam() throws IOException {
-        team = new TreeMap<>();
+        team = new HashMap<>();
         Player[] teamArray = objectMapper.readValue(new File(filename), Player[].class);
         for (Player player : teamArray) {
             team.put(player.getName(), player);
