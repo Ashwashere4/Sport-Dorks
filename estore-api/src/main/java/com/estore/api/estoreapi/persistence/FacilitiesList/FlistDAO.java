@@ -5,7 +5,6 @@ import java.io.IOException;
 import com.estore.api.estoreapi.model.Facilities.Facilities;
 import com.estore.api.estoreapi.model.Inventory.Item;
 
-
 /**
  * Defines the interface for Hero object persistence
  * 
