@@ -1,6 +1,5 @@
 package com.estore.api.estoreapi.model.Facilities;
 
-import com.estore.api.estoreapi.model.League.Team;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
