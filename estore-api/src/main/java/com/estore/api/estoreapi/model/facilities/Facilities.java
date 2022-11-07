@@ -1,5 +1,6 @@
 package com.estore.api.estoreapi.model.Facilities;
 
+import com.estore.api.estoreapi.model.Teams.Team;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -11,7 +12,7 @@ public class Facilities {
     @JsonProperty("name") private String name;
     @JsonProperty("location") private String location;
     @JsonProperty("facility_id") private int facility_id;
-    @JsonProperty("team_reserve") private com.estore.api.estoreapi.model.Teams.Team team_reserve;
+    @JsonProperty("team_reserve") private Team team_reserve;
 
     /**
      * Constructor for an item object
@@ -55,7 +56,7 @@ public class Facilities {
         return this.team_reserve != null;
     }
 
-    public com.estore.api.estoreapi.model.Teams.Team getTeam_reserve(){
+    public Team getTeam_reserve(){
 
         return this.team_reserve;
     }
@@ -95,7 +96,7 @@ public class Facilities {
      * Method to get the string representation of an item object
      */
     public String toString(){
-        return ("Facility Name = " + name + "\nFacility Location= " + location + "\nFacility Id = " + facility_id + "Reserved by: " + getReservestatus());
+        return ("Facility Name = " + name + "\nFacility Location= " + location + "\nFacility Id = " + facility_id + "Reserved by: " + getTeam_reserve());
     }
 }
 

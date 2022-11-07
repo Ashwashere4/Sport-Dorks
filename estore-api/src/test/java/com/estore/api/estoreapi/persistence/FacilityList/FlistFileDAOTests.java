@@ -3,14 +3,16 @@ package com.estore.api.estoreapi.persistence.FacilityList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.estore.api.estoreapi.EstoreApiApplication;
 import com.estore.api.estoreapi.model.Facilities.Facilities;
+import com.estore.api.estoreapi.model.Teams.Player;
+import com.estore.api.estoreapi.model.Teams.Team;
 import com.estore.api.estoreapi.persistence.FacilitiesList.FlistFileDAO;
-import com.estore.api.estoreapi.persistence.League.LeagueFileDAO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @SpringBootTest(classes=EstoreApiApplication.class)
@@ -18,6 +20,7 @@ public class FlistFileDAOTests {
     
     ObjectMapper objectMapper = new ObjectMapper();
     String name = "data/flist.json";
+    String name1 = "data/league.json";
     
     @Test 
     void testFlistfileDAO() throws IOException{
@@ -48,9 +51,19 @@ public class FlistFileDAOTests {
 
         flist = new FlistFileDAO(name, objectMapper);
         
-        LeagueFileDAO team = new LeagueFileDAO(name, objectMapper);
-        com.estore.api.estoreapi.model.Teams.Team team1 = team.createTeam(null, 001);
-        com.estore.api.estoreapi.model.Teams.Team team2 = team.createTeam(null, 002);
+        // LeagueFileDAO team = new LeagueFileDAO(name1, objectMapper);
+        HashMap<String, Player> roster = new HashMap<>();
+        roster.put("Jordan", new Player("Jordan", 17, 86));
+        roster.put("Mike", new Player("Mike", 20, 55));
+        roster.put("Aaron", new Player("Aaron", 19, 99));
+    
+        HashMap<String,Player> roster2 = new HashMap<>();
+        roster2.put("Ben", new Player("Ben", 19, 75));
+        roster2.put("Kyle", new Player("Kyle", 19, 67));
+        roster2.put("James", new Player("Jamse", 18, 88));
+
+        Team team1 = new Team(roster, 0);
+        Team team2 = new Team(roster2, 1);
 
         // Some dude wants to reserve the Yankee Stadium for a more realistic practice
 
