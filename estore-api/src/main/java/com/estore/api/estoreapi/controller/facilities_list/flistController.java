@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.estore.api.estoreapi.model.Facilities.Facilities;
+import com.estore.api.estoreapi.model.Teams.Team;
 import com.estore.api.estoreapi.persistence.FacilitiesList.FlistDAO;
 
 import java.io.IOException;
@@ -175,7 +176,7 @@ public class flistController {
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @DeleteMapping("/{name}")
-    public ResponseEntity<Boolean> deleteTeam(@PathVariable int code) {
+    public ResponseEntity<Boolean> deleteFacility(@PathVariable int code) {
         LOG.info("DELETE /flist/" + code);
         try {
             this.flistDAO.deleteFacility(code);
@@ -189,4 +190,38 @@ public class flistController {
         }
 
     }
+
+    @PutMapping("/reserve/{name}")
+    public ResponseEntity<Boolean> addTeamReserve(@PathVariable Team team, Facilities facility){
+        LOG.info("PUT /reserve" + facility + team);
+
+        try{
+            this.flistDAO.addTeam_reserve(team, facility);
+            if (this.flistDAO.addTeam_reserve(team, facility)==false){
+                return new ResponseEntity<Boolean>(false, HttpStatus.NOT_FOUND);
+            }
+
+            return new ResponseEntity<Boolean>(true, HttpStatus.OK);
+            } catch (IOException e){
+                System.out.print("Facility or Team not found");
+                return new ResponseEntity<Boolean>(false, HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        }
+
+    @DeleteMapping("/reserve/{name}")
+    public ResponseEntity<Boolean> removeTeamReserve(@PathVariable Team team, Facilities facility){
+        LOG.info("DELETE /reserve" + facility + team);
+    
+        try{
+            this.flistDAO.removeTeam_reserve(team, facility);
+            if (this.flistDAO.removeTeam_reserve(team, facility)==false){
+                return new ResponseEntity<Boolean>(false, HttpStatus.NOT_FOUND);
+                }
+    
+            return new ResponseEntity<Boolean>(true, HttpStatus.OK);
+            } catch (IOException e){
+                System.out.print("Facility or Team not found");
+                return new ResponseEntity<Boolean>(false, HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        }
 }
