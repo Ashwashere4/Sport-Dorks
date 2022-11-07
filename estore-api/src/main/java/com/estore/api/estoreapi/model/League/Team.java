@@ -46,7 +46,12 @@ public class Team {
         return this.loses;
     }
 
-    public void startCMatch(Team otherTeam, int outcome){
+    public String getRecord(){
+        return this.record.toString();
+    }
+
+    
+    public void startControlMatch(Team otherTeam, int outcome){
         if (outcome == 0){
             this.wins +=1;
             otherTeam.loses +=1;
@@ -63,11 +68,11 @@ public class Team {
         }
     }
 
-    public void startRMatch(Team otherTeam){
+    public void startRandMatch(Team otherTeam){
         Random rand = new Random();
         int outcome = rand.nextInt(2);
 
-        startCMatch(otherTeam, outcome);
+        startControlMatch(otherTeam, outcome);
     }
 
     /**
