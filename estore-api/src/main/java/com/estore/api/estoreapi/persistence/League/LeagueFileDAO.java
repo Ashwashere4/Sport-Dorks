@@ -1,18 +1,18 @@
-package com.estore.api.estoreapi.persistence.Teams;
+package com.estore.api.estoreapi.persistence.League;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
-
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import com.estore.api.estoreapi.model.Teams.Player;
 import com.estore.api.estoreapi.model.Teams.Team;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+@Component
 public class LeagueFileDAO implements LeagueDAO{
     /**
      * The current team roster.
@@ -130,7 +130,7 @@ public class LeagueFileDAO implements LeagueDAO{
      * Load the inventory from the file.
      */
     private void loadLeague() throws IOException {
-        league = new TreeMap<>();
+        HashMap<Integer, Team> league = new HashMap<>();
         Team[] leagueArray = objectMapper.readValue(new File(filename), Team[].class);
         for (Team team : leagueArray) {
             league.put(nextId(), team);

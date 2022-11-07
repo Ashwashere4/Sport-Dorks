@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.TreeMap;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -119,7 +119,7 @@ public class InventoryFileDAO implements InventoryDAO {
      * Load the inventory from the file.
      */
     private void loadInventory() throws IOException {
-        inventory = new TreeMap<>();
+        inventory = new HashMap<>();
         Item[] inventoryArray = objectMapper.readValue(new File(filename), Item[].class);
         for (Item item : inventoryArray) {
             inventory.put(item.getName(), item);

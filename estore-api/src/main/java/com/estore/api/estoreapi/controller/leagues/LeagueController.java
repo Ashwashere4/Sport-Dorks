@@ -1,4 +1,4 @@
-package com.estore.api.estoreapi.controller.Teams;
+package com.estore.api.estoreapi.controller.leagues;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.estore.api.estoreapi.model.Teams.Player;
 import com.estore.api.estoreapi.model.Teams.Team;
-import com.estore.api.estoreapi.persistence.Teams.LeagueDAO;
+import com.estore.api.estoreapi.persistence.League.LeagueDAO;
 
 @RestController
 @RequestMapping("League")
@@ -94,7 +94,7 @@ public class LeagueController {
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @GetMapping("/")
-    public ResponseEntity<Team[]> searchTeam(@RequestParam String term) {
+    public ResponseEntity<Team[]> searchLeague(@RequestParam String term) {
         LOG.info("GET /league/?id="+term);
         try {
             Team[] teams = leagueDAO.searchLeague(term);

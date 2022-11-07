@@ -1,4 +1,4 @@
-package com.estore.api.estoreapi.persistence;
+package com.estore.api.estoreapi.persistence.FacilityList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -7,19 +7,21 @@ import java.io.IOException;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.estore.api.estoreapi.model.Facilities;
+import com.estore.api.estoreapi.EstoreApiApplication;
+import com.estore.api.estoreapi.model.Facilities.Facilities;
 import com.estore.api.estoreapi.model.Teams.Player;
+import com.estore.api.estoreapi.persistence.FacilitiesList.FlistFileDAO;
 import com.estore.api.estoreapi.persistence.Teams.TeamFileDAO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@SpringBootTest
-public class FlistFileDAOTest {
+@SpringBootTest(classes=EstoreApiApplication.class)
+public class FlistFileDAOTests {
     
     ObjectMapper objectMapper = new ObjectMapper();
     String name = "data/flist.json";
     
-@Test 
-void testFlistfileDAO() throws IOException{
+    @Test 
+    void testFlistfileDAO() throws IOException{
 
         FlistFileDAO flist = new FlistFileDAO(name, objectMapper);
         flist.createFacility("That one stadium", "Bronx", 001);
@@ -45,12 +47,7 @@ void testFlistfileDAO() throws IOException{
         assertEquals(dummy_test.getLocation(), "Bronx");
         assertEquals(dummy_test.getFacility_id(), 002);
 
-        }
-
-    @Test
-    void testreservefacilities() throws IOException{
-
-        FlistFileDAO flist = new FlistFileDAO(name, objectMapper);
+        flist = new FlistFileDAO(name, objectMapper);
         
         TeamFileDAO team = new TeamFileDAO(name, objectMapper);
         Player test_player = team.createPlayer("Jordan", 17, 86);

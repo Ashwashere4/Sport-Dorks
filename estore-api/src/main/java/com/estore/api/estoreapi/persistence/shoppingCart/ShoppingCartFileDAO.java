@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.TreeMap;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -34,7 +34,7 @@ public class ShoppingCartFileDAO implements ShoppingCartDAO{
     }
 
     private void loadShoppingCart() throws IOException {
-        shoppingCart = new TreeMap<>();
+        shoppingCart = new HashMap<>();
         Item[] shoppingCartArray = objectMapper.readValue(new File(filename), Item[].class);
         for (Item item : shoppingCartArray) {
             shoppingCart.put(item.getName(), item);
