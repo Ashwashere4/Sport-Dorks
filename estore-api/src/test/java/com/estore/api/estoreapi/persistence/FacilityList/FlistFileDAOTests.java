@@ -8,9 +8,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.estore.api.estoreapi.EstoreApiApplication;
+import com.estore.api.estoreapi.controller.leagues.League;
 import com.estore.api.estoreapi.model.Facilities.Facilities;
+import com.estore.api.estoreapi.model.League.Team;
 import com.estore.api.estoreapi.model.Teams.Player;
 import com.estore.api.estoreapi.persistence.FacilitiesList.FlistFileDAO;
+import com.estore.api.estoreapi.persistence.League.LeagueFileDAO;
 import com.estore.api.estoreapi.persistence.Teams.TeamFileDAO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -49,9 +52,9 @@ public class FlistFileDAOTests {
 
         flist = new FlistFileDAO(name, objectMapper);
         
-        TeamFileDAO team = new TeamFileDAO(name, objectMapper);
-        Player test_player = team.createPlayer("Jordan", 17, 86);
-        Player test_player1 = team.createPlayer("Paul", 21, 66);
+        LeagueFileDAO team = new LeagueFileDAO(name, objectMapper);
+        com.estore.api.estoreapi.model.Teams.Team team1 = team.createTeam(null, 001);
+        com.estore.api.estoreapi.model.Teams.Team team2 = team.createTeam(null, 002);
 
         // Some dude wants to reserve the Yankee Stadium for a more realistic practice
 
@@ -61,13 +64,13 @@ public class FlistFileDAOTests {
         assertEquals(test_facility.getReservestatus(), false);
 
         // Jordan reserves the facility
-        test_facility.addTeam_reserve(test_player);
+        test_facility.addTeam_reserve(team1);
 
         //this becomes true
         assertEquals(test_facility.getReservestatus(), true);
 
         //this is false because jordan already reserved it
-        assertEquals(test_facility.addTeam_reserve(test_player1), false);
+        assertEquals(test_facility.addTeam_reserve(team2), false);
 
         test_facility.removeTeam_reserve();
 
