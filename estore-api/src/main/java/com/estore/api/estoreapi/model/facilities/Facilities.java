@@ -67,7 +67,7 @@ public class Facilities {
         return true;
     }
 
-    public Boolean addTeam_reserve(com.estore.api.estoreapi.model.Teams.Team team1){
+    public Boolean addTeam_reserve(Team team1){
 
         if (getReservestatus() == false){
 

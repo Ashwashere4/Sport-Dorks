@@ -6,6 +6,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,8 @@ import org.springframework.http.ResponseEntity;
 
 import com.estore.api.estoreapi.controller.facilities_list.flistController;
 import com.estore.api.estoreapi.model.Facilities.Facilities;
+import com.estore.api.estoreapi.model.Teams.Player;
+import com.estore.api.estoreapi.model.Teams.Team;
 import com.estore.api.estoreapi.persistence.FacilitiesList.FlistDAO;
 
 public class flistControllerTest {
@@ -56,14 +59,14 @@ public class flistControllerTest {
     public void testGetFacilityHandleException() throws Exception{
         int code = 21;
 
-        doThrow(new IOException()).when(flistController).getFacility(code);
+        doThrow(new IOException()).when(mockFlistDAO).getFacility(code);
 
         ResponseEntity<Facilities> response = flistController.getFacility(code);
 
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
     }
 
-
+    @Test
     public void testgetFacilities() throws IOException{
         Facilities[] facilities = new Facilities[2];
         facilities[0] = new Facilities("Jim", "you're mom", 0);
@@ -76,6 +79,7 @@ public class flistControllerTest {
         assertEquals(facilities, response.getBody());
     }
 
+    @Test
     public void testgetFacilitiesHandleException() throws IOException{
         doThrow(new IOException()).when(mockFlistDAO).getFacilities();
 
@@ -84,8 +88,31 @@ public class flistControllerTest {
         assertEquals((HttpStatus.INTERNAL_SERVER_ERROR), response.getStatusCode());
     }
     
+    @Test
+    public void testsearchFacilities() throws IOException{
+        String name = "Jim";
+        Facilities[] facilities = new Facilities[2];
+        facilities[0] = new Facilities("Jim", "you're mom", 0);
+        facilities[1] = new Facilities("Gym", "you're day", 21);
 
-    public void testsearchFacilities() throws IOException{}
+        when(mockFlistDAO.searchFacilities(name)).thenReturn(facilities);
+
+        ResponseEntity<Facilities[]> response = flistController.searchFacilities(name);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(facilities, response.getBody());
+    }
+
+    @Test
+    public void testsearchFacilitiesHandleException() throws IOException{
+        String name = "Jim";
+
+        doThrow(new IOException()).when(mockFlistDAO).searchFacilities(name);
+
+        ResponseEntity<Facilities[]> response = flistController.searchFacilities(name);
+
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+    }
 
     @Test
     public void testcreateFacility() throws IOException{
@@ -138,7 +165,7 @@ public class flistControllerTest {
     public void testUpdatefacilitiesHandleException() throws IOException{
         Facilities facilities = new Facilities("jays", "Bronx", 12);
 
-        doThrow(new IOException()).when(flistController).updateFacility(facilities, "Gym", "Bronx", 12);
+        doThrow(new IOException()).when(mockFlistDAO).updateFacility(facilities, "Gym", "Bronx", 12);
 
         ResponseEntity<Facilities> response = flistController.updateFacility(facilities, "Gym", "Bronx", 12);
 
@@ -146,8 +173,85 @@ public class flistControllerTest {
     }
 
 
-    public void testdeleteTeam(){}
+    @Test
+    public void testDeleteItems() throws IOException { 
+        
+        int code = 12;
+        
+        when(mockFlistDAO.deleteFacility(code)).thenReturn(true);
 
+     
+        ResponseEntity<Boolean> response = flistController.deleteFacility(code);
 
-    public void testreserveFacility(){}
+  
+        assertEquals(HttpStatus.OK,response.getStatusCode());
+    }
+
+    @Test
+    public void testDeleteHeroNotFound() throws IOException { 
+       
+        int code = 12;
+       
+        when(mockFlistDAO.deleteFacility(code)).thenReturn(false);
+
+        
+        ResponseEntity<Boolean> response = flistController.deleteFacility(code);
+
+        
+        assertEquals(HttpStatus.NOT_FOUND,response.getStatusCode());
+    }
+
+    @Test
+    public void testDeleteHeroHandleException() throws IOException { 
+        
+        int code = 12;
+        
+        doThrow(new IOException()).when(mockFlistDAO).deleteFacility(code);
+
+        
+        ResponseEntity<Boolean> response = flistController.deleteFacility(code);
+
+        
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
+    }
+
+    @Test
+    public void testreserveFacility() throws IOException{
+
+        HashMap<String, Player> roster = new HashMap<>();
+        roster.put("Jordan", new Player("Jordan", 17, 86));
+        roster.put("Mike", new Player("Mike", 20, 55));
+        roster.put("Aaron", new Player("Aaron", 19, 99));
+
+        Team team = new Team(roster, 21);
+        Facilities facility = new Facilities("Bomber stadium", "bronx", 12);
+
+        when(mockFlistDAO.addTeam_reserve(team,facility)).thenReturn(true);
+
+     
+        ResponseEntity<Boolean> response = flistController.addTeamReserve(team, facility);
+
+        assertEquals(HttpStatus.OK,response.getStatusCode());
+
+    }
+    
+    @Test
+    public void testremovereserveFacility() throws IOException{
+
+        HashMap<String, Player> roster = new HashMap<>();
+        roster.put("Jordan", new Player("Jordan", 17, 86));
+        roster.put("Mike", new Player("Mike", 20, 55));
+        roster.put("Aaron", new Player("Aaron", 19, 99));
+
+        Team team = new Team(roster, 21);
+        Facilities facility = new Facilities("Bomber stadium", "bronx", 12);
+
+        flistController.removeTeamReserve(team, facility);
+
+        when(mockFlistDAO.removeTeam_reserve(team, facility)).thenReturn(true);
+
+        ResponseEntity<Boolean> response = flistController.removeTeamReserve(team, facility);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+    }
 }
