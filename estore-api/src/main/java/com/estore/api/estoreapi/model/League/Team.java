@@ -1,6 +1,7 @@
 package com.estore.api.estoreapi.model.League;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -8,6 +9,9 @@ public class Team {
     @JsonProperty("team_name") private String team_name;
     @JsonProperty("id") private int id;
     @JsonProperty("player_list") private ArrayList<Player> players;
+    @JsonProperty("wins") private int wins;
+    @JsonProperty("loses") private int loses;
+    @JsonProperty("record") private ArrayList<String> record;
     // @JsonProperty("name") private String name;
 
     /**
@@ -27,6 +31,48 @@ public class Team {
      */
     public ArrayList<Player> getTeam() {
         return this.players;
+    }
+
+    public String getName(){
+        return this.team_name;
+    }
+
+    public int getWins(){
+        return this.wins;
+
+    }
+
+    public int getLoses(){
+        return this.loses;
+    }
+
+    public String getRecord(){
+        return this.record.toString();
+    }
+
+    
+    public void startControlMatch(Team otherTeam, int outcome){
+        if (outcome == 0){
+            this.wins +=1;
+            otherTeam.loses +=1;
+            this.record.add(team_name + "won against " + otherTeam.team_name);
+            otherTeam.record.add(otherTeam + "lost against " + team_name);
+            
+        }
+
+        else{
+            this.loses +=1;
+            otherTeam.wins +=1;
+            otherTeam.record.add(otherTeam + "won against " + this.team_name);
+            this.record.add(team_name + "lost against " + otherTeam.team_name);
+        }
+    }
+
+    public void startRandMatch(Team otherTeam){
+        Random rand = new Random();
+        int outcome = rand.nextInt(2);
+
+        startControlMatch(otherTeam, outcome);
     }
 
     /**

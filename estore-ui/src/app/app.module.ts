@@ -13,6 +13,8 @@ import { MessagesComponent } from './messages/messages.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ItemSearchComponent } from './item-search/item-search.component';
 import { InventoryComponent } from './inventory/inventory.component';
+import { TeamComponent } from './team/team.component';
+import { LeagueComponent } from './league/league.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { InventoryComponent } from './inventory/inventory.component';
     ItemDetailComponent,
     MessagesComponent,
     ItemSearchComponent,
-    InventoryComponent
+    InventoryComponent,
+    TeamComponent,
+    LeagueComponent
   ],
   imports: [
     BrowserModule,

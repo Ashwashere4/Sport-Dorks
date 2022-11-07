@@ -1,6 +1,6 @@
-package com.estore.api.estoreapi.model.facilities;
+package com.estore.api.estoreapi.model.Facilities;
 
-import com.estore.api.estoreapi.model.League.Team;
+import com.estore.api.estoreapi.model.Teams.Team;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -67,11 +67,11 @@ public class Facilities {
         return true;
     }
 
-    public Boolean addTeam_reserve(Team team){
+    public Boolean addTeam_reserve(Team team1){
 
         if (getReservestatus() == false){
 
-            this.team_reserve = team;
+            this.team_reserve = team1;
 
             return true;
         }
@@ -96,7 +96,7 @@ public class Facilities {
      * Method to get the string representation of an item object
      */
     public String toString(){
-        return ("Facility Name = " + name + "\nFacility Location= " + location + "\nFacility Id = " + facility_id + "Reserved by: " + getReservestatus());
+        return ("Facility Name = " + name + "\nFacility Location= " + location + "\nFacility Id = " + facility_id + "Reserved by: " + getTeam_reserve());
     }
 }
 
