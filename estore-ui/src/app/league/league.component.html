@@ -1,1 +1,37 @@
-<p>league works!</p>
+<h2>League</h2>
+
+<!--
+<form action="" method="post" class="new-team">
+  <div class="new-team">
+    <label for="name">Enter player name: </label>
+    <input type="text" playerName="name" id="name" required #playerName>
+  </div>
+  <div class="new-team">
+    <label for="age">Enter player age: </label>
+    <input type="number" playerAge="age" id="age" required #playerAge>
+  </div>
+  <div class="new-team">
+    <label for="rating">Enter player rating: </label>
+    <input type="number" itemCost="rating" id="rating" required #playerRating>
+  </div>
+  <div>
+        (click) passes input value to add() and then clears the input 
+    <button type="button" class="add-button" (click)="add(playerName.value, parseInt(playerAge.value), parseInt(playerRating.value));">
+      Add
+    </button>
+  </div>
+</form> 
+-->
+
+<body>
+  <ul class="teams">
+    <ul *ngFor="let team of teams">
+        <span class="badge"></span> {{team.id}}
+        <li *ngFor="let player of team.team">
+            <span class="badge"></span> {{player.name}}, {{player.age}}, {{player.rating}}
+        </li>
+      <button type="button" class="delete" title="delete player"
+        (click)="delete(team)">x</button>
+    </ul>
+  </ul>
+</body>

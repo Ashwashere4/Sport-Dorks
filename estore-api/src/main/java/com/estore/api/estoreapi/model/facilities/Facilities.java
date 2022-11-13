@@ -1,6 +1,6 @@
 package com.estore.api.estoreapi.model.Facilities;
 
-import com.estore.api.estoreapi.model.League.Team;
+import com.estore.api.estoreapi.model.Teams.Player;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -12,7 +12,7 @@ public class Facilities {
     @JsonProperty("name") private String name;
     @JsonProperty("location") private String location;
     @JsonProperty("facility_id") private int facility_id;
-    @JsonProperty("team_reserve") private Team team_reserve;
+    @JsonProperty("team_reserve") private Player team_reserve;
 
     /**
      * Constructor for an item object
@@ -56,7 +56,7 @@ public class Facilities {
         return this.team_reserve != null;
     }
 
-    public Team getTeam_reserve(){
+    public Player getTeam_reserve(){
 
         return this.team_reserve;
     }
@@ -67,11 +67,11 @@ public class Facilities {
         return true;
     }
 
-    public Boolean addTeam_reserve(Team team){
+    public Boolean addTeam_reserve(Player player){
 
         if (getReservestatus() == false){
 
-            this.team_reserve = team;
+            this.team_reserve = player;
 
             return true;
         }
