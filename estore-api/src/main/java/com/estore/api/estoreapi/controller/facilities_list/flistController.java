@@ -47,7 +47,7 @@ public class flistController {
      * ResponseEntity with HTTP status of NOT_FOUND if not found<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
-    @GetMapping("/{name}")
+    @GetMapping("/{code}")
     public ResponseEntity<Facilities> getFacility(@PathVariable int code) {
         LOG.info("GET /flist/" + code);
         try {
@@ -126,7 +126,7 @@ public class flistController {
         LOG.info("POST /flist " + name + location + facility_id);
         try {
             Facilities newteam = flistDAO.createFacility(name, location, facility_id);
-            if (this.flistDAO.createFacility(name, location, facility_id) == null){
+            if (newteam == null){
                 return new ResponseEntity<Facilities>(HttpStatus.CONFLICT);
             }
             return new ResponseEntity<Facilities>(newteam,HttpStatus.CREATED);
@@ -175,12 +175,12 @@ public class flistController {
      * ResponseEntity with HTTP status of NOT_FOUND if not found<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
-    @DeleteMapping("/{name}")
+    @DeleteMapping("/{code}")
     public ResponseEntity<Boolean> deleteFacility(@PathVariable int code) {
         LOG.info("DELETE /flist/" + code);
         try {
-            this.flistDAO.deleteFacility(code);
-            if (this.flistDAO.deleteFacility(code) == false){
+            boolean deleted = this.flistDAO.deleteFacility(code);
+            if (deleted == false){
                 return new ResponseEntity<Boolean>(false, HttpStatus.NOT_FOUND);
             }
             return new ResponseEntity<Boolean>(true,HttpStatus.OK);
