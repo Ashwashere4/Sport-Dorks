@@ -6,7 +6,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,7 +34,7 @@ public class LeagueControllerTest {
 
     @Test
     public void testGetTeam() throws IOException{
-        HashMap<String,Player> roster = new HashMap<>();
+        ArrayList<Player> roster = new ArrayList<>();
         
         int expected_age = 19;
         int expected_rating = 74;
@@ -48,8 +48,8 @@ public class LeagueControllerTest {
 
         Player player2 = new Player(expected_name2,expected_age2,expected_rating2);
 
-        roster.put(player.getName(), player);
-        roster.put(player2.getName(), player2);
+        roster.add(player);
+        roster.add(player2);
 
         Team team = new Team(roster,50);
 
@@ -82,7 +82,7 @@ public class LeagueControllerTest {
 
     @Test
     public void testCreateTeam() throws IOException{
-        HashMap<String,Player> roster = new HashMap<>();
+        ArrayList<Player> roster = new ArrayList<>();
 
         int expected_age = 19;
         int expected_rating = 74;
@@ -96,8 +96,8 @@ public class LeagueControllerTest {
 
         Player player2 = new Player(expected_name2,expected_age2,expected_rating2);
 
-        roster.put(player.getName(), player);
-        roster.put(player2.getName(), player2);
+        roster.add(player);
+        roster.add(player2);
 
         Team team = new Team(roster, 51);
 
@@ -111,7 +111,7 @@ public class LeagueControllerTest {
 
     @Test
     public void testCreateTeamFailed() throws IOException{
-        HashMap<String,Player> roster = new HashMap<>();
+        ArrayList<Player> roster = new ArrayList<>();
 
         int expected_age = 19;
         int expected_rating = 74;
@@ -125,8 +125,8 @@ public class LeagueControllerTest {
 
         Player player2 = new Player(expected_name2,expected_age2,expected_rating2);
 
-        roster.put(player.getName(), player);
-        roster.put(player2.getName(), player2);
+        roster.add(player);
+        roster.add(player2);
 
         when(mockLeagueDAO.createTeam(roster, 1)).thenReturn(null);
         
@@ -139,7 +139,7 @@ public class LeagueControllerTest {
 
     @Test
     public void testCreateTeamHandleException() throws IOException{
-        HashMap<String,Player> roster = new HashMap<>();
+        ArrayList<Player> roster = new ArrayList<>();
 
         int expected_age = 19;
         int expected_rating = 74;
@@ -153,8 +153,8 @@ public class LeagueControllerTest {
 
         Player player2 = new Player(expected_name2,expected_age2,expected_rating2);
 
-        roster.put(player.getName(), player);
-        roster.put(player2.getName(), player2);
+        roster.add(player);
+        roster.add(player2);
 
         when(mockLeagueDAO.createTeam(roster, 1)).thenReturn(null);
         
@@ -171,7 +171,7 @@ public class LeagueControllerTest {
     @Test
     public void testUpdatePlayer() throws IOException {
 
-        HashMap<String,Player> roster = new HashMap<>();
+        ArrayList<Player> roster = new ArrayList<>();
 
         int expected_age = 19;
         int expected_rating = 74;
@@ -185,13 +185,13 @@ public class LeagueControllerTest {
 
         Player player2 = new Player(expected_name2,expected_age2,expected_rating2);
 
-        roster.put(player.getName(), player);
-        roster.put(player2.getName(), player2);
+        roster.add(player);
+        roster.add(player2);
         
         Team team = new Team(roster, 52);
 
         Player new_player = new Player("Josh", 18, 55);
-        roster.put("Josh", new_player);
+        roster.add(new_player);
 
         ResponseEntity<Team> response = leagueController.updateTeam(team, roster, 52);
         
@@ -202,7 +202,7 @@ public class LeagueControllerTest {
 
     @Test 
     public void testUpdateTeamHandleException() throws IOException{
-        HashMap<String,Player> roster = new HashMap<>();
+        ArrayList<Player> roster = new ArrayList<>();
 
         int expected_age = 19;
         int expected_rating = 74;
@@ -216,13 +216,13 @@ public class LeagueControllerTest {
 
         Player player2 = new Player(expected_name2,expected_age2,expected_rating2);
 
-        roster.put(player.getName(), player);
-        roster.put(player2.getName(), player2);
+        roster.add(player);
+        roster.add(player2);
         
         Team team = new Team(roster, 98);
 
         Player new_player = new Player("Josh", 18, 55);
-        roster.put("Josh", new_player);
+        roster.add(new_player);
 
         doThrow(new IOException()).when(mockLeagueDAO).updateTeam(team, roster, 98);
 
@@ -233,16 +233,16 @@ public class LeagueControllerTest {
 
     @Test
     public void testGetTeams() throws IOException{
-        HashMap<String,Player> roster = new HashMap<>();
-        HashMap<String,Player> roster2 = new HashMap<>();
+        ArrayList<Player> roster = new ArrayList<>();
+        ArrayList<Player> roster2 = new ArrayList<>();
 
-        roster.put("Ben",new Player("Ben",18,78));
-        roster.put("Sam",new Player("Sam",20,53));
-        roster.put("Josh",new Player("Josh",19,82));
+        roster.add(new Player("Ben",18,78));
+        roster.add(new Player("Sam",20,53));
+        roster.add(new Player("Josh",19,82));
 
-        roster2.put("Brandon",new Player("Brandon",19,91));
-        roster2.put("Alex",new Player("Alex",18,55));
-        roster2.put("Jeremy",new Player("Jeremy",19,73));
+        roster2.add(new Player("Brandon",19,91));
+        roster2.add(new Player("Alex",18,55));
+        roster2.add(new Player("Jeremy",19,73));
 
         Team[] teams = new Team[2];
         teams[0] = new Team(roster, 1);
@@ -267,16 +267,16 @@ public class LeagueControllerTest {
 
     @Test
     public void testSearchTeams() throws IOException{
-        HashMap<String,Player> roster = new HashMap<>();
-        HashMap<String,Player> roster2 = new HashMap<>();
+        ArrayList<Player> roster = new ArrayList<>();
+        ArrayList<Player> roster2 = new ArrayList<>();
 
-        roster.put("Ben",new Player("Ben",18,78));
-        roster.put("Sam",new Player("Sam",20,53));
-        roster.put("Josh",new Player("Josh",19,82));
+        roster.add(new Player("Ben",18,78));
+        roster.add(new Player("Sam",20,53));
+        roster.add(new Player("Josh",19,82));
 
-        roster2.put("Brandon",new Player("Brandon",19,91));
-        roster2.put("Alex",new Player("Alex",18,55));
-        roster2.put("Jeremy",new Player("Jeremy",19,73));
+        roster2.add(new Player("Brandon",19,91));
+        roster2.add(new Player("Alex",18,55));
+        roster2.add(new Player("Jeremy",19,73));
 
         Team[] teams = new Team[2];
         teams[0] = new Team(roster, 1);

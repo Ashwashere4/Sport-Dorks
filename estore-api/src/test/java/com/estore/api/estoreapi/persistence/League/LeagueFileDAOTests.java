@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,15 +26,15 @@ class LeagueFileDAOtests {
     void testLeagueFileDAO() throws IOException{
 
         LeagueFileDAO league = new LeagueFileDAO(fileName, objectMapper);
-        HashMap<String,Player> roster = new HashMap<>();
-        roster.put("Jordan", new Player("Jordan", 17, 86));
-        roster.put("Mike", new Player("Mike", 20, 55));
-        roster.put("Aaron", new Player("Aaron", 19, 99));
+        ArrayList<Player> roster = new ArrayList<>();
+        roster.add(new Player("Jordan", 17, 86));
+        roster.add(new Player("Mike", 20, 55));
+        roster.add(new Player("Aaron", 19, 99));
     
-        HashMap<String,Player> roster2 = new HashMap<>();
-        roster2.put("Ben", new Player("Ben", 19, 75));
-        roster2.put("Kyle", new Player("Kyle", 19, 67));
-        roster2.put("James", new Player("Jamse", 18, 88));
+        ArrayList<Player> roster2 = new ArrayList<>();
+        roster2.add(new Player("Ben", 19, 75));
+        roster2.add(new Player("Kyle", 19, 67));
+        roster2.add(new Player("Jamse", 18, 88));
 
         Team team1 = new Team(roster, 1);
         Team team2 = new Team(roster2, 2);
@@ -51,20 +51,17 @@ class LeagueFileDAOtests {
         assertEquals(league.getTeam(1), null);
 
         //Finally, checks to see if idkman is updated into the ultimate drip, with the quantity of 100, and the price of 10,000
-        roster.put("Sam", new Player("Sam", 18, 4));
+        roster.add(new Player("Sam", 18, 4));
         league.updateTeam(team1, roster, 1);
 
-        assertNotNull(league.getTeam(1).getTeam().get("Sam"));
-        assertEquals(league.getTeam(1).getTeam().get("Sam").getAge(), 18);
-        assertEquals(league.getTeam(1).getTeam().get("Sam").getName(), "Sam");
-        assertEquals(league.getTeam(1).getTeam().get("Sam").getRating(), 4);
+        assertNotNull(league.getTeam(1).getTeam().contains(new Player("Sam", 18, 4)));
     
         league = new LeagueFileDAO(fileName, objectMapper);
         //tests create team class
-        HashMap<String,Player> roster3 = new HashMap<>();
-        roster3.put("Ben", new Player("Ben", 19, 75));
-        roster3.put("Kyle", new Player("Kyle", 19, 67));
-        roster3.put("James", new Player("Jamse", 18, 88));
+        ArrayList<Player> roster3 = new ArrayList<>();
+        roster3.add(new Player("Ben", 19, 75));
+        roster3.add(new Player("Kyle", 19, 67));
+        roster3.add(new Player("Jamse", 18, 88));
 
         league.createTeam(roster3, 3);
 

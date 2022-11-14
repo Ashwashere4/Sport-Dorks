@@ -3,8 +3,7 @@ package com.estore.api.estoreapi.persistence.League;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -15,12 +14,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Component
 public class LeagueFileDAO implements LeagueDAO{
     /**
-     * The current team roster.
+     * The current league team list.
      */
-    private Map<Integer, Team> league;
+    private ArrayList<Team> league;
 
     /**
-     * The file name of the inventory file.
+     * The file name of the league file.
      */
     private String filename;
 
@@ -54,7 +53,7 @@ public class LeagueFileDAO implements LeagueDAO{
     }
 
     private ArrayList<Team> getLeagueArray() {
-        return new ArrayList<Team>(league.values());
+        return new ArrayList<Team>(league);
     }
 
     @Override
@@ -75,23 +74,23 @@ public class LeagueFileDAO implements LeagueDAO{
 
     @Override
     public Team createTeam(Team team) throws IOException {
-        Team newTeam = new Team(team.getTeam(), team.getId());
-        league.put(team.getId(), newTeam);
+        Team newTeam = new Team(team.getTeam(), nextId());
+        league.add(newTeam);
         saveLeague();
         return newTeam;
     }
 
     @Override
-    public Team createTeam(HashMap<String,Player> roster, int id) throws IOException {
+    public Team createTeam(ArrayList<Player> roster, int id) throws IOException {
         Team newTeam = new Team(roster, nextId());
-        league.put(newTeam.getId(), newTeam);
+        league.add(newTeam);
         saveLeague();
         return newTeam;
     }
 
     @Override
     public boolean deleteTeam(int id) throws IOException{
-            if(league.containsKey(id)) {
+            if(league.get(id) != null) {
                 league.remove(id);
                 saveLeague();
                 return true;
@@ -107,7 +106,7 @@ public class LeagueFileDAO implements LeagueDAO{
             return new Team[0];
 
         ArrayList<Team> teams = new ArrayList<>();
-        for (Team team : league.values()) {
+        for (Team team : league) {
             if (String.valueOf(team.getId()).contains(text)) {
                 teams.add(team);
             }
@@ -120,9 +119,9 @@ public class LeagueFileDAO implements LeagueDAO{
     }
 
     @Override
-    public Team updateTeam(Team team, HashMap<String,Player> roster, int id) throws IOException {
+    public Team updateTeam(Team team, ArrayList<Player> roster, int id) throws IOException {
         Team newTeam = new Team(roster, team.getId());
-        league.put(newTeam.getId(), newTeam);
+        league.add(newTeam);
         return newTeam;
     }
 
@@ -130,10 +129,11 @@ public class LeagueFileDAO implements LeagueDAO{
      * Load the inventory from the file.
      */
     private void loadLeague() throws IOException {
-        HashMap<Integer, Team> league = new HashMap<>();
+        league = new ArrayList<Team>();
         Team[] leagueArray = objectMapper.readValue(new File(filename), Team[].class);
         for (Team team : leagueArray) {
-            league.put(nextId(), team);
+            league.add(team);
+            nextId();
         }
     }
 }
