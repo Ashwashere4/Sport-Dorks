@@ -1,7 +1,7 @@
 package com.estore.api.estoreapi.controller.facilities_list;
 import java.util.HashMap;
 
-import com.estore.api.estoreapi.model.facilities.Facilities;
+import com.estore.api.estoreapi.model.Facilities.Facilities;
 
 
 public class flist {
