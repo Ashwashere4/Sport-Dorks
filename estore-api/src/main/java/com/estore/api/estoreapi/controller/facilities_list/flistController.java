@@ -71,7 +71,7 @@ public class flistController {
      * HTTP status of OK<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
-    @GetMapping("/list")
+    @GetMapping("")
     public ResponseEntity<Facilities[]> getFacilities() {
         LOG.info("GET /flist");
         Facilities[] facilicies;
