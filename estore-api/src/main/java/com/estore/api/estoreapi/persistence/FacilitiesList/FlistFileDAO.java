@@ -7,7 +7,8 @@ import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import com.estore.api.estoreapi.model.Facilities.Facilities;
+import com.estore.api.estoreapi.model.facilities.Facilities;
+import com.estore.api.estoreapi.model.Teams.Team;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Component
@@ -115,6 +116,19 @@ public class FlistFileDAO implements FlistDAO {
     public boolean deleteFacility(int facility_id) throws IOException {
         flist.remove(facility_id);
         return true;
+    }
+
+    @Override
+    public boolean addTeam_reserve(Team team, Facilities facility) throws IOException{
+
+        return facility.addTeam_reserve(team);
+        
+    }
+
+    @Override
+    public boolean removeTeam_reserve(Team team, Facilities facility) throws IOException{
+        
+        return facility.removeTeam_reserve();
     }
 
 }

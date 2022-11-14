@@ -1,31 +1,32 @@
-package com.estore.api.estoreapi.model.Teams;
+package com.estore.api.estoreapi.model.League;
 
-import java.util.HashMap;
-
+import java.util.ArrayList;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Team {
-    @JsonProperty("team") private HashMap<String, Player> team;
+public class LTeam {
+    @JsonProperty("team_name") private String team_name;
     @JsonProperty("id") private int id;
-
+    @JsonProperty("player_list") private ArrayList<Player> players;
     // @JsonProperty("name") private String name;
 
     /**
      * Constructor for an item object
      * @param team a hashmap with all the player objects, the name of the player is the key
      */
-    public Team(@JsonProperty("team") HashMap<String,Player> team, @JsonProperty("id") int id) {
-        this.team = team;
+    public LTeam(@JsonProperty("team_name") String team_name, @JsonProperty("id") int id) {
+        this.team_name = team_name;
         this.id = id;
+        this.players = new ArrayList<Player>();
     };
+
 
     /**
      * Accessor for the team roster
      * @return the price of an item as an int
      */
-    public HashMap<String,Player> getTeam() {
-        return this.team;
+    public ArrayList<Player> getTeam() {
+        return this.players;
     }
 
     /**
@@ -36,15 +37,11 @@ public class Team {
         return this.id;
     }
 
-        
+
     /**
      * Method to get the string representation of an item object
      */
     public String toString(){
-        String team = "";
-        for(String key : this.team.keySet()) {
-            team += this.team.get(key).toString();
-        }
-        return team;
+        return players.toString();
     }
 }

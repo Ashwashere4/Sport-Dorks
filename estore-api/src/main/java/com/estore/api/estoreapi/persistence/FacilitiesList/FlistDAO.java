@@ -2,8 +2,9 @@ package com.estore.api.estoreapi.persistence.FacilitiesList;
 
 import java.io.IOException;
 
-import com.estore.api.estoreapi.model.Facilities.Facilities;
+import com.estore.api.estoreapi.model.facilities.Facilities;
 import com.estore.api.estoreapi.model.Inventory.Item;
+import com.estore.api.estoreapi.model.Teams.Team;
 
 /**
  * Defines the interface for Hero object persistence
@@ -81,5 +82,11 @@ public interface FlistDAO {
      * @throws IOException if underlying storage cannot be accessed
      */
     boolean deleteFacility(int facility_id) throws IOException;
+
+    boolean addTeam_reserve(Team team, Facilities facility) throws IOException;
+
+    boolean removeTeam_reserve(Team team, Facilities facility) throws IOException;
 }
+
+
 
