@@ -15,6 +15,7 @@ import { ItemSearchComponent } from './item-search/item-search.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import { TeamComponent } from './team/team.component';
 import { LeagueComponent } from './league/league.component';
+import { facilitiesComponent } from './facilities/facilities.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { LeagueComponent } from './league/league.component';
     ItemSearchComponent,
     InventoryComponent,
     TeamComponent,
-    LeagueComponent
+    LeagueComponent,
+    facilitiesComponent
   ],
   imports: [
     BrowserModule,
