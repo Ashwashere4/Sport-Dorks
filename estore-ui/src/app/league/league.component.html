@@ -1,1 +1,14 @@
-<p>league works!</p>
+<h2>League</h2>
+
+<body>
+  <ul class="teams">
+    <ul *ngFor="let team of teams">
+        <span class="teamID"></span> {{team.id}}
+        <li *ngFor="let player of team.team">
+            <span class="playerINFO"></span> {{player.name}}, {{player.age}}, {{player.rating}}
+        </li>
+      <button type="button" class="delete" title="delete team"
+        (click)="delete(team)">x</button>
+    </ul>
+  </ul>
+</body>

@@ -1,12 +1,12 @@
 package com.estore.api.estoreapi.model.Teams;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Team {
-    @JsonProperty("team") private HashMap<String, Player> team;
+    @JsonProperty("team") private ArrayList<Player> team;
     @JsonProperty("id") private int id;
 
     // @JsonProperty("name") private String name;
@@ -15,7 +15,7 @@ public class Team {
      * Constructor for an item object
      * @param team a hashmap with all the player objects, the name of the player is the key
      */
-    public Team(@JsonProperty("team") HashMap<String,Player> team, @JsonProperty("id") int id) {
+    public Team(@JsonProperty("team") ArrayList<Player> team, @JsonProperty("id") int id) {
         this.team = team;
         this.id = id;
     };
@@ -24,7 +24,7 @@ public class Team {
      * Accessor for the team roster
      * @return the price of an item as an int
      */
-    public HashMap<String,Player> getTeam() {
+    public ArrayList<Player> getTeam() {
         return this.team;
     }
 
@@ -42,8 +42,8 @@ public class Team {
      */
     public String toString(){
         String team = "";
-        for(String key : this.team.keySet()) {
-            team += this.team.get(key).toString();
+        for(Player player : this.team) {
+            team += player.toString();
         }
         return team;
     }

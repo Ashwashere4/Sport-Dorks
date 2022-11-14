@@ -19,16 +19,6 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
-/**
- * Handles the REST API requests for the Inventory resource
- * <p>
- * {@literal @}RestController Spring annotation identifies this class as a REST API
- * method handler to the Spring framework
- * 
- * @author SWEN Faculty
- */
-
 @RestController
 @RequestMapping("Inventory")
 public class InventoryController {

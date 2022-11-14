@@ -1,7 +1,7 @@
 package com.estore.api.estoreapi.controller.leagues;
 
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -49,7 +49,7 @@ public class LeagueController {
      */
     @GetMapping("/{id}")
     public ResponseEntity<Team> getTeam(@PathVariable int id) {
-        LOG.info("GET /league/" + id);
+        LOG.info("GET /League/" + id);
         try {
             Team team = leagueDAO.getTeam(id);
             if (team != null)
@@ -73,7 +73,7 @@ public class LeagueController {
      */
     @GetMapping("")
     public ResponseEntity<Team[]> getTeams() {
-        LOG.info("GET /league");
+        LOG.info("GET /League");
         Team[] teams;
         try {
             teams = leagueDAO.getTeams();
@@ -95,7 +95,7 @@ public class LeagueController {
      */
     @GetMapping("/")
     public ResponseEntity<Team[]> searchLeague(@RequestParam String term) {
-        LOG.info("GET /league/?id="+term);
+        LOG.info("GET /League/?id="+term);
         try {
             Team[] teams = leagueDAO.searchLeague(term);
             return new ResponseEntity<Team[]>(teams,HttpStatus.OK);
@@ -115,7 +115,7 @@ public class LeagueController {
      */
     @PostMapping("")
     public ResponseEntity<Team> createTeam(@RequestBody Team team) {
-        LOG.info("POST /league " + team);
+        LOG.info("POST /League " + team);
         try {
             Team newTeam = leagueDAO.createTeam(team);
             if (newTeam == null){
@@ -141,8 +141,8 @@ public class LeagueController {
      * @throws IOException
      */
     @PutMapping("")
-    public ResponseEntity<Team> updateTeam(@RequestBody Team team, HashMap<String,Player> roster, int id) throws IOException {
-        LOG.info("PUT /league " + team);
+    public ResponseEntity<Team> updateTeam(@RequestBody Team team, ArrayList<Player> roster, int id) throws IOException {
+        LOG.info("PUT /League " + team);
         if(this.leagueDAO.getTeam(team.getId()) != null) {
             try {
                 Team newTeam = leagueDAO.updateTeam(team, roster, id);
@@ -170,7 +170,7 @@ public class LeagueController {
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<Boolean> deleteTeam(@PathVariable int id) {
-        LOG.info("DELETE /league/" + id);
+        LOG.info("DELETE /League/" + id);
         try {
             this.leagueDAO.deleteTeam(id);
             if (this.leagueDAO.deleteTeam(id) == false){

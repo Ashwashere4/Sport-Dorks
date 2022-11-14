@@ -1,1 +1,32 @@
-<p>team works!</p>
+<h2>Team</h2>
+
+<form action="" method="post" class="new-player">
+  <div class="new-player">
+    <label for="name">Enter player name: </label>
+    <input type="text" playerName="name" id="name" required #playerName>
+  </div>
+  <div class="new-player">
+    <label for="age">Enter player age: </label>
+    <input type="number" playerAge="age" id="age" required #playerAge>
+  </div>
+  <div class="new-player">
+    <label for="rating">Enter player rating: </label>
+    <input type="number" itemCost="rating" id="rating" required #playerRating>
+  </div>
+  <div>
+    <!-- (click) passes input value to add() and then clears the input -->
+    <button type="button" class="add-button" (click)="add(playerName.value, parseInt(playerAge.value), parseInt(playerRating.value));">
+      Add
+    </button>
+  </div>
+</form>
+
+<body>
+  <ul class="players">
+    <li *ngFor="let player of players">
+      <span class="badge"></span> {{player.name}}, {{player.age}}, {{player.rating}}
+      <button type="button" class="delete" title="delete player"
+        (click)="delete(player)">x</button>
+    </li>
+  </ul>
+</body>

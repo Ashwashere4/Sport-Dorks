@@ -3,6 +3,7 @@ package com.estore.api.estoreapi.model.League;
 import java.util.ArrayList;
 import java.util.Random;
 
+import com.estore.api.estoreapi.model.Teams.Player;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Team {

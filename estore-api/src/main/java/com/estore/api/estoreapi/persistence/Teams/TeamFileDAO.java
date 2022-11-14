@@ -3,8 +3,6 @@ package com.estore.api.estoreapi.persistence.Teams;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -17,10 +15,10 @@ public class TeamFileDAO implements TeamDAO {
     /**
      * The current team roster.
      */
-    private Map<String, Player> team;
+    private ArrayList<Player> team;
 
     /**
-     * The file name of the inventory file.
+     * The file name of the team file.
      */
     private String filename;
 
@@ -41,7 +39,7 @@ public class TeamFileDAO implements TeamDAO {
         }
 
     private ArrayList<Player> getTeamArray() {
-        return new ArrayList<>(team.values());
+        return new ArrayList<>(team);
     }
 
     @Override
@@ -53,18 +51,18 @@ public class TeamFileDAO implements TeamDAO {
 
     @Override 
     public Player getPlayer(String name) throws IOException{
-        Player player = team.get(name);
-            if (player != null)
+        for(Player player : team) {
+            if(player.getName() == name) {
                 return player;
-            else
-                System.out.println("player does not exist.");
-                return null;
+            }
+        }
+        return null;
     }
 
     @Override
     public Player createPlayer(Player player) throws IOException {
         Player newPlayer = new Player(player.getName(), player.getAge(), player.getRating());
-        team.put(player.getName(), newPlayer);
+        team.add(newPlayer);
         saveTeam();
         return newPlayer;
     }
@@ -72,21 +70,22 @@ public class TeamFileDAO implements TeamDAO {
     @Override
     public Player createPlayer(String name, int age, int rating) throws IOException {
         Player newPlayer = new Player(name, age, rating);
-        team.put(name, newPlayer);
+        team.add(newPlayer);
         saveTeam();
         return newPlayer;
     }
 
     @Override
     public boolean deletePlayer(String name) throws IOException{
-            if(team.containsKey(name)) {
-                team.remove(name);
+        for(Player player: team) {    
+            if(player.getName() == name) {
+                team.remove(player);
                 saveTeam();
                 return true;
-            } else {
-                return false;
-            }
+            } 
         }
+        return false;
+    }
 
     
     @Override
@@ -95,7 +94,7 @@ public class TeamFileDAO implements TeamDAO {
             return new Player[0];
 
         ArrayList<Player> players = new ArrayList<>();
-        for (Player player : team.values()) {
+        for (Player player : team) {
             if (player.getName().toLowerCase().contains(text.toLowerCase())) {
                 players.add(player);
             }
@@ -111,7 +110,8 @@ public class TeamFileDAO implements TeamDAO {
     @Override
     public Player updatePlayer(Player player, String name, int age, int rating) throws IOException {
         Player newPlayer = new Player(name, age, rating);
-        team.put(newPlayer.getName(), newPlayer);
+        this.deletePlayer(name);
+        team.add(newPlayer);
         return newPlayer;
     }
 
@@ -121,10 +121,10 @@ public class TeamFileDAO implements TeamDAO {
      * Load the inventory from the file.
      */
     private void loadTeam() throws IOException {
-        team = new HashMap<>();
+        team = new ArrayList<Player>();
         Player[] teamArray = objectMapper.readValue(new File(filename), Player[].class);
         for (Player player : teamArray) {
-            team.put(player.getName(), player);
+            team.add(player);
         }
     }
 }
