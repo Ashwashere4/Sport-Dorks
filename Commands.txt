@@ -37,3 +37,14 @@ add		    curl -X POST "http://localhost:8080/WishList/Baseball"
 delete      curl -X DELETE "http://localhost:8080/WishList/Baseball"
 
 add to cart	curl -X PUT "http://localhost:8080/WishList/Baseball"
+
+
+Facilities:
+
+			curl -X GET "http://localhost:8080/Facilities/1"
+list		curl -X GET "http://localhost:8080/Facilities"
+
+delete		curl -X DELETE "http://localhost:8080/Facilities/2"
+			curl -X GET	"http://localhost:8080/Facilities"
+
+search 		curl -X GET "http://localhost:8080/?name=something"		
