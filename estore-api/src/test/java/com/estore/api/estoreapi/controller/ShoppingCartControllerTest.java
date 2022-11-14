@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import com.estore.api.estoreapi.controller.shoppingCart.ShoppingCart;
 import com.estore.api.estoreapi.controller.shoppingCart.ShoppingCartController;
 import com.estore.api.estoreapi.persistence.shoppingCart.ShoppingCartDAO;
-import com.estore.api.estoreapi.persistence.shoppingCart.ShoppingCartDAO;
 
 public class ShoppingCartControllerTest {
 

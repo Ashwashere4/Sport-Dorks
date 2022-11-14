@@ -1,4 +1,4 @@
-package com.estore.api.estoreapi.model.Facilities;
+package com.estore.api.estoreapi.model.facilities;
 
 import com.estore.api.estoreapi.model.Teams.Team;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

@@ -6,7 +6,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,7 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import com.estore.api.estoreapi.controller.facilities_list.flistController;
-import com.estore.api.estoreapi.model.Facilities.Facilities;
+import com.estore.api.estoreapi.model.facilities.Facilities;
 import com.estore.api.estoreapi.model.Teams.Player;
 import com.estore.api.estoreapi.model.Teams.Team;
 import com.estore.api.estoreapi.persistence.FacilitiesList.FlistDAO;
@@ -218,10 +218,10 @@ public class flistControllerTest {
     @Test
     public void testreserveFacility() throws IOException{
 
-        HashMap<String, Player> roster = new HashMap<>();
-        roster.put("Jordan", new Player("Jordan", 17, 86));
-        roster.put("Mike", new Player("Mike", 20, 55));
-        roster.put("Aaron", new Player("Aaron", 19, 99));
+        ArrayList<Player> roster = new ArrayList<>();
+        roster.add(new Player("Jordan", 17, 86));
+        roster.add(new Player("Mike", 20, 55));
+        roster.add(new Player("Aaron", 19, 99));
 
         Team team = new Team(roster, 21);
         Facilities facility = new Facilities("Bomber stadium", "bronx", 12);
@@ -238,10 +238,10 @@ public class flistControllerTest {
     @Test
     public void testremovereserveFacility() throws IOException{
 
-        HashMap<String, Player> roster = new HashMap<>();
-        roster.put("Jordan", new Player("Jordan", 17, 86));
-        roster.put("Mike", new Player("Mike", 20, 55));
-        roster.put("Aaron", new Player("Aaron", 19, 99));
+        ArrayList<Player> roster = new ArrayList<>();
+        roster.add(new Player("Jordan", 17, 86));
+        roster.add(new Player("Mike", 20, 55));
+        roster.add(new Player("Aaron", 19, 99));
 
         Team team = new Team(roster, 21);
         Facilities facility = new Facilities("Bomber stadium", "bronx", 12);

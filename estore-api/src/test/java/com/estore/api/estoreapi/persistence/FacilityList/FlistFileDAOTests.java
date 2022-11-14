@@ -3,13 +3,13 @@ package com.estore.api.estoreapi.persistence.FacilityList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.estore.api.estoreapi.EstoreApiApplication;
-import com.estore.api.estoreapi.model.Facilities.Facilities;
+import com.estore.api.estoreapi.model.facilities.Facilities;
 import com.estore.api.estoreapi.model.Teams.Player;
 import com.estore.api.estoreapi.model.Teams.Team;
 import com.estore.api.estoreapi.persistence.FacilitiesList.FlistFileDAO;
@@ -52,15 +52,15 @@ public class FlistFileDAOTests {
         flist = new FlistFileDAO(name, objectMapper);
         
         // LeagueFileDAO team = new LeagueFileDAO(name1, objectMapper);
-        HashMap<String, Player> roster = new HashMap<>();
-        roster.put("Jordan", new Player("Jordan", 17, 86));
-        roster.put("Mike", new Player("Mike", 20, 55));
-        roster.put("Aaron", new Player("Aaron", 19, 99));
+        ArrayList<Player> roster = new ArrayList<>();
+        roster.add(new Player("Jordan", 17, 86));
+        roster.add(new Player("Mike", 20, 55));
+        roster.add(new Player("Aaron", 19, 99));
     
-        HashMap<String,Player> roster2 = new HashMap<>();
-        roster2.put("Ben", new Player("Ben", 19, 75));
-        roster2.put("Kyle", new Player("Kyle", 19, 67));
-        roster2.put("James", new Player("Jamse", 18, 88));
+        ArrayList<Player> roster2 = new ArrayList<>();
+        roster2.add(new Player("Ben", 19, 75));
+        roster2.add(new Player("Kyle", 19, 67));
+        roster2.add(new Player("Jamse", 18, 88));
 
         Team team1 = new Team(roster, 0);
         Team team2 = new Team(roster2, 1);

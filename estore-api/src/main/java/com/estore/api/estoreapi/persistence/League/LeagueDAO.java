@@ -1,7 +1,7 @@
 package com.estore.api.estoreapi.persistence.League;
 
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.ArrayList;
 
 import com.estore.api.estoreapi.model.Teams.Player;
 import com.estore.api.estoreapi.model.Teams.Team;
@@ -43,7 +43,7 @@ public interface LeagueDAO {
     /**
      * Creates and saves a {@linkplain Team team}
      * 
-     * @param roster {@linkplain Team team} roster hashmap
+     * @param roster {@linkplain Team team} roster arraylist
      * @param id {@linkplain Team team} for team 
      * <br>
      *
@@ -51,7 +51,7 @@ public interface LeagueDAO {
      * 
      * @throws IOException if an issue with underlying storage
      */
-    Team createTeam(HashMap<String,Player> roster, int id ) throws IOException;
+    Team createTeam(ArrayList<Player> roster, int id ) throws IOException;
 
     Team createTeam(Team team) throws IOException;
 
@@ -65,7 +65,7 @@ public interface LeagueDAO {
      * 
      * @throws IOException if underlying storage cannot be accessed
      */
-    Team updateTeam(Team team, HashMap<String,Player> roster, int id ) throws IOException;
+    Team updateTeam(Team team, ArrayList<Player> roster, int id ) throws IOException;
 
     /**
      * Deletes a {@linkplain Team team} with the given id
