@@ -1,15 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 
+import { FACILITIES } from '../mock_facilities';
+
 @Component({
-  selector: 'app-home',
+  selector: 'app-facilities',
   templateUrl: './facilities.component.html',
   styleUrls: ['./facilities.component.css']
 })
 export class facilitiesComponent implements OnInit {
 
-  constructor() { }
+  facilities = FACILITIES;
 
-  ngOnInit(): void {
-  }
+
+    ngOnInit(): void {
+
+      throw new Error('Method not implemented.');
+    }
+
+
+  
 
 }

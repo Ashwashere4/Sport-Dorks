@@ -16,8 +16,15 @@
     
     <h1>Welcome to the Facilities Page!</h1>
 
-</body>
-
-
+        <ul class="Facilities">
+          <li *ngFor="let facility of Facilities">
+            <span class="badge"><{{facility.name}}, {{facility.location}}, {{facility.facility_id}}, {{facility.team_reserve}}
+                <span class="name">{{facility.name}}</span>
+        </span> 
+        
+        </li>
+    </ul>
+    
+    </body>
 
 </html>
