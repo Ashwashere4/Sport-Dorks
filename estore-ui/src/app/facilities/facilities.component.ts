@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Facilities } from '../facilities';
 
 import { FACILITIES } from '../mock_facilities';
 
@@ -7,17 +8,18 @@ import { FACILITIES } from '../mock_facilities';
   templateUrl: './facilities.component.html',
   styleUrls: ['./facilities.component.css']
 })
+
 export class facilitiesComponent implements OnInit {
 
   facilities = FACILITIES;
+  selectedFacility?: Facilities;
 
+  constructor() { }
 
-    ngOnInit(): void {
+  ngOnInit(): void {
+  }
 
-      throw new Error('Method not implemented.');
-    }
-
-
-  
-
+  onSelect(facility: Facilities): void {
+    this.selectedFacility = facility;
+  }
 }
