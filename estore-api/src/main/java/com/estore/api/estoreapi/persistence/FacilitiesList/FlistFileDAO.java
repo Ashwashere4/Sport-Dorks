@@ -7,8 +7,8 @@ import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import com.estore.api.estoreapi.model.Facilities.Facilities;
 import com.estore.api.estoreapi.model.Teams.Team;
+import com.estore.api.estoreapi.model.facilities.Facilities;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Component

@@ -2,9 +2,9 @@ package com.estore.api.estoreapi.persistence.FacilitiesList;
 
 import java.io.IOException;
 
-import com.estore.api.estoreapi.model.Facilities.Facilities;
 import com.estore.api.estoreapi.model.Inventory.Item;
 import com.estore.api.estoreapi.model.Teams.Team;
+import com.estore.api.estoreapi.model.facilities.Facilities;
 
 /**
  * Defines the interface for Hero object persistence

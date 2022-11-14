@@ -14,9 +14,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import com.estore.api.estoreapi.controller.facilities_list.flistController;
-import com.estore.api.estoreapi.model.Facilities.Facilities;
 import com.estore.api.estoreapi.model.Teams.Player;
 import com.estore.api.estoreapi.model.Teams.Team;
+import com.estore.api.estoreapi.model.facilities.Facilities;
 import com.estore.api.estoreapi.persistence.FacilitiesList.FlistDAO;
 
 public class flistControllerTest {
