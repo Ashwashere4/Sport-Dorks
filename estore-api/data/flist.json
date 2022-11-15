@@ -1,1 +1,7 @@
-[{"name":"something cool","location":null,"facility_id":0,"reservestatus":false,"team_reserve":null},{"name":"That one stadium","location":"Bronx","facility_id":1,"reservestatus":false,"team_reserve":null},{"name":"something cool","location":"Bronx","facility_id":2,"reservestatus":false,"team_reserve":null},{"name":"something boring","location":"Bronx","facility_id":3,"reservestatus":false,"team_reserve":null}]
+[
+    {"name":"something cool","location":"bronx","facility_id":0,"reservestatus":false},
+{"name":"That one stadium","location":"Bronx","facility_id":1,"reservestatus":false},
+{"name":"something cool","location":"Bronx","facility_id":2,"reservestatus":false},
+{"name":"something boring","location":"Bronx","facility_id":3,"reservestatus":false}
+
+]

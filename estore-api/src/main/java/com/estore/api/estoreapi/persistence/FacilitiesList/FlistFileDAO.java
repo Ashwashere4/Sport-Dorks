@@ -121,14 +121,14 @@ public class FlistFileDAO implements FlistDAO {
     @Override
     public boolean addTeam_reserve(Team team, Facilities facility) throws IOException{
 
-        return facility.addTeam_reserve(team);
+        return facility.addTeamReserve(team);
         
     }
 
     @Override
     public boolean removeTeam_reserve(Team team, Facilities facility) throws IOException{
         
-        return facility.removeTeam_reserve();
+        return facility.removeTeamReserve();
     }
 
 }

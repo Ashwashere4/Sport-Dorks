@@ -49,7 +49,7 @@ public class flistController {
      */
     @GetMapping("/{code}")
     public ResponseEntity<Facilities> getFacility(@PathVariable int code) {
-        LOG.info("GET /flist/" + code);
+        LOG.info("GET /facilities/" + code);
         try {
             Facilities team = flistDAO.getFacility(code);
             if (team != null)
@@ -73,7 +73,7 @@ public class flistController {
      */
     @GetMapping("")
     public ResponseEntity<Facilities[]> getFacilities() {
-        LOG.info("GET /flist");
+        LOG.info("GET /facilities");
         Facilities[] facilicies;
         try {
             facilicies = flistDAO.getFacilities();
@@ -99,7 +99,7 @@ public class flistController {
      */
     @GetMapping("/")
     public ResponseEntity<Facilities[]> searchFacilities(@RequestParam String name) {
-        LOG.info("GET /flist/?name="+name);
+        LOG.info("GET /facilities/?name="+name);
         try {
             Facilities[] teams = flistDAO.searchFacilities(name);
             return new ResponseEntity<Facilities[]>(teams,HttpStatus.OK);
@@ -122,8 +122,8 @@ public class flistController {
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @PostMapping("")
-    public ResponseEntity<Facilities> createFacility(@RequestBody String name, String location, int facility_id) {
-        LOG.info("POST /flist " + name + location + facility_id);
+    public ResponseEntity<Facilities> createFacility(@RequestBody String name, String location, Integer facility_id) {
+        LOG.info("POST /facilities " + name + location + facility_id);
         try {
             Facilities newteam = flistDAO.createFacility(name, location, facility_id);
             if (newteam == null){
@@ -149,7 +149,7 @@ public class flistController {
      */
     @PutMapping("")
     public ResponseEntity<Facilities> updateFacility(@RequestBody Facilities team, String name, String location, int facility_id) {
-        LOG.info("PUT /flist " + team);
+        LOG.info("PUT /facilities " + team);
         if(getFacility(team.getFacility_id()) != null) {
             try {
                 Facilities updatedteam = flistDAO.updateFacility(team, name, location, facility_id);
@@ -177,7 +177,7 @@ public class flistController {
      */
     @DeleteMapping("/{code}")
     public ResponseEntity<Boolean> deleteFacility(@PathVariable int code) {
-        LOG.info("DELETE /flist/" + code);
+        LOG.info("DELETE /facilities/" + code);
         try {
             boolean deleted = this.flistDAO.deleteFacility(code);
             if (deleted == false){
