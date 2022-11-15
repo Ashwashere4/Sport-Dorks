@@ -15,12 +15,13 @@ public class User {
      * @param username a label for the username as a string
      * @param password the password for the account as a string
      * @param admin boolean to keep so we know weather account is admin acount
+     * @param tOwner boolean to keep so we know weather account is a team owner
      */
-    public User(@JsonProperty("userName") String username, @JsonProperty("password") String pass){
+    public User(@JsonProperty("userName") String username, @JsonProperty("password") String pass, @JsonProperty("admin") Boolean admin, @JsonProperty("teamOwner") Boolean tOwner) {
         this.username = username;
         this.pass = pass;
-        this.admin = false;
-        this.tOwner = false;
+        this.admin = admin;
+        this.tOwner = tOwner;
     }
 
     /**
