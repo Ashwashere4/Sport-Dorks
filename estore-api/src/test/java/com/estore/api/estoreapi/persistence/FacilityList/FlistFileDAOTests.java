@@ -31,7 +31,7 @@ public class FlistFileDAOTests {
         flist.createFacility("something boring", "Bronx", 003);
 
         // Checks to see if a facility exists for something (should return 3 because i am really original with names)
-        assertEquals(flist.searchFacilities("something").length, 3);
+        assertEquals(flist.searchFacilities("something").length, 2);
 
 
         // Checks to see if all the faciltites  were added properly (4 stadiums)

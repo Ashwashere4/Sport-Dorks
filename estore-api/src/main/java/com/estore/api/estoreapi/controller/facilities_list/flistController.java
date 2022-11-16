@@ -47,7 +47,7 @@ public class flistController {
      * ResponseEntity with HTTP status of NOT_FOUND if not found<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
-    @GetMapping("/{code}")
+    @GetMapping("/{code}") //works */
     public ResponseEntity<Facilities> getFacility(@PathVariable int code) {
         LOG.info("GET /facilities/" + code);
         try {
@@ -71,7 +71,7 @@ public class flistController {
      * HTTP status of OK<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
-    @GetMapping("")
+    @GetMapping("") //works
     public ResponseEntity<Facilities[]> getFacilities() {
         LOG.info("GET /facilities");
         Facilities[] facilicies;
@@ -97,7 +97,7 @@ public class flistController {
      * Example: Find all heroes that contain the text "ma"
      * GET http://localhost:8080/heroes/?name=ma
      */
-    @GetMapping("/")
+    @GetMapping("/")//works
     public ResponseEntity<Facilities[]> searchFacilities(@RequestParam String name) {
         LOG.info("GET /facilities/?name="+name);
         try {
@@ -121,9 +121,9 @@ public class flistController {
      * ResponseEntity with HTTP status of CONFLICT if {@link Facilities Team} object already exists<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
-    @PostMapping("")
+    @PostMapping("/create")
     public ResponseEntity<Facilities> createFacility(@RequestBody String name, String location, Integer facility_id) {
-        LOG.info("POST /facilities " + name + location + facility_id);
+        LOG.info("POST /facilities"+name+location+facility_id);
         try {
             Facilities newteam = flistDAO.createFacility(name, location, facility_id);
             if (newteam == null){
@@ -147,9 +147,9 @@ public class flistController {
      * ResponseEntity with HTTP status of OK if not found<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
-    @PutMapping("")
+    @PutMapping("/update")
     public ResponseEntity<Facilities> updateFacility(@RequestBody Facilities team, String name, String location, int facility_id) {
-        LOG.info("PUT /facilities " + team);
+        LOG.info("PUT /facilities "+ team);
         if(getFacility(team.getFacility_id()) != null) {
             try {
                 Facilities updatedteam = flistDAO.updateFacility(team, name, location, facility_id);
@@ -175,7 +175,7 @@ public class flistController {
      * ResponseEntity with HTTP status of NOT_FOUND if not found<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
-    @DeleteMapping("/{code}")
+    @DeleteMapping("/delete/{code}")
     public ResponseEntity<Boolean> deleteFacility(@PathVariable int code) {
         LOG.info("DELETE /facilities/" + code);
         try {

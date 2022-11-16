@@ -3,15 +3,11 @@ package com.estore.api.estoreapi.model.facilities;
 import com.estore.api.estoreapi.model.Teams.Team;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-
-
-
-
 public class Facilities {
     @JsonProperty("name") private String name;
     @JsonProperty("location") private String location;
     @JsonProperty("facility_id") private int facility_id;
-    @JsonProperty("reserve_status") private Boolean reserve_status;
+    @JsonProperty("reservestatus") private Boolean reservestatus;
 
     /**
      * Constructor for an item object
@@ -24,7 +20,7 @@ public class Facilities {
         this.name = name;
         this.location = location;
         this.facility_id = facility_id;
-        this.reserve_status = false;
+        this.reservestatus = false;
     };
 
     /**
@@ -53,11 +49,11 @@ public class Facilities {
 
     public Boolean getTeamReserve(){
 
-        return this.reserve_status;
+        return this.reservestatus;
     }
 
     public Boolean removeTeamReserve(){
-        this.reserve_status = false;
+        this.reservestatus = false;
 
         return true;
     }
@@ -90,7 +86,7 @@ public class Facilities {
      * Method to get the string representation of an item object
      */
     public String toString(){
-        return ("Facility Name = " + name + "\nFacility Location= " + location + "\nFacility Id = " + facility_id + "Reserved?: " + reserve_status);
+        return ("Facility Name = " + name + "\nFacility Location= " + location + "\nFacility Id = " + facility_id + "Reserved?: " + reservestatus);
     }
 }
 
