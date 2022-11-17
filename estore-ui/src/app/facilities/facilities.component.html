@@ -18,7 +18,7 @@
     <h2>Facilities</h2>
     <ul class="facilities">
       <li *ngFor="let facility of facilities">
-        <button [class.selected]="facility === selectedFacility" type="button" (click)="onSelect(facility)">
+        <button [class.selected]="facility === selectedFacility" type="button" (click)="goToPage('stadium')">
           <span class="button">{{facility.name}}, {{facility.location}}</span>
         </button>
       </li>

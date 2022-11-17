@@ -16,6 +16,7 @@ import { InventoryComponent } from './inventory/inventory.component';
 import { TeamComponent } from './team/team.component';
 import { LeagueComponent } from './league/league.component';
 import { facilitiesComponent } from './facilities/facilities.component';
+import { StadiumComponent } from './stadium/stadium.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { facilitiesComponent } from './facilities/facilities.component';
     InventoryComponent,
     TeamComponent,
     LeagueComponent,
-    facilitiesComponent
+    facilitiesComponent,
+    StadiumComponent
   ],
   imports: [
     BrowserModule,

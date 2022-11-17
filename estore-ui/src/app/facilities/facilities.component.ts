@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Facilities } from '../facilities';
 
 import { FACILITIES } from '../mock_facilities';
@@ -14,7 +15,11 @@ export class facilitiesComponent implements OnInit {
   facilities = FACILITIES;
   selectedFacility?: Facilities;
 
-  constructor() { }
+  constructor(private router:Router){}
+
+  goToPage(pageName:string):void{
+    this.router.navigate([`${pageName}`]);
+  }
 
   ngOnInit(): void {
   }

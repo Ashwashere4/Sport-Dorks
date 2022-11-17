@@ -7,6 +7,7 @@ import { RegisterComponent } from './register/register.component';
 import { facilitiesComponent } from './facilities/facilities.component';
 import { TeamComponent } from './team/team.component';
 import { LeagueComponent } from './league/league.component';
+import { StadiumComponent } from './stadium/stadium.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -15,7 +16,8 @@ const routes: Routes = [
   {path: 'inventory', component: InventoryComponent},
   {path: 'facilities', component: facilitiesComponent},
   {path: 'team', component: TeamComponent},
-  {path: 'league', component: LeagueComponent}
+  {path: 'league', component: LeagueComponent},
+  {path:'stadium', component: StadiumComponent}
 ];
 
 @NgModule({
