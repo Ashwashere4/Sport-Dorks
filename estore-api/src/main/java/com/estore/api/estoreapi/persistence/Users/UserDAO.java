@@ -28,7 +28,7 @@ public interface UserDAO {
      * 
      * @throws IOException if an issue with underlying storage
      */
-    User[] seachUsers(String containsText) throws IOException;
+    //User[] seachUsers(String containsText) throws IOException;
 
     /**
      * Retrieves a {@linkplain User Users} with the given name
@@ -54,7 +54,7 @@ public interface UserDAO {
      * 
      * @throws IOException if an issue with underlying storage
      */
-    User creatUser(String userName, String password) throws IOException;
+    User creatUser(String username, String password, Boolean admin, Boolean owner) throws IOException;
 
     User creatUser(User User) throws IOException;
 
@@ -68,7 +68,7 @@ public interface UserDAO {
      * 
      * @throws IOException if underlying storage cannot be accessed
      */
-    User updateUser(User User, String UserName, String password, Boolean admin, Boolean tOwner ) throws IOException;
+    User updateUser(User User, String username, String password, Boolean admin, Boolean owner ) throws IOException;
 
     /**
      * Deletes a {@linkplain User user} with the given name

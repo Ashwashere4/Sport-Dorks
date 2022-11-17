@@ -34,20 +34,19 @@ public class UserFileDAO implements UserDAO {
      * 
      * @param users
      */
-    public UserFileDAO(@Value("${users.filename}") String filename, ObjectMapper objectMapper) throws IOException {
+    public UserFileDAO(@Value("${user.filename}") String filename, ObjectMapper objectMapper) throws IOException {
             this.filename = filename;
             this.objectMapper = objectMapper;
-            loadInventory();
+            loadUsers();
         }
 
-    private ArrayList<User> getInventoryArray() {
+    private ArrayList<User> getUsersArray() {
         return new ArrayList<>(users.values());
     }
 
     @Override
     public User[] getUsers() throws IOException {
-
-        return getInventoryArray().toArray(new User[0]);
+        return getUsersArray().toArray(new User[0]);
     }
 
     @Override 
@@ -56,71 +55,72 @@ public class UserFileDAO implements UserDAO {
             if (user != null)
                 return user;
             else
-                System.out.println("User does not exist.");
+                //System.out.println("User does not exist.");
                 return null;
     }
 
     @Override
     public User creatUser(User user) throws IOException {
-        User newUser = new User(user.getUserName(), user.getPass(), false, false);
+        User newUser = new User(user.getUserName(), user.getPass(), user.isAdmin(), user.isTOwner());
         users.put(user.getUserName(), newUser);
-        saveInventory();
+        saveUsers();
         return newUser;
     }
 
     @Override
-    public User creatUser(String userName, String password) throws IOException {
-        User newUser = new User(userName, password, false, false);
-        users.put(userName, newUser);
-        saveInventory();
+    public User creatUser(String username, String password, Boolean admin, Boolean owner) throws IOException {
+        User newUser = new User(username, password, admin, owner);
+        users.put(username, newUser);
+        saveUsers();
         return newUser;
     }
 
     @Override
-    public boolean deleteUser(String name) throws IOException{
-            users.remove(name);
+    public boolean deleteUser(String username) throws IOException{
+            users.remove(username);
+            saveUsers();
             return true;
         }
 
-    
-    @Override
-    public User[] seachUsers(String text) throws IOException {
-        if (text.length() == 0)
-            return new User[0];
 
-        ArrayList<User> Users = new ArrayList<>();
-        for (User user : users.values()) {
-            if (user.getUserName().toLowerCase().contains(text.toLowerCase())) {
-                Users.add(user);
-            }
-        }
+    // @Override
+    // public User[] seachUsers(String text) throws IOException {
+    //     if (text.length() == 0)
+    //         return new User[0];
 
-        return Users.toArray(new User[0]);
-    }
+    //     ArrayList<User> Users = new ArrayList<>();
+    //     for (User user : users.values()) {
+    //         if (user.getUserName().toLowerCase().contains(text.toLowerCase())) {
+    //             Users.add(user);
+    //         }
+    //     }
+
+    //     return Users.toArray(new User[0]);
+    // }
     
-    private void saveInventory() throws IOException {
-        objectMapper.writeValue(new File(filename), getInventoryArray());
+    private void saveUsers() throws IOException {
+        objectMapper.writeValue(new File(filename), getUsersArray());
     }
 
     @Override
     public User updateUser(User user, String userName, String password, Boolean admin, Boolean Towner) throws IOException {
-        // User localItem = users.get(user.getName());
-        User updatedItem = new User(userName, password, admin, Towner);
+        User updatedUser = new User(userName, password, admin, Towner);
         deleteUser(user.getUserName());
-        users.put(updatedItem.getUserName(), updatedItem);
-        return updatedItem;
+        users.put(updatedUser.getUserName(), updatedUser);
+        saveUsers();
+        return updatedUser;
     }
 
-    
     /**
      * Load the users from the file.
      */
-    private void loadInventory() throws IOException {
+    private void loadUsers() throws IOException {
         users = new HashMap<>();
-        User[] inventoryArray = objectMapper.readValue(new File(filename), User[].class);
-        for (User user : inventoryArray) {
+        User[] UsersArray = objectMapper.readValue(new File(filename), User[].class);
+        for (User user : UsersArray) {
             users.put(user.getUserName(), user);
         }
+        saveUsers();
     }
 
 }

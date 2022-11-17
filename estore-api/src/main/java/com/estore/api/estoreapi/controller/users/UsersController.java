@@ -82,33 +82,33 @@ public class UsersController {
         return new ResponseEntity<User[]>(users, HttpStatus.OK);
     }
 
-    /**
-     * Responds to the GET request for all {@linkplain Item item} whose name contains
-     * the text in name
-     * 
-     * @param name The name parameter which contains the text used to find the {@link Item item}
-     * 
-     * @return ResponseEntity with array of {@link Item item} objects (may be empty) and
-     * HTTP status of OK<br>
-     * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
-     * <p>
-     * Example: Find all heroes that contain the text "ma"
-     * GET http://localhost:8080/heroes/?name=ma
-     */
-    @GetMapping("/")
-    public ResponseEntity<User[]> seachUsers(@RequestParam String name) {
-        LOG.info("GET /users/?name="+name);
-        try {
-            User[] items = userDAO.seachUsers(name);
-            return new ResponseEntity<User[]>(items,HttpStatus.OK);
+    // /**
+    //  * Responds to the GET request for all {@linkplain Item item} whose name contains
+    //  * the text in name
+    //  * 
+    //  * @param name The name parameter which contains the text used to find the {@link Item item}
+    //  * 
+    //  * @return ResponseEntity with array of {@link Item item} objects (may be empty) and
+    //  * HTTP status of OK<br>
+    //  * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+    //  * <p>
+    //  * Example: Find all heroes that contain the text "ma"
+    //  * GET http://localhost:8080/heroes/?name=ma
+    //  */
+    // @GetMapping("/")
+    // public ResponseEntity<User[]> seachUsers(@RequestParam String name) {
+    //     LOG.info("GET /users/?name="+name);
+    //     try {
+    //         User[] items = userDAO.seachUsers(name);
+    //         return new ResponseEntity<User[]>(items,HttpStatus.OK);
 
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    //     } catch (Exception e) {
+    //         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    //     }
 
 
-        // Replace below with your implementation
-    }
+    //     // Replace below with your implementation
+    // }
 
     /**
      * Creates a {@linkplain Item item} with the provided item object
@@ -120,14 +120,14 @@ public class UsersController {
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @PostMapping("")
-    public ResponseEntity<User> creatUser(@RequestBody User item) {
-        LOG.info("POST /users " + item);
+    public ResponseEntity<User> creatUser(@RequestBody User user) {
+        LOG.info("POST /users " + user);
         try {
-            User newItem = userDAO.creatUser(item);
-            if (this.userDAO.creatUser(newItem) == null){
+            User newUser = userDAO.creatUser(user);
+            if (this.userDAO.creatUser(newUser) == null){
                 return new ResponseEntity<User>(HttpStatus.CONFLICT);
             }
-            return new ResponseEntity<User>(newItem,HttpStatus.CREATED);
+            return new ResponseEntity<User>(newUser,HttpStatus.CREATED);
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -183,7 +183,7 @@ public class UsersController {
             }
             return new ResponseEntity<Boolean>(true,HttpStatus.OK);
         } catch (IOException e) {
-            System.out.println("Item not found.");
+            System.out.println("User not found.");
             return new ResponseEntity<Boolean>(false,HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
