@@ -83,9 +83,9 @@ public interface FlistDAO {
      */
     boolean deleteFacility(int facility_id) throws IOException;
 
-    boolean addTeam_reserve(Team team, Facilities facility) throws IOException;
+    // boolean addTeam_reserve(Team team, Facilities facility) throws IOException;
 
-    boolean removeTeam_reserve(Team team, Facilities facility) throws IOException;
+    // boolean removeTeam_reserve(Facilities facility) throws IOException;
 }
 
 

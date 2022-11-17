@@ -118,17 +118,17 @@ public class FlistFileDAO implements FlistDAO {
         return true;
     }
 
-    @Override
-    public boolean addTeam_reserve(Team team, Facilities facility) throws IOException{
+    // @Override
+    // public boolean addTeam_reserve(Team team, Facilities facility) throws IOException{
 
-        return facility.addTeamReserve(team);
+    //     return facility.addTeamReserve(team);
         
-    }
+    // }
 
-    @Override
-    public boolean removeTeam_reserve(Team team, Facilities facility) throws IOException{
+    // @Override
+    // public boolean removeTeam_reserve(Facilities facility) throws IOException{
         
-        return facility.removeTeamReserve();
-    }
+    //     return facility.removeTeamReserve();
+    // }
 
 }
