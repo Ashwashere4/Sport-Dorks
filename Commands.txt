@@ -16,6 +16,7 @@ search:  	curl -X GET "http://localhost:8080/Inventory/?name=Base"
 
 Update:  	curl -X PUT -H "Content-Type:application/json" "http://localhost:8080/Inventory" -d "{\"name\": \"Baseball\", \"quantity\": 199, \"cost\": 2}"
 
+
 shopping cart:
 
 		    curl -X GET "http://localhost:8080/Inventory/Baseball"
@@ -26,6 +27,7 @@ add		    curl -X POST "http://localhost:8080/ShoppingCart/Baseball"
 delete      curl -X DELETE "http://localhost:8080/ShoppingCart/Baseball"
 
 purchase	curl -X PUT "http://localhost:8080/ShoppingCart/Baseball"
+
 
 wishlist:
 
@@ -39,6 +41,7 @@ delete      curl -X DELETE "http://localhost:8080/WishList/Baseball"
 add to cart	curl -X PUT "http://localhost:8080/WishList/Baseball"
 
 
+
 Facilities:
 
 			curl -X GET "http://localhost:8080/Facilities/1"
@@ -48,3 +51,16 @@ delete		curl -X DELETE "http://localhost:8080/Facilities/2"
 			curl -X GET	"http://localhost:8080/Facilities"
 
 search 		curl -X GET "http://localhost:8080/?name=something"		
+
+
+USER:
+
+Works list:    	curl -X GET "http://localhost:8080/Users" 
+
+Works create:  	curl -X POST -H "Content-Type:application/json" "http://localhost:8080/Users" -d "{\"userName\": \"kalen\", \"pass\": \"kalenpass\", \"admin\": true, \"towner\": false }"
+
+Works delete:   curl -i -X DELETE "http://localhost:8080/Users/kalen" 
+
+Works specific: curl -X GET "http://localhost:8080/Users/kalen"
+
+Works Update:  	curl -X PUT -H "Content-Type:application/json" "http://localhost:8080/Users" -d "{\"userName\": \"Kalen\", \"pass\": \"kalen\", \"admin\": true, \"towner\": true }"
