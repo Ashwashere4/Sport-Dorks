@@ -21,7 +21,7 @@ geometry: margin=1in
 Team CTN will create a Team Sport Website. Users will be able to buy sports equipment along with joining a team. These teams will then be able to rent out facilities on the facilities page. 
 This website is meant to help those who are interested in sports get a headstart in their careers.
 ### Purpose
-> _Sports Dorks allows a user to buy items along with reserving facilities for sports games. Users will be able to look for items, add items into a cart, along with removing items from a cart. Team managers will be able to see facilities available._
+Sports Dorks allows a user to buy items along with reserving facilities for sports games. Users will be able to look for items, add items into a cart, along with removing items from a cart. Team managers will be able to see facilities available.
 
 ### Glossary and Acronyms
 > _Provide a table of terms and acronyms._
@@ -33,23 +33,22 @@ This website is meant to help those who are interested in sports get a headstart
 
 ## Requirements
 
-> _The ability to see and control the inventory (add, remove, edit) along with adding items into a cart. Facilities will be able to 
-(add, remove, edit) and allow the user to search for a specific facility._
+The ability to see and control the inventory (add, remove, edit) along with adding items into a cart. Facilities will be able to 
+(add, remove, edit) and allow the user to search for a specific facility.
 
 ### Definition of MVP
-> _Minimum Viable Product is having a website with the ability to look for inventory items and seeing what facilities are available. Users will be able to see and add items into a cart, and facilities will be able to see what is available._
+Minimum Viable Product is having a website with the ability to look for inventory items and seeing what facilities are available. Users will be able to see and add items into a cart, and facilities will be able to see what is available.
 
 ### MVP Features
-> _Search, update, delete and get entire inventory. Add and remove items from shopping cart. Search, update, delete, and get facilities list_
+Search, update, delete and get entire inventory. Add and remove items from shopping cart. Search, update, delete, and get facilities list
 
 ### Roadmap of Enhancements
-> _
   1. Create, edit, delete product.
   2. Create inventory list to hold products
   3. Create, edit, delete facilities.
   4. Create facilities list to hold products
   5. Create shopping cart to hold products customers want.
-  _
+  
 
 
 ## Application Domain
@@ -97,25 +96,11 @@ The user first begins at the homepage with the options to go shopping or search 
 Facilities page work similarily. When taken to the facilities page, they are given a list of facilities and when clicked on will give a description of it.
 
 ### ViewModel Tier
-> _Provide a summary of this tier of your architecture. This
-> section will follow the same instructions that are given for the View
-> Tier above._
-
-> _At appropriate places as part of this narrative provide one or more
-> static models (UML class diagrams) with some details such as critical attributes and methods._
-
 ![Item and Facilities diagram](item_facilities.png)
 
 The controllers control the data that the persistance contains. Both inventory and facilities work similar as in both use a inventory system. There are interactions the website has, like pressing buttons that command the control the model. From there the website is updated, and so is the api that records the data for the website.
 
 ### Model Tier
-> _Provide a summary of this tier of your architecture. This
-> section will follow the same instructions that are given for the View
-> Tier above._
-
-> _At appropriate places as part of this narrative provide one or more
-> static models (UML class diagrams) with some details such as critical attributes and methods._
-
 ![Item class diagram](Item_class.png)
 
 The model is a very simple class set up. Each item has a name, cost, and quantity. Each attribute has a getter and setter for easy updating. After an item is created, they are put into a inventory hashmap. The key is the name of the item, and the value is the item itself.
@@ -136,28 +121,20 @@ Facilities works very similarly. Each facility has a name, id, and location. Eac
 > and recommendations for further improvements. Where relevant, include 
 > screenshots from the tool and/or corresponding source code that was flagged._
 
+If the project were to continue, we would add additional functions like reserving a facility and having a better front end. Having a wishlist was also one of our plans that we ran out of time to implement. 
+
+Any further improvements regarding the static code analysis would be to manage time better and to understand what you are given. We did not need to make this the best website and we got a big carried away with adding more features than necessary.
+
 ## Testing
 > _This section will provide information about the testing performed
 > and the results of the testing._
 
 ### Acceptance Testing
-> _Report on the number of user stories that have passed all their
-> acceptance criteria tests, the number that have some acceptance
-> criteria tests failing, and the number of user stories that
-> have not had any testing yet. Highlight the issues found during
-> acceptance testing and if there are any concerns._
-
-> _Most of the user stories were passed and some of the more advanced one were not. The essentials, like creating an inventory and facilities along with basic function of both were added and testing. The more advanced stuff we worked on is still very broken and probably won't see the light of day.
+Most of the user stories were passed and some of the more advanced one were not. The essentials, like creating an inventory and facilities along with basic function of both were added and testing. The more advanced stuff we worked on is still very broken and probably won't see the light of day.
 
 ### Unit Testing and Code Coverage
-> _Discuss your unit testing strategy. Report on the code coverage
-> achieved from unit testing of the code base. Discuss the team's
-> coverage targets, why you selected those values, and how well your
-> code coverage met your targets. If there are any anomalies, discuss
-> those._
-
-> _Most of the code we wrote were based of other components of the project. Therefore, we tested to make sure that the code worked properly.
-> This included getting the right numbers, returning the right errors if necessary. We focued on making sure the code was functional and we 
-> handled it pretty well. Below you can see our code coverage.
+Most of the code we wrote were based of other components of the project. Therefore, we tested to make sure that the code worked properly.
+This included getting the right numbers, returning the right errors if necessary. We focued on making sure the code was functional and we 
+handled it pretty well. Below you can see our code coverage.
 
 
