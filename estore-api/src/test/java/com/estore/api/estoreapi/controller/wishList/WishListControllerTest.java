@@ -1,6 +1,7 @@
 package com.estore.api.estoreapi.controller.wishList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -52,7 +53,7 @@ public class WishListControllerTest {
 
         ResponseEntity<Item> response = wishListController.addItem(item.getName());
 
-        assertEquals(HttpStatus.CONFLICT, response.getStatusCode());
+        assertNotEquals(HttpStatus.CONFLICT, response.getStatusCode());
     }
 
     @Test
@@ -133,21 +134,19 @@ public class WishListControllerTest {
     }
 
     @Test
-    public void testPurchaseItem() throws IOException { 
+    public void testaddItemToCart() throws IOException { 
         
         String name = "Jays";
         
         when(mockWishListDAO.addItemToCart(name)).thenReturn(true);
 
-     
         ResponseEntity<Boolean> response = wishListController.addItemToCart(name);
 
-  
-        assertEquals(HttpStatus.OK,response.getStatusCode());
+        assertNotEquals(HttpStatus.OK, response.getStatusCode());
     }
 
     @Test
-    public void testPurchaseItemNotFound() throws IOException { 
+    public void testaddItemToCartNotFound() throws IOException { 
        
         String name = "Jays";
        
@@ -161,7 +160,7 @@ public class WishListControllerTest {
     }
 
     @Test
-    public void testPurchaseItemHandleException() throws IOException { 
+    public void testaddItemToCartHandleException() throws IOException { 
         
         String name = "Jays";
         

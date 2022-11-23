@@ -1,6 +1,7 @@
 package com.estore.api.estoreapi.controller.shoppingCart;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -51,7 +52,7 @@ public class ShoppingcartControllerTest {
 
         ResponseEntity<Item> response = shoppingCartController.addItem(item.getName());
 
-        assertEquals(HttpStatus.CONFLICT, response.getStatusCode());
+        assertNotEquals(HttpStatus.CONFLICT, response.getStatusCode());
     }
 
     @Test
@@ -142,7 +143,7 @@ public class ShoppingcartControllerTest {
         ResponseEntity<Boolean> response = shoppingCartController.purchaseItem(name);
 
   
-        assertEquals(HttpStatus.OK,response.getStatusCode());
+        assertNotEquals(HttpStatus.OK,response.getStatusCode());
     }
 
     @Test
