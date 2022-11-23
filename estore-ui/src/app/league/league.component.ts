@@ -19,6 +19,7 @@ export class LeagueComponent implements OnInit {
     private messageService: MessageService) { }
 
   selectedTeam?: Team;
+  selectedPlayer?: Player;
   json = require('../teams.json')
 
   ngOnInit(): void {
@@ -30,7 +31,12 @@ export class LeagueComponent implements OnInit {
 
   onSelect(team: Team): void {
     this.selectedTeam = team;
-    this.messageService.add(`LeagueComponent: Selected team name=${team.id}`);
+    this.messageService.add(`LeagueComponent: Selected team id=${team.id}`);
+  }
+
+  onSelectPlayer(player: Player): void {
+    this.selectedPlayer = player;
+    this.messageService.add(`LeagueComponent: Selected player name=${player.name}`)
   }
 
   getTeams(): void {

@@ -24,9 +24,12 @@
 <body>
   <ul class="players">
     <li *ngFor="let player of players">
+      <button [class.selected]="player === selectedPlayer" type="button" (click)="onSelect(player)"></button>
       <span class="badge"></span> {{player.name}}, {{player.age}}, {{player.rating}}
       <button type="button" class="delete" title="delete player"
         (click)="delete(player)">x</button>
     </li>
   </ul>
 </body>
+
+<app-player-detail [player]="selectedPlayer"></app-player-detail>

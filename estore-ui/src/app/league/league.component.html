@@ -4,11 +4,16 @@
   <ul class="teams">
     <ul *ngFor="let team of teams">
         <span class="teamID"></span> {{team.id}}
+        <button [class.selected]="team === selectedTeam" type="button" (click)="onSelect(team)"></button>
         <li *ngFor="let player of team.team">
             <span class="playerINFO"></span> {{player.name}}, {{player.age}}, {{player.rating}}
+            <button [class.selected]="player === selectedPlayer" type="button" (click)="onSelectPlayer(player)"></button>
         </li>
       <button type="button" class="delete" title="delete team"
         (click)="delete(team)">x</button>
     </ul>
   </ul>
 </body>
+
+<app-player-detail [player]="selectedPlayer"></app-player-detail>
+<app-team-detail [team]="selectedTeam"></app-team-detail>
