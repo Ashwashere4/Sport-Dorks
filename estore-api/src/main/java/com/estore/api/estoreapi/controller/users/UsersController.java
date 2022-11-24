@@ -158,7 +158,7 @@ public class UsersController {
                 return new ResponseEntity<User>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
         } else {
-            System.out.println("Item does not exist.");
+            System.out.println("User does not exist.");
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
         
