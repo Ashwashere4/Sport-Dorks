@@ -110,7 +110,7 @@ public class TeamFileDAO implements TeamDAO {
     public Player updatePlayer(Player player, String name, int age, int rating) throws IOException {
         Player newPlayer = new Player(name, age, rating);
         this.deletePlayer(name);
-        team.add(newPlayer);
+        this.createPlayer(newPlayer);
         return newPlayer;
     }
 
