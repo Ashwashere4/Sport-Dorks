@@ -51,6 +51,19 @@ export class InventoryComponent implements OnInit {
     this.inventoryService.deleteItem(item.name).subscribe();
   }
 
+  update(item: Item): void{
+    let name = prompt("New Name")
+    let cost = prompt('New Cost')
+    let quantity = prompt("New Smount")
+    this.items = this.items.filter(i => i !== item);
+
+    if (name == null){
+      name = ' '
+    }
+    this.inventoryService.updateItem(item, name, quantity, cost).subscribe();
+
+  }
+
   parseInt(string: string): number {
     return parseInt(string);
   }

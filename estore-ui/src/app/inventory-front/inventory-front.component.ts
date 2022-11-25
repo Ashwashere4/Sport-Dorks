@@ -40,8 +40,6 @@ export class InventoryFrontComponent implements OnInit {
     
   let x = this.inventoryService.searchInventory(name).subscribe(items => this.items = items)
 
-  console.log(x)
-    
   }
 
   else {
