@@ -1,8 +1,9 @@
 import { Facilities } from './facilities';
 
 export const FACILITIES: Facilities[] = [
-    {name:"something cool",location:"Bronx",facility_id:0, team_reserve: String(null)},
-    {name:"That one stadium",location:"Bronx",facility_id:1,team_reserve:String(null)},
-    {name:"something cool",location:"Bronx",facility_id:2,team_reserve:String(null)},
-    {name:"something boring",location:"Bronx",facility_id:3,team_reserve:String(null)}
+    {"name":"Stadium1","location":"Bronx","facility_id":0},
+    {"name":"Stadium2","location":"Florida","facility_id":1},
+    {"name":"Stadium3","location":"England","facility_id":2},
+    {"name":"Stadium4","location":"Space","facility_id":3},
+    {"name":"Stadium5","location":"The Great Beyond","facility_id":3}
 ];

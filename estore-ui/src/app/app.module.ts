@@ -16,6 +16,8 @@ import { InventoryComponent } from './inventory/inventory.component';
 import { TeamComponent } from './team/team.component';
 import { LeagueComponent } from './league/league.component';
 import { facilitiesComponent } from './facilities/facilities.component';
+import { StadiumComponent } from './stadium/stadium.component';
+import { InventoryFrontComponent } from './inventory-front/inventory-front.component';
 import { PlayerDetailComponent } from './player-detail/player-detail.component';
 import { PlayerSearchComponent } from './player-search/player-search.component';
 import { TeamDetailComponent } from './team-detail/team-detail.component';
@@ -33,6 +35,8 @@ import { TeamDetailComponent } from './team-detail/team-detail.component';
     TeamComponent,
     LeagueComponent,
     facilitiesComponent,
+    StadiumComponent,
+    InventoryFrontComponent
     PlayerDetailComponent,
     PlayerSearchComponent,
     TeamDetailComponent
