@@ -7,7 +7,7 @@
         <span class="team id"></span> Team #{{team.id}}
       </a>
         <li *ngFor="let player of team.team">
-          <a routerLink="/team/{{player.name}}">
+          <a routerLink="/league/{{team.id}}/{{player.name}}">
             <span class="badge"></span> {{player.name}}, {{player.age}}, {{player.rating}}
           </a>
         </li>
