@@ -61,10 +61,9 @@ public class TeamFileDAO implements TeamDAO {
 
     @Override
     public Player createPlayer(Player player) throws IOException {
-        Player newPlayer = new Player(player.getName(), player.getAge(), player.getRating());
-        team.add(newPlayer);
+        team.add(player);
         saveTeam();
-        return newPlayer;
+        return player;
     }
 
     @Override

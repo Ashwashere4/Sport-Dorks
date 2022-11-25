@@ -67,7 +67,7 @@ public class LeagueControllerTest {
 
         ResponseEntity<Team> response = leagueController.getTeam(99);
 
-        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
     }
     
     @Test
@@ -188,20 +188,47 @@ public class LeagueControllerTest {
         roster.add(player);
         roster.add(player2);
         
-        Team team = new Team(roster, 52);
+        Team team = new Team(roster, 30);
+
+        leagueController.createTeam(team);
+
+        when(mockLeagueDAO.createTeam(team)).thenReturn(team);
 
         Player new_player = new Player("Josh", 18, 55);
         roster.add(new_player);
 
-        ResponseEntity<Team> response = leagueController.updateTeam(team, roster, 52);
-        
-        response = leagueController.updateTeam(team, roster, 52);
+        Team newTeam = new Team(roster, 30);
 
-        assertEquals(HttpStatus.CONFLICT, response.getStatusCode());
-    }   
+        when(mockLeagueDAO.updateTeam(team, roster, 30)).thenReturn(newTeam);
+
+        when(mockLeagueDAO.getTeam(30)).thenReturn(team);
+
+        ResponseEntity<Team> response = leagueController.updateTeam(team, roster, 30);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+    } 
+    
+    @Test
+    public void testUpdateInternalServerError() throws IOException {
+        ArrayList<Player> roster = new ArrayList<>();
+
+        Team team = new Team(roster, 10);
+
+        when(mockLeagueDAO.createTeam(team)).thenReturn(team);
+
+        leagueController.createTeam(team);
+
+        when(mockLeagueDAO.getTeam(10)).thenReturn(team);
+
+        when(mockLeagueDAO.updateTeam(team, roster, 10)).thenThrow(new IOException());
+
+        ResponseEntity<Team> response = leagueController.updateTeam(team, roster, 10);
+
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+    }
 
     @Test 
-    public void testUpdateTeamHandleException() throws IOException{
+    public void testUpdateTeamHandleException() throws IOException {
         ArrayList<Player> roster = new ArrayList<>();
 
         int expected_age = 19;

@@ -62,6 +62,7 @@ class InventoryFileDAOTests {
         store.deleteItem("baseballHat");
         assertNull(store.getItem("baseballHat")); 
         assertNotEquals(store.searchItems("baseballHat").length, 1);
+
     }
     
 }
