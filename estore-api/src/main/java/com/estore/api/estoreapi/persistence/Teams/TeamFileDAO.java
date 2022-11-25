@@ -52,7 +52,7 @@ public class TeamFileDAO implements TeamDAO {
     @Override 
     public Player getPlayer(String name) throws IOException{
         for(Player player : team) {
-            if(player.getName().toUpperCase() == name.toUpperCase()) {
+            if(player.getName() == name) {
                 return player;
             }
         }

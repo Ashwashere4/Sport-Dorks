@@ -53,6 +53,8 @@ class TeamFileDAOTests {
 
         assertEquals(75, team.updatePlayer(kyle, "Kyle", 16, 75).getRating());
 
+        assertEquals(mike, team.getPlayer("Mike"));
+
         assertEquals(18, mike.getAge());
         assertEquals("Mike", mike.getName());
         assertEquals(72, mike.getRating());
