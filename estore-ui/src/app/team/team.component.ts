@@ -15,7 +15,6 @@ export class TeamComponent implements OnInit {
     private teamService: TeamService, 
     private messageService: MessageService) { }
 
-  selectedPlayer?: Player;
   json = require('../players.json')
 
   ngOnInit(): void {
@@ -24,19 +23,13 @@ export class TeamComponent implements OnInit {
 
   players: Player[] = [];
 
-
-  onSelect(player: Player): void {
-    this.selectedPlayer = player;
-    this.messageService.add(`TeamComponent: Selected player name=${player.name}`);
-  }
-
   getPlayers(): void {
     this.teamService.getTeam().subscribe(players => this.players = players);
   }
 
   add(name: string, age: number, rating: number): void {
     name = name.trim();
-    if (!name) { return; }
+    if (!name) { return; }  
     const newPlayer = this.teamService.createPlayer(name, age, rating);;
     this.teamService.addPlayer(newPlayer)
       .subscribe(newPlayer => {

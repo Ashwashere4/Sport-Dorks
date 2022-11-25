@@ -14,7 +14,7 @@ import com.estore.api.estoreapi.EstoreApiApplication;
 import com.estore.api.estoreapi.model.Inventory.Item;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@SpringBootTest(classes=EstoreApiApplication.class)
+@SpringBootTest(classes=InventoryFileDAOTests.class)
 class InventoryFileDAOTests {
     
     ObjectMapper objectMapper = new ObjectMapper();
@@ -62,6 +62,7 @@ class InventoryFileDAOTests {
         store.deleteItem("baseballHat");
         assertNull(store.getItem("baseballHat")); 
         assertNotEquals(store.searchItems("baseballHat").length, 1);
+
     }
     
 }

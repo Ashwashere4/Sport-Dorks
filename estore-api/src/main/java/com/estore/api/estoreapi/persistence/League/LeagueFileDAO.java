@@ -64,25 +64,24 @@ public class LeagueFileDAO implements LeagueDAO{
 
     @Override 
     public Team getTeam(int id) throws IOException{
-        Team team = league.get(id);
-            if (team != null)
+        for(Team team: league) {
+            if (team.getId() == id) {
                 return team;
-            else
-                System.out.println("Team does not exist.");
-                return null;
+            }
+        }
+        return null;
     }
 
     @Override
     public Team createTeam(Team team) throws IOException {
-        Team newTeam = new Team(team.getTeam(), nextId());
-        league.add(newTeam);
+        league.add(team);
         saveLeague();
-        return newTeam;
+        return team;
     }
 
     @Override
     public Team createTeam(ArrayList<Player> roster, int id) throws IOException {
-        Team newTeam = new Team(roster, nextId());
+        Team newTeam = new Team(roster, id);
         league.add(newTeam);
         saveLeague();
         return newTeam;
@@ -90,14 +89,15 @@ public class LeagueFileDAO implements LeagueDAO{
 
     @Override
     public boolean deleteTeam(int id) throws IOException{
-            if(league.get(id) != null) {
-                league.remove(id);
+        for(Team team: league) {
+            if(team.getId() == id) {
+                league.remove(team);
                 saveLeague();
                 return true;
-            } else {
-                return false;
             }
         }
+        return false;
+    }
 
 
     @Override
@@ -120,9 +120,15 @@ public class LeagueFileDAO implements LeagueDAO{
 
     @Override
     public Team updateTeam(Team team, ArrayList<Player> roster, int id) throws IOException {
-        Team newTeam = new Team(roster, team.getId());
-        league.add(newTeam);
-        return newTeam;
+        Team newTeam = new Team(roster, id);
+        if(getTeam(team.getId()) != null) {
+            deleteTeam(team.getId());
+            createTeam(roster, id);
+            return newTeam;
+        }
+        else {
+            return null;
+        }
     }
 
     /**

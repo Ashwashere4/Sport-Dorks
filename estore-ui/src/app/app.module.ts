@@ -18,6 +18,9 @@ import { LeagueComponent } from './league/league.component';
 import { facilitiesComponent } from './facilities/facilities.component';
 import { StadiumComponent } from './stadium/stadium.component';
 import { InventoryFrontComponent } from './inventory-front/inventory-front.component';
+import { PlayerDetailComponent } from './player-detail/player-detail.component';
+import { PlayerSearchComponent } from './player-search/player-search.component';
+import { TeamDetailComponent } from './team-detail/team-detail.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +37,9 @@ import { InventoryFrontComponent } from './inventory-front/inventory-front.compo
     facilitiesComponent,
     StadiumComponent,
     InventoryFrontComponent
+    PlayerDetailComponent,
+    PlayerSearchComponent,
+    TeamDetailComponent
   ],
   imports: [
     BrowserModule,

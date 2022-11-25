@@ -47,7 +47,7 @@ public class TeamController {
      */
     @GetMapping("/{name}")
     public ResponseEntity<Player> getPlayer(@PathVariable String name) {
-        LOG.info("GET /team/" + name);
+        LOG.info("GET /Team/" + name);
         try {
             Player player = teamDAO.getPlayer(name);
             if (player != null)
@@ -71,7 +71,7 @@ public class TeamController {
      */
     @GetMapping("")
     public ResponseEntity<Player[]> getPlayers() {
-        LOG.info("GET /team");
+        LOG.info("GET /Team");
         Player[] players;
         try {
             players = teamDAO.getPlayers();
@@ -94,7 +94,7 @@ public class TeamController {
      */
     @GetMapping("/")
     public ResponseEntity<Player[]> searchTeam(@RequestParam String name) {
-        LOG.info("GET /team/?name="+name);
+        LOG.info("GET /Team/?name="+name);
         try {
             Player[] players = teamDAO.searchTeam(name);
             return new ResponseEntity<Player[]>(players,HttpStatus.OK);
@@ -115,7 +115,7 @@ public class TeamController {
      */
     @PostMapping("")
     public ResponseEntity<Player> createPlayer(@RequestBody Player player) {
-        LOG.info("POST /team " + player);
+        LOG.info("POST /Team " + player);
         try {
             Player newPlayer = teamDAO.createPlayer(player);
             if (this.teamDAO.createPlayer(newPlayer) == null){
@@ -142,7 +142,7 @@ public class TeamController {
      */
     @PutMapping("")
     public ResponseEntity<Player> updatePlayer(@RequestBody Player player, String name, int age, int rating) throws IOException {
-        LOG.info("PUT /team " + player);
+        LOG.info("PUT /Team " + player);
         if(this.teamDAO.getPlayer(player.getName()) != null) {
             try {
                 Player newPlayer = teamDAO.updatePlayer(player, name, age, rating);
@@ -170,7 +170,7 @@ public class TeamController {
      */
     @DeleteMapping("/{name}")
     public ResponseEntity<Boolean> deletePlayer(@PathVariable String name) {
-        LOG.info("DELETE /team/" + name);
+        LOG.info("DELETE /Team/" + name);
         try {
             this.teamDAO.deletePlayer(name);
             if (this.teamDAO.deletePlayer(name) == false){

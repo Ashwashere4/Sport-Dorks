@@ -1,26 +1,32 @@
 package com.estore.api.estoreapi.model.Users;
 
+import com.estore.api.estoreapi.controller.shoppingCart.ShoppingCart;
+import com.estore.api.estoreapi.controller.wishlist.WishList;
+import com.estore.api.estoreapi.model.Inventory.Item;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
     @JsonProperty("userName") private String username;
-    @JsonProperty("password") private String pass;
+    @JsonProperty("pass") private String password;
     @JsonProperty("admin") private Boolean admin;
-    @JsonProperty("teamOwner") private Boolean tOwner;
+    @JsonProperty("towner") private Boolean owner;
+    //@JsonProperty("shoppingcart") private ShoppingCart shoppingcart; 
+    //@JsonProperty("wishlist") private WishList wishlist;
 
     /**
      * Constructor for an item object
      * @param username a label for the username as a string
      * @param password the password for the account as a string
      * @param admin boolean to keep so we know weather account is admin acount
+     * @param tOwner boolean to keep so we know weather account is a team owner
      */
-    public User(@JsonProperty("userName") String username, @JsonProperty("password") String pass){
+    public User(@JsonProperty("userName") String username, @JsonProperty("pass") String password, @JsonProperty("admin") Boolean admin, @JsonProperty("towner") Boolean owner) {
         this.username = username;
-        this.pass = pass;
-        this.admin = false;
-        this.tOwner = false;
+        this.password = password;
+        this.admin = admin;
+        this.owner = owner;
     }
 
     /**
@@ -36,7 +42,7 @@ public class User {
      * @return the string representation of the password
      */
     public String getPass() {
-        return this.pass;
+        return this.password;
     }
 
     /**
@@ -52,7 +58,7 @@ public class User {
      * @return a boolean of weather this account is an owner of a team
      */
     public boolean isTOwner() {
-        return this.tOwner;
+        return this.owner;
     }
 
     /**
@@ -60,13 +66,13 @@ public class User {
      */
     public String toString(){
         String admin = "is not admin";
-        String owner = "is not owner";
+        String owner = "is not an owner";
         if(this.admin){
             admin = "is an admin";
         }
-        if(this.tOwner){
+        if(this.owner){
             owner = "is a team owner";
         }
-        return ("username = " + username + "\nPassword = " + pass + "\n" + admin + "\n" + owner);
+        return ("username = " + username + "\nPassword = " + password + "\n" + admin + "\n" + owner);
     }
 }

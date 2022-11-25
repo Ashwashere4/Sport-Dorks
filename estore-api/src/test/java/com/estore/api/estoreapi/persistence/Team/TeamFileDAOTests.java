@@ -1,9 +1,7 @@
 package com.estore.api.estoreapi.persistence.Team;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.io.IOException;
 
@@ -11,58 +9,61 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.estore.api.estoreapi.EstoreApiApplication;
+
 import com.estore.api.estoreapi.model.Teams.Player;
 import com.estore.api.estoreapi.persistence.Teams.TeamFileDAO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@SpringBootTest(classes=EstoreApiApplication.class)
+@SpringBootTest(classes=TeamFileDAOTests.class)
 class TeamFileDAOTests {
     
     ObjectMapper objectMapper = new ObjectMapper();
     String name = "data/team.json";
     
-    // @Test 
-    // void testTeamFileDAO() throws IOException{
+    @Test
+    void testTeamFileDAO() throws IOException{
+        Player[] players = new Player[4];
+        TeamFileDAO team = new TeamFileDAO(name, objectMapper);
+        Player jordan = new Player("Jordan", 17, 86);
+        assertEquals(jordan, team.createPlayer(jordan));
+        Player mike = new Player("Mike", 18, 72);
+        assertEquals(mike, team.createPlayer(mike));
+        Player aaron = new Player("Aaron", 19, 66);
+        assertEquals(aaron, team.createPlayer(aaron));
+        Player kyle = new Player("Kyle", 16, 70);
+        assertEquals(kyle.getName(), team.createPlayer("Kyle", 16, 70).getName());
 
-    //     TeamFileDAO team = new TeamFileDAO(name, objectMapper);
-    //     team.createPlayer("Jordan", 17, 86);
-    //     team.createPlayer("Mike", 20, 55);
-    //     team.createPlayer("Aaron", 19, 99);
-    //     Player testPlayer = team.createPlayer("Kyle", 16, 75);
+        Player[] foundJordan = new Player[1];
+        foundJordan[0] = jordan;
 
-    //     // Checks to see if the item exists for jordans
-    //     // assertEquals(team.searchTeam("Jordan").length, 1);
+        assertEquals(1, team.searchTeam("Jordan").length);
 
-    //     // Checks to see if all the items were added properly (11 from original file, 4 from test = 15)
-    //     assertEquals(team.getPlayers().length, 16);
+        assertEquals(17, team.getPlayers().length);
+        
+        players = new Player[3];
 
-    //     // Checks to see if nikes was deleted properly (15-1 = 14), since nike doesn't exist it returns null
-    //     team.deletePlayer("Aaron");
-    //     assertEquals(team.getPlayers().length, 15);
-    //     assertEquals(team.getPlayer("Aaron"), null);
+        players[0] = jordan;
+        players[1] = mike;
+        players[2] = kyle;
 
-    //     //Finally, checks to see if idkman is updated into the ultimate drip, with the quantity of 100, and the price of 10,000
-    //     team.updatePlayer(testPlayer, "Kyle", 16, 75);
+        assertEquals(true, team.deletePlayer("Aaron"));
+        assertEquals(16, team.getPlayers().length);
+        assertEquals(null, team.getPlayer("Aaron"));
+        assertEquals(false, team.deletePlayer("NotAPlayer"));
 
-    //     Player mike = team.getPlayer("Mike");
+        assertEquals(75, team.updatePlayer(kyle, "Kyle", 16, 75).getRating());
 
-    //     assertNotNull(team.getPlayer("Mike"));
-    //     assertEquals(mike.getAge(), 20);
-    //     assertEquals(mike.getName(), "Mike");
-    //     assertEquals(mike.getRating(), 55);
+        assertEquals(mike, team.getPlayer("Mike"));
 
-    //     team = new TeamFileDAO(name, objectMapper);
-    //     //tests create player class
-    //     team.createPlayer("Pablo", 19, 88);
+        assertEquals(18, mike.getAge());
+        assertEquals("Mike", mike.getName());
+        assertEquals(72, mike.getRating());
+        
+        assertNotNull(team.searchTeam(""));
 
-    //     assertEquals(team.searchTeam("Pablo").length, 1);        
-    //     assertNotNull(team.getPlayer("Pablo"));
-    //     assertNotNull(team.getPlayers());
-
-    //     //tests delete player class
-    //     team.deletePlayer("Pablo");
-    //     assertNull(team.getPlayer("Pablo")); 
-    //     assertNotEquals(team.searchTeam("Pablo").length, 1);
-    // }
-    
+        // Cleaning up
+        team.deletePlayer("Jordan");
+        team.deletePlayer("Mike");
+        team.deletePlayer("Kyle");
+    } 
 }

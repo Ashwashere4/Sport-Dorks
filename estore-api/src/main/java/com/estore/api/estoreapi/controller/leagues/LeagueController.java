@@ -56,7 +56,7 @@ public class LeagueController {
                 return new ResponseEntity<Team>(team,HttpStatus.OK);
             else
                 System.out.println("Team does not exist.");
-                return new ResponseEntity<>(HttpStatus.OK);
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         catch(IOException e) {
             LOG.log(Level.SEVERE,e.getLocalizedMessage());
@@ -154,7 +154,7 @@ public class LeagueController {
         }
         } else {
             System.out.println("Team does not exist.");
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
+            return new ResponseEntity<Team>(HttpStatus.CONFLICT);
         }
         
     }
