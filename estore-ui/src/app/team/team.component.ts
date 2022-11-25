@@ -36,7 +36,7 @@ export class TeamComponent implements OnInit {
 
   add(name: string, age: number, rating: number): void {
     name = name.trim();
-    if (!name) { return; }
+    if (!name) { return; }  
     const newPlayer = this.teamService.createPlayer(name, age, rating);;
     this.teamService.addPlayer(newPlayer)
       .subscribe(newPlayer => {
