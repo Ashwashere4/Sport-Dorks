@@ -20,10 +20,10 @@ export class PlayerDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getItem();
+    this.getPlayer();
   }
 
-  getItem(): void {
+  getPlayer(): void {
     const name = this.route.snapshot.paramMap.get('name')!;
     this.teamService.getPlayer(name)
       .subscribe(player => this.player = player);
