@@ -3,9 +3,13 @@
 <body>
   <ul class="teams">
     <ul *ngFor="let team of teams">
-        <span class="teamID"></span> {{team.id}}
+      <a routerLink="/league/{{team.id}}">
+        <span class="team id"></span> Team #{{team.id}}
+      </a>
         <li *ngFor="let player of team.team">
-            <span class="playerINFO"></span> {{player.name}}, {{player.age}}, {{player.rating}}
+          <a routerLink="/league/{{team.id}}/{{player.name}}">
+            <span class="badge"></span> {{player.name}}, {{player.age}}, {{player.rating}}
+          </a>
         </li>
       <button type="button" class="delete" title="delete team"
         (click)="delete(team)">x</button>

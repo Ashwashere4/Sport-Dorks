@@ -107,17 +107,40 @@ public class TeamControllerTest {
 
         Player player = new Player("Jays", 0, 0);
 
-        when(mockTeamDAO.updatePlayer(player, "Nike", 0, 0)).thenReturn(player);
-
-        ResponseEntity<Player> response = teamController.updatePlayer(player, "Nike", 0, 0);
+        when(mockTeamDAO.createPlayer(player)).thenReturn(player);
         
-        response = teamController.updatePlayer(player, "Nike", 0, 0);
+        teamController.createPlayer(player);
 
-        assertEquals(HttpStatus.CONFLICT, response.getStatusCode());
-    }   
+        Player updatedPlayer = new Player("Jays", 18, 78);
+
+        when(mockTeamDAO.getPlayer("Jays")).thenReturn(player);
+
+        when(mockTeamDAO.updatePlayer(player, "Jays", 18, 78)).thenReturn(updatedPlayer);
+
+        ResponseEntity<Player> response = teamController.updatePlayer(player, "Jays", 18, 78);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+    }
+    
+    @Test
+    public void testUpdatePlayerInternalError() throws IOException {
+        Player player = new Player("Jays", 0, 0);
+
+        when(mockTeamDAO.createPlayer(player)).thenReturn(player);
+        
+        teamController.createPlayer(player);
+
+        when(mockTeamDAO.getPlayer("Jays")).thenReturn(player);
+
+        when(mockTeamDAO.updatePlayer(player, "Jays", 18, 78)).thenThrow(new IOException());
+
+        ResponseEntity<Player> response = teamController.updatePlayer(player, "Jays", 18, 78);
+
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+    }
 
     @Test 
-    public void testUpdatePlayerHandleException() throws IOException{
+    public void testUpdatePlayerHandleException() throws IOException {
         Player player = new Player("jays", 0, 0);
 
         doThrow(new IOException()).when(mockTeamDAO).updatePlayer(player, "Nike", 0, 0);

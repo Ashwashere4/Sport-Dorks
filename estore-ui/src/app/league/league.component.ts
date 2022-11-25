@@ -18,7 +18,6 @@ export class LeagueComponent implements OnInit {
     private leagueService: LeagueService, 
     private messageService: MessageService) { }
 
-  selectedTeam?: Team;
   json = require('../teams.json')
 
   ngOnInit(): void {
@@ -26,12 +25,6 @@ export class LeagueComponent implements OnInit {
   }
 
   teams: Team[] = [];
-
-
-  onSelect(team: Team): void {
-    this.selectedTeam = team;
-    this.messageService.add(`LeagueComponent: Selected team name=${team.id}`);
-  }
 
   getTeams(): void {
     this.leagueService.getLeague().subscribe(teams => this.teams = teams);

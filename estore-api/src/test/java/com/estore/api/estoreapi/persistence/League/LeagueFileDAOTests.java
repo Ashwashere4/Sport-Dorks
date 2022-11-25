@@ -1,7 +1,6 @@
 package com.estore.api.estoreapi.persistence.League;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -17,14 +16,13 @@ import com.estore.api.estoreapi.model.Teams.Team;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @SpringBootTest(classes=EstoreApiApplication.class)
-class LeagueFileDAOtests {
+class LeagueFileDAOTests {
     
     ObjectMapper objectMapper = new ObjectMapper();
     String fileName = "data/league.json";
     
     @Test 
-    void testLeagueFileDAO() throws IOException{
-
+    void testLeagueFileDAO() throws IOException {
         LeagueFileDAO league = new LeagueFileDAO(fileName, objectMapper);
         ArrayList<Player> roster = new ArrayList<>();
         roster.add(new Player("Jordan", 17, 86));
@@ -36,42 +34,43 @@ class LeagueFileDAOtests {
         roster2.add(new Player("Kyle", 19, 67));
         roster2.add(new Player("Jamse", 18, 88));
 
-        Team team1 = new Team(roster, 1);
-        Team team2 = new Team(roster2, 2);
-        league.createTeam(team1);
-        league.createTeam(team2);
+        Team team1 = new Team(roster, 5);
+        Team team2 = new Team(roster2, 6);
+        
+        assertEquals(team1, league.createTeam(team1));
+        assertEquals(team2.getTeam(), league.createTeam(roster2, 6).getTeam());
 
-        assertEquals(league.searchLeague("1").length, 1);
+        assertEquals(1, league.searchLeague("1").length);
 
-        assertEquals(league.getTeams().length, 2);
+        assertEquals(6, league.getTeams().length);
 
-        // Checks to see if nikes was deleted properly (15-1 = 14), since nike doesn't exist it returns null
-        league.deleteTeam(1);
-        assertEquals(league.getTeams().length, 1);
-        assertEquals(league.getTeam(1), null);
+        assertEquals(true, league.deleteTeam(6));
+        assertEquals(5, league.getTeams().length);
+        assertNull(league.getTeam(6));
+        assertNotNull(league.searchLeague(""));
 
-        //Finally, checks to see if idkman is updated into the ultimate drip, with the quantity of 100, and the price of 10,000
         roster.add(new Player("Sam", 18, 4));
-        league.updateTeam(team1, roster, 1);
 
-        assertNotNull(league.getTeam(1).getTeam().contains(new Player("Sam", 18, 4)));
+        // Tests update team
+        Team updatedTeam = new Team(roster, 5);
+        assertEquals(updatedTeam.getTeam(), league.updateTeam(team1, roster, 5).getTeam());
+
+        Team notRealTeam = new Team(roster, 90);
+        assertNull(league.updateTeam(notRealTeam, roster, 90));
     
-        league = new LeagueFileDAO(fileName, objectMapper);
-        //tests create team class
         ArrayList<Player> roster3 = new ArrayList<>();
         roster3.add(new Player("Ben", 19, 75));
         roster3.add(new Player("Kyle", 19, 67));
         roster3.add(new Player("Jamse", 18, 88));
+        Team team3 = new Team(roster3, 7);
+        assertEquals(team3, league.createTeam(team3));
 
-        league.createTeam(roster3, 3);
-
-        assertEquals(league.searchLeague("3").length, 1);        
-        assertNotNull(league.getTeam(3));
-        assertNotNull(league.getTeams());
+        assertEquals(1, league.searchLeague("3").length);
+        assertEquals(team3.getTeam(), league.getTeam(7).getTeam());
 
         //tests delete team class
-        league.deleteTeam(3);
-        assertNull(league.getTeam(3)); 
-        assertNotEquals(league.searchLeague("3").length, 1);
+        assertEquals(true, league.deleteTeam(5));
+        assertEquals(true, league.deleteTeam(7));
+        assertEquals(false, league.deleteTeam(7));
     }
 }

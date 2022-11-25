@@ -16,6 +16,9 @@ import { InventoryComponent } from './inventory/inventory.component';
 import { TeamComponent } from './team/team.component';
 import { LeagueComponent } from './league/league.component';
 import { facilitiesComponent } from './facilities/facilities.component';
+import { PlayerDetailComponent } from './player-detail/player-detail.component';
+import { PlayerSearchComponent } from './player-search/player-search.component';
+import { TeamDetailComponent } from './team-detail/team-detail.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,10 @@ import { facilitiesComponent } from './facilities/facilities.component';
     InventoryComponent,
     TeamComponent,
     LeagueComponent,
-    facilitiesComponent
+    facilitiesComponent,
+    PlayerDetailComponent,
+    PlayerSearchComponent,
+    TeamDetailComponent
   ],
   imports: [
     BrowserModule,

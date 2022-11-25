@@ -2,11 +2,12 @@ package com.estore.api.estoreapi.model.Team;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+import com.estore.api.estoreapi.model.Teams.Team;
 import com.estore.api.estoreapi.model.Teams.Player;
 
 @Tag("Model-tier")
@@ -15,7 +16,7 @@ public class TeamTest {
 
     @Test
     public void testCtor(){
-        HashMap<String,Player> roster = new HashMap<>();
+        ArrayList<Player> roster = new ArrayList<Player>();
 
         int expected_age = 19;
         int expected_rating = 74;
@@ -29,13 +30,16 @@ public class TeamTest {
 
         Player player2 = new Player(expected_name2,expected_age2,expected_rating2);
 
-        roster.put(player.getName(), player);
-        roster.put(player2.getName(), player2);
+        roster.add(player);
+        roster.add(player2);
 
-        assertEquals(player, roster.get(expected_name));
-        assertEquals(player2, roster.get(expected_name2));
-        assertEquals(expected_name2, roster.get(expected_name2).getName());
-        assertEquals(expected_age, roster.get(expected_name).getAge());
+        Team team = new Team(roster, 50);
+
+        assertEquals(player, roster.get(0));
+        assertEquals(player2, roster.get(1));
+        assertEquals(expected_name2, roster.get(1).getName());
+        assertEquals(expected_age, roster.get(0).getAge());
+        assertEquals(roster, team.getTeam());
     }
 
     

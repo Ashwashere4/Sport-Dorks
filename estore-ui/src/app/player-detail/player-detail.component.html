@@ -1,0 +1,20 @@
+<div *ngIf="player">
+
+    <h2>{{player.name | uppercase}} Details</h2>
+    <div><span>age: </span>{{player.age}}</div>
+    <div><span>rating:</span>{{player.rating}}</div>
+    <div>
+      <label for="player-name">Player name: </label>
+      <input id="player-name" [(ngModel)]="player.name" placeholder="name">
+    </div>
+    <div>
+      <label for="player-age">Player age: </label>
+      <input id="player-age" [(ngModel)]="player.age" placeholder="age">
+    </div>
+    <div>
+      <label for="player-rating">Player rating: </label>
+      <input id="player-rating" [(ngModel)]="player.rating" placeholder="rating">
+    </div>
+    <button type="button" (click)="goBack()">go back</button>
+    <button type="button" (click)="save()">save</button>
+  </div>
