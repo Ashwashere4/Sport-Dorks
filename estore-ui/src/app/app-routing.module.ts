@@ -21,7 +21,7 @@ const routes: Routes = [
   {path: 'team', component: TeamComponent},
   {path: 'league', component: LeagueComponent},
   {path:'stadium', component: StadiumComponent},
-  {path: 'inventoryFront', component: InventoryFrontComponent}
+  {path: 'inventoryFront', component: InventoryFrontComponent},
   {path: 'team/:name', component: PlayerDetailComponent},
   {path: 'league/:id', component: TeamDetailComponent},
   {path: 'league/:id/:name', component: PlayerDetailComponent}

@@ -36,7 +36,7 @@ import { TeamDetailComponent } from './team-detail/team-detail.component';
     LeagueComponent,
     facilitiesComponent,
     StadiumComponent,
-    InventoryFrontComponent
+    InventoryFrontComponent,
     PlayerDetailComponent,
     PlayerSearchComponent,
     TeamDetailComponent
