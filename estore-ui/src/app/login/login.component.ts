@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RouterEvent } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+
+  constructor() {
+   }
+
+  username: String = '';
+
+  public saveData() {
+    let name: string = this.username as string;
+    localStorage.setItem("key", name);
+    // console.log(localStorage.getItem("key"))
+    console.log(this.username)
+
+    
+  }
 
   ngOnInit(): void {
+    
   }
 
 }

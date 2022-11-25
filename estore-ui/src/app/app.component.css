@@ -1,3 +1,9 @@
 #navbar-self{
   width: 100%
 }
+
+.name {
+  margin-right: 0px !important;
+  margin-left: auto !important;
+  color: aquamarine;
+}
