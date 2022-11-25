@@ -17,7 +17,7 @@ export class facilitiesComponent implements OnInit {
   facilities = FACILITIES;
   selectedFacility?: Facilities;
 
-  json = require('../facilities.json')
+  json = require('../flist.json')
   Facilities: Facilities[] = [];
 
 

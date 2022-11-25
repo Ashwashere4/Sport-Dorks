@@ -1,0 +1,22 @@
+<h1 align = 'center'>Current Inventory</h1>
+
+<!-- To do, make this page able to link to the editing of inventory -->
+
+<button (click)="searchItems()"> <img src='https://i.pinimg.com/originals/fb/75/89/fb7589b0358c18319cad472c9f2dc872.png' width="50" height="50">
+  Search Inventory</button>
+
+
+<div class="horizontal_stack">
+<li *ngFor = "let item of items">
+<div class="card">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDJN_Gn4K9siHpbvf_B9X_Tax9B4irpC2LWg&usqp=CAU" alt="Sport Picture" style="width: 50%">
+    <div class="container">
+            <h4><b>{{item.name}}</b></h4>
+            <p>Quantity: {{item.quantity}}, Cost: ${{item.cost}}</p>
+            <button type = "button"> Add to Cart</button>
+      <!-- To do, make item add to cart -->
+    </div>
+  </div>
+</li>
+</div>
+
