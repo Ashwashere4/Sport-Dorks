@@ -121,8 +121,14 @@ public class LeagueFileDAO implements LeagueDAO{
     @Override
     public Team updateTeam(Team team, ArrayList<Player> roster, int id) throws IOException {
         Team newTeam = new Team(roster, id);
-        deleteTeam(team.getId());
-        return createTeam(newTeam);
+        if(getTeam(team.getId()) != null) {
+            deleteTeam(team.getId());
+            createTeam(roster, id);
+            return newTeam;
+        }
+        else {
+            return null;
+        }
     }
 
     /**
