@@ -13,7 +13,7 @@ import com.estore.api.estoreapi.EstoreApiApplication;
 import com.estore.api.estoreapi.model.Users.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@SpringBootTest(classes=EstoreApiApplication.class)
+@SpringBootTest(classes=UserFileDAOTests.class)
 class UserFileDAOTests {
     
     ObjectMapper objectMapper = new ObjectMapper();

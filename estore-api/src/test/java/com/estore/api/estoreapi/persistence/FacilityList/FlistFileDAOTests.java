@@ -15,7 +15,7 @@ import com.estore.api.estoreapi.model.facilities.Facilities;
 import com.estore.api.estoreapi.persistence.FacilitiesList.FlistFileDAO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@SpringBootTest(classes=EstoreApiApplication.class)
+@SpringBootTest(classes=FlistFileDAOTests.class)
 public class FlistFileDAOTests {
     
     ObjectMapper objectMapper = new ObjectMapper();

@@ -14,7 +14,7 @@ import com.estore.api.estoreapi.EstoreApiApplication;
 import com.estore.api.estoreapi.model.Inventory.Item;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@SpringBootTest(classes=EstoreApiApplication.class)
+@SpringBootTest(classes=InventoryFileDAOTests.class)
 class InventoryFileDAOTests {
     
     ObjectMapper objectMapper = new ObjectMapper();

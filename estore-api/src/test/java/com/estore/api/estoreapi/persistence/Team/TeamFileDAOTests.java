@@ -14,7 +14,7 @@ import com.estore.api.estoreapi.model.Teams.Player;
 import com.estore.api.estoreapi.persistence.Teams.TeamFileDAO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@SpringBootTest(classes=EstoreApiApplication.class)
+@SpringBootTest(classes=TeamFileDAOTests.class)
 class TeamFileDAOTests {
     
     ObjectMapper objectMapper = new ObjectMapper();
@@ -27,16 +27,11 @@ class TeamFileDAOTests {
         Player jordan = new Player("Jordan", 17, 86);
         assertEquals(jordan, team.createPlayer(jordan));
         Player mike = new Player("Mike", 18, 72);
-        team.createPlayer(mike);
+        assertEquals(mike, team.createPlayer(mike));
         Player aaron = new Player("Aaron", 19, 66);
-        team.createPlayer(aaron);
+        assertEquals(aaron, team.createPlayer(aaron));
         Player kyle = new Player("Kyle", 16, 70);
         assertEquals(kyle.getName(), team.createPlayer("Kyle", 16, 70).getName());
-
-        players[0] = jordan;
-        players[1] = mike;
-        players[2] = aaron;
-        players[3] = kyle;
 
         Player[] foundJordan = new Player[1];
         foundJordan[0] = jordan;
@@ -57,8 +52,6 @@ class TeamFileDAOTests {
         assertEquals(false, team.deletePlayer("NotAPlayer"));
 
         assertEquals(75, team.updatePlayer(kyle, "Kyle", 16, 75).getRating());
-
-        assertEquals(mike, team.getPlayer("Mike"));
 
         assertEquals(18, mike.getAge());
         assertEquals("Mike", mike.getName());

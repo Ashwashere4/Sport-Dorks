@@ -15,7 +15,7 @@ import com.estore.api.estoreapi.model.Teams.Player;
 import com.estore.api.estoreapi.model.Teams.Team;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@SpringBootTest(classes=EstoreApiApplication.class)
+@SpringBootTest(classes=LeagueFileDAOTests.class)
 class LeagueFileDAOTests {
     
     ObjectMapper objectMapper = new ObjectMapper();

@@ -12,7 +12,7 @@ import com.estore.api.estoreapi.persistence.Inventory.InventoryFileDAO;
 import com.estore.api.estoreapi.persistence.shoppingCart.ShoppingCartFileDAO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@SpringBootTest(classes=EstoreApiApplication.class)
+@SpringBootTest(classes=ShoppingCartFileDAOTests.class)
 class ShoppingCartFileDAOTests {
     
     ObjectMapper objectMapper = new ObjectMapper();

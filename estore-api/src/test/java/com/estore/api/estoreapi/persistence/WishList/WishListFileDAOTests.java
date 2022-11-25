@@ -13,7 +13,7 @@ import com.estore.api.estoreapi.persistence.shoppingCart.ShoppingCartFileDAO;
 import com.estore.api.estoreapi.persistence.wishList.WishListFileDAO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@SpringBootTest(classes=EstoreApiApplication.class)
+@SpringBootTest(classes=WishListFileDAOTests.class)
 class WishListFileDAOTests {
     
     ObjectMapper objectMapper = new ObjectMapper();
