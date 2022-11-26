@@ -12,4 +12,6 @@ export class AppComponent {
   itemsUrl = 'http://localhost:8080/inventory';
   title = 'estore-ui';
   json = require('./items.json');
+
+  username = localStorage.getItem("key")
 }

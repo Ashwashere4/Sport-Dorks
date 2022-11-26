@@ -48,6 +48,19 @@ public class Item {
     /**
      * Method to get the string representation of an item object
      */
+
+    public void setName(String name){
+        this.name = name;
+    }
+
+    public void setCost(int cost){
+        this.cost = cost;
+    }
+
+    public void setQuantity(int quantity){
+        this.quantity = quantity;
+    }
+
     public String toString(){
         return ("Product name = " + name + "\nProduct Quantity = " + quantity + "\nProduct Price = " + cost);
     }

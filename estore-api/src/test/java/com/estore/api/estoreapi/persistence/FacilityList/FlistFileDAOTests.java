@@ -30,7 +30,7 @@ public class FlistFileDAOTests {
         flist.createFacility("something boring", "Bronx", 003);
 
         // Checks to see if a facility exists for something (should return 3 because i am really original with names)
-        assertEquals(flist.searchFacilities("something").length, 3);
+        assertEquals(flist.searchFacilities("something").length, 2);
 
 
         // Checks to see if all the faciltites  were added properly (4 stadiums)
@@ -69,21 +69,21 @@ public class FlistFileDAOTests {
         Facilities test_facility = flist.getFacility(1);
 
         // reserve status should default to false always
-        assertEquals(test_facility.getReservestatus(), false);
+        assertEquals(test_facility.getTeamReserve(), false);
 
         // Jordan reserves the facility
-        test_facility.addTeam_reserve(team1);
+        test_facility.addTeamReserve(team1);
 
         //this becomes true
-        assertEquals(test_facility.getReservestatus(), true);
+        assertEquals(test_facility.getTeamReserve(), true);
 
         //this is false because jordan already reserved it
-        assertEquals(test_facility.addTeam_reserve(team2), false);
+        assertEquals(test_facility.addTeamReserve(team2), false);
 
-        test_facility.removeTeam_reserve();
+        test_facility.removeTeamReserve();
 
         //with the removal of the team reserve, it is now available
-        assertEquals(test_facility.getReservestatus(), false);
+        assertEquals(test_facility.getTeamReserve(), false);
 
     }
     
