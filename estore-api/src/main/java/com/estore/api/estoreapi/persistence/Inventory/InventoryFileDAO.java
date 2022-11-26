@@ -105,12 +105,14 @@ public class InventoryFileDAO implements InventoryDAO {
     }
 
     @Override
-    public Item updateItem(Item item, String name, int quantity, int cost) throws IOException {
+    public Item updateItem(String item, String name, String quantity, String cost) throws IOException {
+
+        Item updatedItem = getItem(item);
         // Item localItem = inventory.get(item.getName());
-        item.setName(name);
-        item.setCost(cost);
-        item.setQuantity(quantity);
-        return item;
+        updatedItem.setName(name);
+        updatedItem.setCost(Integer.parseInt(cost));
+        updatedItem.setQuantity(Integer.parseInt(quantity));
+        return updatedItem;
     }
 
 

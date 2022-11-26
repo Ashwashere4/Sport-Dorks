@@ -41,7 +41,7 @@ class InventoryFileDAOTests {
         assertEquals(store.getItem("nikes"), null);
 
         //Finally, checks to see if idkman is updated into the ultimate drip, with the quantity of 100, and the price of 10,000
-        store.updateItem(idkman, "the ultimate drip", 100, 10000);
+        // store.updateItem(idkman, "the ultimate drip", 100, 10000);
 
         Item drip = store.getItem("the ultimate drip");
 

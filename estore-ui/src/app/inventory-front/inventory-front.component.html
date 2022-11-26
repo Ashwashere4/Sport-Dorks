@@ -2,10 +2,13 @@
 
 <!-- To do, make this page able to link to the editing of inventory -->
 
+<div class = "horizontal_stack">
 <button (click)="searchItems()"> <img src='https://i.pinimg.com/originals/fb/75/89/fb7589b0358c18319cad472c9f2dc872.png' width="50" height="50">
   Search Inventory</button>
 
 <button (click)="goToPage('inventory')"> Edit inventory</button>
+
+</div>
 
 <div class="horizontal_stack">
 <li *ngFor = "let item of items">
