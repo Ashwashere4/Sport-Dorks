@@ -4,6 +4,7 @@ import { Item } from '../item';
 import { InventoryService } from '../inventory.service';
 import { MessageService } from '../message.service';
 import { Route, RouterOutlet } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-inventory-front',
@@ -20,8 +21,11 @@ export class InventoryFrontComponent implements OnInit {
   items: Item[] = [];
 
   constructor(
+    private router:Router,
     private inventoryService: InventoryService, 
     private messageService: MessageService) { }
+
+
 
   ngOnInit(): void {
     this.getItems();
@@ -46,6 +50,10 @@ export class InventoryFrontComponent implements OnInit {
     this.inventoryService.getInventory().subscribe(items => this.items = items)
   }
 
+  }
+
+  goToPage(pageName:string):void{
+    this.router.navigate([`${pageName}`]);
   }
 
 }
