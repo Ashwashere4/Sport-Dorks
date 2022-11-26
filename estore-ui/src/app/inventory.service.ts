@@ -57,12 +57,12 @@ private handleError<T>(operation = 'operation', result?: T) {
   }
 
   /** PUT: update the hero on the server */
-updateItem(item: Item): Observable<any> {
-  return this.http.put(this.inventoryUrl, item, this.httpOptions).pipe(
-    tap(_ => this.log(`updated item quantity=${item.quantity} and cost=${item.cost}`)),
-    catchError(this.handleError<any>('updateItem'))
-  );
-}
+// updateItem(item: Item, name: string, quantity: number, cost: number): Observable<any> {
+//   return this.http.put(this.inventoryUrl, item, this.httpOptions).pipe(
+//     tap(_ => this.log(`updated item quantity=${item.quantity} and cost=${item.cost}`)),
+//     catchError(this.handleError<any>('updateItem'))
+//   );
+// }
 
 createItem(name: string, quantity: number, cost: number): Item {
   return {name, quantity, cost};
@@ -95,7 +95,7 @@ searchInventory(term: string): Observable<Item[]> {
   return this.http.get<Item[]>(`${this.inventoryUrl}/?name=${term}`).pipe(
     tap(x => x.length ?
        this.log(`found items matching "${term}"`) :
-       this.log(`no items matching "${term}"`)),
+       []),
     catchError(this.handleError<Item[]>('searchInventory', []))
   );
 }

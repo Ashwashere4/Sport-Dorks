@@ -15,24 +15,18 @@
     
     <h1>Welcome to the Facilities Page!</h1>
 
+    <button> <img src='https://www.creativefabrica.com/wp-content/uploads/2020/03/09/Magnifying-Glass-Graphics-3548942-1.png' width="50" height="50">
+      Search</button>
+
     <h2>Facilities</h2>
     <ul class="facilities">
       <li *ngFor="let facility of facilities">
-        <button [class.selected]="facility === selectedFacility" type="button" (click)="onSelect(facility)">
-          <span class="badge">{{facility.name}}</span>
-          <span class="name">{{facility.location}}</span>
+        <button [class.selected]="facility === selectedFacility" type="button" (click)="goToPage('stadium')">
+          <span class="button">{{facility.name}}, {{facility.location}}</span>
         </button>
       </li>
     </ul>
     
-    <!-- <div *ngIf="selectedFacility">
-      <h2>{{selectedFacility.name | uppercase}} Details</h2>
-      <div>id: {{selectedFacility.id</div>
-      <div>
-        <label for="facility-name">facility name: </label>
-        <input id="facility-name" [(ngModel)]="selectedFacility.name" placeholder="name">
-      </div>
-    </div>
-    </body> -->
+
 
 

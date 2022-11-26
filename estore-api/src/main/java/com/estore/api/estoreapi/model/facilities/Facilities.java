@@ -1,18 +1,13 @@
 package com.estore.api.estoreapi.model.facilities;
 
 import com.estore.api.estoreapi.model.Teams.Team;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-
-@JsonIgnoreProperties(ignoreUnknown = true)
-
 
 public class Facilities {
     @JsonProperty("name") private String name;
     @JsonProperty("location") private String location;
     @JsonProperty("facility_id") private int facility_id;
-    @JsonProperty("team_reserve") private Team team_reserve;
+    @JsonProperty("reservestatus") private Boolean reservestatus;
 
     /**
      * Constructor for an item object
@@ -21,11 +16,11 @@ public class Facilities {
      * @param cost the price of a product as an int
      */
 
-    public Facilities(@JsonProperty("name") String name, @JsonProperty("location") String location, @JsonProperty("facility_id") int facility_id) {
+    public Facilities(@JsonProperty("name") String name, @JsonProperty("location") String location, @JsonProperty("facility_id") Integer facility_id) {
         this.name = name;
         this.location = location;
         this.facility_id = facility_id;
-        this.team_reserve = null;
+        this.reservestatus = false;
     };
 
     /**
@@ -52,26 +47,21 @@ public class Facilities {
         return this.location;
     }
 
-    public Boolean getReservestatus(){
-        return this.team_reserve != null;
+    public Boolean getTeamReserve(){
+
+        return this.reservestatus;
     }
 
-    public Team getTeam_reserve(){
-
-        return this.team_reserve;
-    }
-
-    public Boolean removeTeam_reserve(){
-        this.team_reserve = null;
+    public Boolean removeTeamReserve(){
+        this.reservestatus = false;
 
         return true;
     }
 
-    public Boolean addTeam_reserve(Team team1){
+    public Boolean addTeamReserve(Team team1){
 
-        if (getReservestatus() == false){
+        if (getTeamReserve() == false){
 
-            this.team_reserve = team1;
 
             return true;
         }
@@ -96,7 +86,7 @@ public class Facilities {
      * Method to get the string representation of an item object
      */
     public String toString(){
-        return ("Facility Name = " + name + "\nFacility Location= " + location + "\nFacility Id = " + facility_id + "Reserved by: " + getTeam_reserve());
+        return ("Facility Name = " + name + "\nFacility Location= " + location + "\nFacility Id = " + facility_id + "Reserved?: " + reservestatus);
     }
 }
 
