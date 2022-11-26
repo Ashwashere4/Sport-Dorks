@@ -22,8 +22,6 @@ export class TeamComponent implements OnInit {
   }
 
   players: Player[] = [];
-  age!: number;
-  rating!: number;
 
   getPlayers(): void {
     this.teamService.getTeam().subscribe(players => this.players = players);
@@ -45,8 +43,9 @@ export class TeamComponent implements OnInit {
   }
 
   update(player: Player, age: number, rating: number): void {
-    this.delete(player);
-    this.add(player.name, age, rating);
+    let newPlayer: Player;
+    newPlayer = {name: player.name, age: age, rating: rating};
+    this.teamService.updatePlayer(newPlayer).subscribe();
   }
 
   parseInt(string: string): number {
