@@ -59,9 +59,9 @@ private handleError<T>(operation = 'operation', result?: T) {
   /** PUT: update the Item on the server */
 updateItem(item: string, name: string, quantity: string, cost: string): Observable<any> {
 
-    let updatedItem = this.getItem(item)
+    
 
-  return this.http.put<Item>(this.inventoryUrl, {updatedItem, name, quantity, cost}, this.httpOptions).pipe(
+  return this.http.put<Item>(this.inventoryUrl, {item, name, quantity, cost}, this.httpOptions).pipe(
     tap((updateItem: Item) => this.log(`updated item w/ name, quantity, cost = ${updateItem.name}, ${updateItem.quantity}, ${updateItem.cost}`)),
     catchError(this.handleError<Item>('updateItem'))
   );

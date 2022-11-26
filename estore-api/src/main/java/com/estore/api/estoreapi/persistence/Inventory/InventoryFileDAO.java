@@ -55,6 +55,7 @@ public class InventoryFileDAO implements InventoryDAO {
     @Override 
     public Item getItem(String name) throws IOException{
         Item item = inventory.get(name);
+        System.out.println(item);
             if (item != null)
                 return item;
             else

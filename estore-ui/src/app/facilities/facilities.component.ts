@@ -47,4 +47,21 @@ export class facilitiesComponent implements OnInit {
   onSelect(facility: Facilities): void {
     this.selectedFacility = facility;
   }
+
+  searchFacilities(): void {
+
+    let Facility = prompt("Search Facility");
+    
+    
+    if (Facility != null){
+      
+    this.facilityService.searchFacilities(Facility).subscribe(facilities => this.facilities = facilities)
+  
+    }
+  
+    else {
+      this.facilityService.getFacilities().subscribe(facilities => this.facilities = facilities)
+    }
+  
+    }
 }

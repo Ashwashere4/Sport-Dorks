@@ -153,6 +153,7 @@ public class InventoryController {
 
         Item updateditem = inventoryDAO.getItem(item);
         
+        
         LOG.info("PUT /inventory " + updateditem);
         if(updateditem!= null) {
             try {
