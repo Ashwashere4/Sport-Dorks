@@ -12,17 +12,18 @@
   <form class="form-inline" role="form" ng-submit="add(newPlayer.name, newPlayer.age, newPlayer.rating">
     <div class="form-group">
       <label class="sr-only" for="name">Name</label>
-      <input type="text" ng-model="newPlayer.name" class="form-control" id="name" placeholder="Enter name">
+      <input type="text" ng-model="newPlayer.name" class="form-control" id="name" placeholder="Enter name" #newPlayerName>
     </div>
     <div class="form-group">
       <label class="sr-only" for="age">Age</label>
-      <input type="number" ng-model="newPlayer.age" class="form-control" id="age" placeholder="Enter age">
+      <input type="number" ng-model="newPlayer.age" class="form-control" id="age" placeholder="Enter age" #newPlayerAge>
     </div>
     <div class="form-group">
       <label class="sr-only" for="rating">Rating</label>
-      <input type="number" ng-model="newPlayer.rating" class="form-control" id="rating" placeholder="Enter rating">
+      <input type="number" ng-model="newPlayer.rating" class="form-control" id="rating" placeholder="Enter rating" #newPlayerRating>
     </div>
-    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Add</button>
+    <button type="submit" (click)="add(newPlayerName.value, parseInt(newPlayerAge.value), parseInt(newPlayerRating.value))" class="btn btn-outline-success"><span class="glyphicon glyphicon-plus"></span> Add</button>
+    <button type="reset" class="btn btn-outline-warning"><span class="glyphicon glyphicon-remove"></span> Clear</button>
   </form>
 
   <hr />
