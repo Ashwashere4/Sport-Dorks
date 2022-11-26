@@ -3,7 +3,9 @@
 }
 
 .name {
-  margin-right: 0px !important;
-  margin-left: auto !important;
-  color: aquamarine;
+  position: right;
+  align-content: right;
+  /* margin-right: 0px !important;
+  margin-left: auto !important; */
+  color: rgb(19, 27, 24);
 }
