@@ -24,7 +24,7 @@ export class PlayerDetailComponent implements OnInit {
   }
 
   getPlayer(): void {
-    const name = this.route.snapshot.paramMap.get(`name`)!;
+    const name = this.route.snapshot.paramMap.get('name')!;
     this.teamService.getPlayer(name)
       .subscribe(player => this.player = player);
   }

@@ -1,34 +1,54 @@
-<h2>Team</h2>
+<!DOCTYPE html>
+<html ng-app="rosterApp">
+  <head>
+    <title>Sports Team Roster</title>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/animate.css/2.0/animate.min.css">
+  </head>
+  <body ng-controller="rosterCtrl" class="container">
+  <div class="page-header"><h1>Team Roster</h1></div>
 
-<form action="" method="post" class="new-player">
-  <div class="new-player">
-    <label for="name">Enter player name: </label>
-    <input type="text" playerName="name" id="name" required #playerName>
-  </div>
-  <div class="new-player">
-    <label for="age">Enter player age: </label>
-    <input type="number" playerAge="age" id="age" required #playerAge>
-  </div>
-  <div class="new-player">
-    <label for="rating">Enter player rating: </label>
-    <input type="number" itemCost="rating" id="rating" required #playerRating>
-  </div>
-  <div>
-    <!-- (click) passes input value to add() and then clears the input -->
-    <button type="button" class="add-button" (click)="add(playerName.value, parseInt(playerAge.value), parseInt(playerRating.value));">
-      Add
-    </button>
-  </div>
-</form>
+  <h4>New Player</h4>
+  <form class="form-inline" role="form" ng-submit="add(newPlayer.name, newPlayer.age, newPlayer.rating">
+    <div class="form-group">
+      <label class="sr-only" for="name">First name</label>
+      <input type="text" ng-model="newPlayer.name" class="form-control" id="name" placeholder="Enter name">
+    </div>
+    <div class="form-group">
+      <label class="sr-only" for="age">Age</label>
+      <input type="number" ng-model="newPlayer.age" class="form-control" id="age" placeholder="Enter age">
+    </div>
+    <div class="form-group">
+      <label class="sr-only" for="rating">Rating</label>
+      <input type="number" ng-model="newPlayer.rating" class="form-control" id="rating" placeholder="Enter rating">
+    </div>
+    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Add</button>
+  </form>
 
-<body>
-  <ul class="players">
-    <li *ngFor="let player of players">
-      <a routerLink="/team/{{player.name}}">
-        <span class="badge"></span> {{player.name}}, {{player.age}}, {{player.rating}}
-      </a>  
-      <button type="button" class="delete" title="delete player"
-        (click)="delete(player)">x</button>
-    </li>
-  </ul>
-</body>
+  <hr />
+
+  <table ng-cloak class="table table-hover table-condensed" ng-show="players.length">
+    <thead><tr>
+        <th><a href="" ng-click="predicate='firstname'; reverse=!reverse">
+            First Name <span ng-class="{'glyphicon glyphicon-chevron-down': predicate=='firstname' && reverse, 'glyphicon glyphicon-chevron-up': predicate=='firstname' && !reverse}"></span></a>
+        </th>
+        <th>Age</th>
+        <th>Rating</th>
+      <th></th>
+    </tr></thead>
+    <tr *ngFor="let player of players">
+      <td>{{player.name}}</td>
+      <td>{{player.age}}</td>
+      <td>{{player.rating}}</td>
+      <td> 
+        <button class="btn btn-danger" ng-click="delete(player.name)"><span class="glyphicon glyphicon-remove"></span> Remove</button>
+      </td>
+    </tr>
+  </table>
+  
+  </body>
+  <script src="http://code.angularjs.org/1.2.0rc1/angular.min.js"></script>
+  <script src="http://code.angularjs.org/1.2.0rc1/angular-sanitize.min.js"></script>
+  <script src="http://code.angularjs.org/1.2.0rc1/angular-animate.min.js"></script>
+  <script src="roster.js"></script>
+</html>
