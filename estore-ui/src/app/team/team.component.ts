@@ -43,8 +43,7 @@ export class TeamComponent implements OnInit {
   }
 
   update(player: Player, age: number, rating: number): void {
-    let newPlayer: Player;
-    newPlayer = {name: player.name, age: age, rating: rating};
+    const newPlayer = this.teamService.createPlayer(player.name, age, rating);
     this.teamService.updatePlayer(newPlayer).subscribe();
   }
 

@@ -6,9 +6,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Player {
-    @JsonProperty("name") private String name;
-    @JsonProperty("age") private int age;
-    @JsonProperty("rating") private int rating;
+    @JsonProperty("name")
+    public String name;
+    @JsonProperty("age")
+    public int age;
+    @JsonProperty("rating")
+    public int rating;
 
     // @JsonProperty("name") private String name;
 

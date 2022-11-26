@@ -1,8 +1,5 @@
 package com.estore.api.estoreapi.model.Users;
 
-import com.estore.api.estoreapi.controller.shoppingCart.ShoppingCart;
-import com.estore.api.estoreapi.controller.wishlist.WishList;
-import com.estore.api.estoreapi.model.Inventory.Item;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
