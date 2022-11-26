@@ -7,7 +7,6 @@ import java.io.IOException;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.estore.api.estoreapi.EstoreApiApplication;
 import com.estore.api.estoreapi.persistence.Inventory.InventoryFileDAO;
 import com.estore.api.estoreapi.persistence.shoppingCart.ShoppingCartFileDAO;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -41,7 +40,7 @@ class ShoppingCartFileDAOTests {
        //tests purchase item class
        cart.purchaseItem("airpods");
        assertEquals(cart.getCart().length, 3);
-       assertEquals(store.getItems().length, 15);
+       assertEquals(13, store.getItems().length);
     }
     
 }

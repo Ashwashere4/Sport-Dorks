@@ -6,7 +6,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,8 +13,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import com.estore.api.estoreapi.controller.facilities_list.flistController;
-import com.estore.api.estoreapi.model.Teams.Player;
-import com.estore.api.estoreapi.model.Teams.Team;
 import com.estore.api.estoreapi.model.facilities.Facilities;
 import com.estore.api.estoreapi.persistence.FacilitiesList.FlistDAO;
 

@@ -54,7 +54,7 @@ public class TeamController {
                 return new ResponseEntity<Player>(player,HttpStatus.OK);
             else
                 System.out.println("Item does not exist.");
-                return new ResponseEntity<>(HttpStatus.OK);
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         catch(IOException e) {
             LOG.log(Level.SEVERE,e.getLocalizedMessage());

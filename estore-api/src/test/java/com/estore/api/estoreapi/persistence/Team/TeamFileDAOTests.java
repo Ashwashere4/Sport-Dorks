@@ -8,8 +8,6 @@ import java.io.IOException;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.estore.api.estoreapi.EstoreApiApplication;
-
 import com.estore.api.estoreapi.model.Teams.Player;
 import com.estore.api.estoreapi.persistence.Teams.TeamFileDAO;
 import com.fasterxml.jackson.databind.ObjectMapper;

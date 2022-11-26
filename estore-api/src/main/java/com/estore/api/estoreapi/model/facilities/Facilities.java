@@ -8,6 +8,7 @@ public class Facilities {
     @JsonProperty("location") private String location;
     @JsonProperty("facility_id") private int facility_id;
     @JsonProperty("reservestatus") private Boolean reservestatus;
+    @JsonProperty("teamReserve") private boolean teamReserve;
 
     /**
      * Constructor for an item object
@@ -21,6 +22,7 @@ public class Facilities {
         this.location = location;
         this.facility_id = facility_id;
         this.reservestatus = false;
+        this.teamReserve = false;
     };
 
     /**
@@ -48,7 +50,6 @@ public class Facilities {
     }
 
     public Boolean getTeamReserve(){
-
         return this.reservestatus;
     }
 
@@ -59,13 +60,10 @@ public class Facilities {
     }
 
     public Boolean addTeamReserve(Team team1){
-
         if (getTeamReserve() == false){
-
-
-            return true;
+            this.reservestatus = true;
+            return this.reservestatus;
         }
-
         return false;
     }
 
