@@ -7,7 +7,6 @@ import java.io.IOException;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.estore.api.estoreapi.EstoreApiApplication;
 import com.estore.api.estoreapi.persistence.Inventory.InventoryFileDAO;
 import com.estore.api.estoreapi.persistence.shoppingCart.ShoppingCartFileDAO;
 import com.fasterxml.jackson.databind.ObjectMapper;
