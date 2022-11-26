@@ -24,7 +24,7 @@ export class FacilityService {
       (catchError(this.handleError<Facilities[]>('getFacilities', [])));
   }
 
-  getFacility(code: BigInteger): Observable<Facilities> {
+  getFacility(code: number): Observable<Facilities> {
     const url = `${this.FacilityURL}/${code}`;
     return this.http.get<Facilities>(url).pipe
       (tap(_ => this.log(`fetched facilities code=${code}`), 

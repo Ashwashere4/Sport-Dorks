@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { Facilities } from '../facilities';
 import { MessageService } from '../message.service';
 
-import { FACILITIES } from '../mock_facilities';
 import { FacilityService } from './facilities.service';
 
 @Component({
@@ -14,7 +13,6 @@ import { FacilityService } from './facilities.service';
 
 export class facilitiesComponent implements OnInit {
 
-  facilities = FACILITIES;
   selectedFacility?: Facilities;
 
   json = require('../flist.json')
@@ -33,10 +31,11 @@ export class facilitiesComponent implements OnInit {
   
 
   ngOnInit(): void {
+    this.getFacility();
   }
 
   getFacility(): void {
-    this.facilityService.getFacilities().subscribe(facilities => this.facilities = facilities);
+    this.facilityService.getFacilities().subscribe(facilities => this.Facilities = facilities);
   }
 
   deleteFacility(facility: Facilities): void{
@@ -55,12 +54,12 @@ export class facilitiesComponent implements OnInit {
     
     if (Facility != null){
       
-    this.facilityService.searchFacilities(Facility).subscribe(facilities => this.facilities = facilities)
+    this.facilityService.searchFacilities(Facility).subscribe(facilities => this.Facilities = facilities)
   
     }
   
     else {
-      this.facilityService.getFacilities().subscribe(facilities => this.facilities = facilities)
+      this.facilityService.getFacilities().subscribe(facilities => this.Facilities = facilities)
     }
   
     }
