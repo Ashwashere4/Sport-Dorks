@@ -9,5 +9,14 @@
   -webkit-animation: bounceOut 1s;
   -moz-animation: bounceOut 1s;
   -ms-animation: bounceOut 1s;
-  animation: bounceOut 1s;
+  animation: bounceOut 1s; 
 }
+td {
+  border-bottom: 1px solid #ddd;
+}
+
+th, td {
+  padding: 15px;
+}
+
+tr:hover {background-color: #D6EEEE;}
