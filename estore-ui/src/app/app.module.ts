@@ -23,6 +23,7 @@ import { PlayerSearchComponent } from './player-search/player-search.component';
 import { TeamDetailComponent } from './team-detail/team-detail.component';
 import { FacilityBackComponent } from './facility-back/facility-back.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +43,7 @@ import { FacilityBackComponent } from './facility-back/facility-back.component';
     PlayerSearchComponent,
     TeamDetailComponent,
     FacilityBackComponent
+
   ],
   imports: [
     BrowserModule,

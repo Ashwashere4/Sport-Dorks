@@ -13,6 +13,7 @@ import { PlayerDetailComponent } from './player-detail/player-detail.component';
 import { TeamDetailComponent } from './team-detail/team-detail.component';
 import { FacilityBackComponent } from './facility-back/facility-back.component';
 
+
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent},
@@ -27,6 +28,7 @@ const routes: Routes = [
   {path: 'league/:id', component: TeamDetailComponent},
   {path: 'league/:id/:name', component: PlayerDetailComponent},
   {path: 'facilityBack', component: FacilityBackComponent}
+
 ];
 
 @NgModule({

@@ -44,6 +44,11 @@ export class LeagueComponent implements OnInit {
     this.leagueService.deleteTeam(team.id).subscribe();
   }
 
+  update(team: Team, roster: Player[]): void {
+    const newPlayer = this.leagueService.createTeam(roster, team.id);
+    this.leagueService.updateTeam(newPlayer).subscribe();
+  }
+
   parseInt(string: string): number {
     return parseInt(string);
   }

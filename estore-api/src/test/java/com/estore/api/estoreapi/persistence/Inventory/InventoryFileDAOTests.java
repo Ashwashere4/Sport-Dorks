@@ -28,23 +28,18 @@ class InventoryFileDAOTests {
         store.createItem("airpods", 5, 100);
         Item idkman = store.createItem("idkman", 16, 25);
 
-        // Checks to see if the item exists for jordans
         assertEquals(store.searchItems("jordans").length, 1);
 
-        // Checks to see if all the items were added properly (11 from original file, 4 from test = 15)
-        assertEquals(store.getItems().length, 15);
+        assertEquals(13, store.getItems().length);
 
-        // Checks to see if nikes was deleted properly (15-1 = 14), since nike doesn't exist it returns null
         store.deleteItem("nikes");
-        assertEquals(store.getItems().length, 14);
+        assertEquals(12, store.getItems().length);
         assertEquals(store.getItem("nikes"), null);
 
-        //Finally, checks to see if idkman is updated into the ultimate drip, with the quantity of 100, and the price of 10,000
-        // store.updateItem(idkman, "the ultimate drip", 100, 10000);
 
         Item drip = store.getItem("the ultimate drip");
 
-        assertNotNull(store.getItem("the ultimate drip"));
+        assertNotNull(drip);
         assertEquals(drip.getCost(), 10000);
         assertEquals(drip.getName(), "the ultimate drip");
         assertEquals(drip.getQuantity(), 100);

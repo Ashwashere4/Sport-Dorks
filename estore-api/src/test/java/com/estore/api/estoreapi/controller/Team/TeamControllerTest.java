@@ -50,7 +50,7 @@ public class TeamControllerTest {
 
         ResponseEntity<Player> response = teamController.getPlayer(name);
 
-        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
     }
     
     @Test

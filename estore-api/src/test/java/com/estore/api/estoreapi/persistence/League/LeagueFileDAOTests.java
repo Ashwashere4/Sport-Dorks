@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.estore.api.estoreapi.EstoreApiApplication;
 import com.estore.api.estoreapi.model.Teams.Player;
 import com.estore.api.estoreapi.model.Teams.Team;
 import com.fasterxml.jackson.databind.ObjectMapper;

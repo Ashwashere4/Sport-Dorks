@@ -8,6 +8,7 @@ public class Facilities {
     @JsonProperty("location") private String location;
     @JsonProperty("facility_id") private int facility_id;
     @JsonProperty("reservestatus") private Boolean reservestatus;
+    @JsonProperty("teamReserve") private boolean teamReserve;
 
     /**
      * Constructor for an item object
@@ -46,7 +47,6 @@ public class Facilities {
     public String getLocation() {
         return this.location;
     }
-
 
 
     public void setName(String name){
