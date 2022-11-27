@@ -21,6 +21,7 @@ import { InventoryFrontComponent } from './inventory-front/inventory-front.compo
 import { PlayerDetailComponent } from './player-detail/player-detail.component';
 import { PlayerSearchComponent } from './player-search/player-search.component';
 import { TeamDetailComponent } from './team-detail/team-detail.component';
+import { FacilityBackComponent } from './facility-back/facility-back.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { TeamDetailComponent } from './team-detail/team-detail.component';
     InventoryFrontComponent,
     PlayerDetailComponent,
     PlayerSearchComponent,
-    TeamDetailComponent
+    TeamDetailComponent,
+    FacilityBackComponent
   ],
   imports: [
     BrowserModule,

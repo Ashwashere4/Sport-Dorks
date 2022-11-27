@@ -1,40 +1,4 @@
 
-    <form action="" method="put">
-      <div>
-        <label for="Original Item Name">Enter Original Item name:</label>
-        <input type = "text" originalName = "ogname" id = "ogname" required #originalName>
-      </div>
-      <div>
-        <label for="name">Enter item name: </label>
-        <input type="text" updateName="name" id="name" required #updateName>
-      </div>
-      <div>
-        <label for="quantity">Enter item quantity: </label>
-        <input type="text" updateQuantity="quantity" id="quantity" required #updateQuantity>
-      </div>
-      <div>
-        <label for="cost">Enter item cost: </label>
-        <input type="text" updateCost="cost" id="cost" required #updateCost>
-      </div>
-    </form>
-
-
-  <!-- (click)="update(originalName.value, updateName.value, updateQuantity.value, updateCost.value)" -->
-  <!-- <div>
-  <ul class="items">
-    <li *ngFor="let item of items">
-      <span class="badge"></span> {{item.name}}, {{item.quantity}}, {{item.cost}}
-      <button type="button" class="delete" title="delete item"
-        (click)="delete(item)">x</button>
-      <button type="button", title="update button">
-      <img src = 'https://cdn.pixabay.com/photo/2016/01/03/11/24/gear-1119298__340.png' width="10" height="10" >
-      </button>
-    </li>
-  </ul>
-  </div> -->
-
-
-
   <h2>Inventory</h2>
 
 <form action="" method="post" class="new-item">
@@ -64,9 +28,6 @@
       <span class="badge"></span> {{item.name}}, {{item.quantity}}, {{item.cost}}
       <button type="button" class="delete" title="delete item"
         (click)="delete(item)">x</button>
-      <button type="button" class="update" title="update button" (click)="update(originalName.value, updateName.value, updateQuantity.value, updateCost.value)">
-      <img src = 'https://cdn.pixabay.com/photo/2016/01/03/11/24/gear-1119298__340.png' width="10" height="10" >
-      </button>
     </li>
   </ul>
 </body>
