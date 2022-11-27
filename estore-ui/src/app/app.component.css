@@ -3,9 +3,14 @@
 }
 
 .name {
-  position: right;
+  position: absolute;
   align-content: right;
-  /* margin-right: 0px !important;
-  margin-left: auto !important; */
+  margin-right: 50px ;
   color: rgb(19, 27, 24);
+}
+
+.cart{
+  position: absolute;
+  right: 10px;
+  font-size: xx-large;
 }

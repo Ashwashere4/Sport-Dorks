@@ -18,6 +18,7 @@ import { facilitiesComponent } from './facilities/facilities.component';
 import { StadiumComponent } from './stadium/stadium.component';
 import { InventoryFrontComponent } from './inventory-front/inventory-front.component';
 import { FacilityBackComponent } from './facility-back/facility-back.component';
+import { CartComponent } from './cart/cart.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { FacilityBackComponent } from './facility-back/facility-back.component';
     facilitiesComponent,
     StadiumComponent,
     InventoryFrontComponent,
-    FacilityBackComponent
+    FacilityBackComponent,
+    CartComponent
 
   ],
 
@@ -45,7 +47,10 @@ import { FacilityBackComponent } from './facility-back/facility-back.component';
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot([
+      { path: 'items/:itemsId', component: ItemDetailComponent },
+      { path: 'cart', component: CartComponent },
       { path: 'home', component: HomeComponent}
+
     ])
   ],
   providers: [],

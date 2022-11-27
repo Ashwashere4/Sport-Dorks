@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 
 import { Item } from '../item';
 import { InventoryService } from '../inventory.service';
+import { CartService } from '../cart.service';
 
 @Component({
   selector: 'app-item-detail',
@@ -16,8 +17,14 @@ export class ItemDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private inventoryService: InventoryService,
-    private location: Location
+    private location: Location,
+    private cartService: CartService
   ) {}
+
+  addToCart(item: Item) {
+    this.cartService.addToCart(item);
+    window.alert('Your product has been added to the cart!');
+  }
 
   ngOnInit(): void {
     this.getItem();

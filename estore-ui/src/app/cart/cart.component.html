@@ -1,0 +1,8 @@
+<h3>Cart</h3>
+
+<div class="cart-item" *ngFor="let item of items">
+  <span>{{ item.name }} </span>
+  <span>{{ item.cost | currency }} </span>
+  <span>Quantity: {{item.quantity}}</span>
+  <button type="button" class="delete" title="delete item"(click)="deleteItem">x</button>
+</div>

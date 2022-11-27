@@ -83,19 +83,19 @@ export class UserService{
         );
     }
     
-    /* GET players whose name contains search term */
-    searchTeam(term: string): Observable<User[]> {
-        if (!term.trim()) {
-        // if not search term, return empty player array.
-        return of([]);
-        }
-        return this.http.get<User[]>(`${this.usersUrl}/?name=${term}`).pipe(
-        tap(x => x.length ?
-            this.log(`found users matching "${term}"`) :
-            this.log(`no users matching "${term}"`)),
-        catchError(this.handleError<User[]>('searchTeam', []))
-        );
-    }
+    // /* GET players whose name contains search term */
+    // searchTeam(term: string): Observable<User[]> {
+    //     if (!term.trim()) {
+    //     // if not search term, return empty player array.
+    //     return of([]);
+    //     }
+    //     return this.http.get<User[]>(`${this.usersUrl}/?name=${term}`).pipe(
+    //     tap(x => x.length ?
+    //         this.log(`found users matching "${term}"`) :
+    //         this.log(`no users matching "${term}"`)),
+    //     catchError(this.handleError<User[]>('searchTeam', []))
+    //     );
+    // }
     
     httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
