@@ -6,61 +6,86 @@
     width: 15em;
   }
   
-  .facilities li {
-    display: flex;
-  }
+.facilities li {
+  display: flex;
+}
+
+.facilities button {
+  flex: 1;
+  cursor: pointer;
+  position: relative;
+  left: 0;
+  background-color: #EEE;
+  margin: .5em;
+  padding: 0;
+  border-radius: 4px;
+  display: flex;
+  align-items: stretch;
+  height: 1.8em;
+}
+
+.facilities button:hover {
+  color: #2c3a41;
+  background-color: #e6e6e6;
+  left: .1em;
+}
+
+.facilities button:active {
+  background-color: #525252;
+  color: #fafafa;
+}
+
+.facilities button.selected {
+  background-color: black;
+  color: white;
+}
+
+.facilities button.selected:hover {
+  background-color: #505050;
+  color: white;
+}
+
+.facilities button.selected:active {
+  background-color: black;
+  color: white;
+}
   
-  .facilities button {
-    flex: 1;
-    cursor: pointer;
-    position: relative;
-    left: 0;
-    background-color: #EEE;
-    margin: .5em;
-    padding: 0;
-    border-radius: 4px;
-    display: flex;
-    align-items: stretch;
-    height: 1.8em;
-  }
+.facilities .badge {
+  display: inline-block;
+  font-size: small;
+  color: white;
+  padding: 0.8em 0.7em 0 0.7em;
+  background-color: #405061;
+  line-height: 1em;
+  margin-right: .8em;
+  border-radius: 4px 0 0 4px;
+}
   
-  .facilities button:hover {
-    color: #2c3a41;
-    background-color: #e6e6e6;
-    left: .1em;
-  }
-  
-  .facilities button:active {
-    background-color: #525252;
-    color: #fafafa;
-  }
-  
-  .facilities button.selected {
-    background-color: black;
-    color: white;
-  }
-  
-  .facilities button.selected:hover {
-    background-color: #505050;
-    color: white;
-  }
-  
-  .facilities button.selected:active {
-    background-color: black;
-    color: white;
-  }
-  
-  .facilities .badge {
-    display: inline-block;
-    font-size: small;
-    color: white;
-    padding: 0.8em 0.7em 0 0.7em;
-    background-color: #405061;
-    line-height: 1em;
-    margin-right: .8em;
-    border-radius: 4px 0 0 4px;
-  }
-  
-  .facilities .name {
-    align-self: center;
-  }
+.facilities .name {
+  align-self: center;
+}
+
+.horizontal_stack{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 25px 25px;
+  flex-wrap: wrap;
+}
+
+.card {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 400px
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Add some padding inside the card container */
+.container {
+  padding: 2px 16px;
+}

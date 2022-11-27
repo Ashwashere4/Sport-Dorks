@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -18,6 +17,8 @@ import { LeagueComponent } from './league/league.component';
 import { facilitiesComponent } from './facilities/facilities.component';
 import { StadiumComponent } from './stadium/stadium.component';
 import { InventoryFrontComponent } from './inventory-front/inventory-front.component';
+import { FacilityBackComponent } from './facility-back/facility-back.component';
+
 
 @NgModule({
   declarations: [
@@ -34,7 +35,10 @@ import { InventoryFrontComponent } from './inventory-front/inventory-front.compo
     facilitiesComponent,
     StadiumComponent,
     InventoryFrontComponent,
+    FacilityBackComponent
+
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,

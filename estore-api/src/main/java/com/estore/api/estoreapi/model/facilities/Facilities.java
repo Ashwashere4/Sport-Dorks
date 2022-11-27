@@ -1,6 +1,5 @@
 package com.estore.api.estoreapi.model.facilities;
 
-import com.estore.api.estoreapi.model.Teams.Team;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Facilities {
@@ -21,9 +20,8 @@ public class Facilities {
         this.name = name;
         this.location = location;
         this.facility_id = facility_id;
-        this.reservestatus = false;
-        this.teamReserve = false;
     };
+
 
     /**
      * Accessor for the name of a team
@@ -49,23 +47,6 @@ public class Facilities {
         return this.location;
     }
 
-    public Boolean getTeamReserve(){
-        return this.reservestatus;
-    }
-
-    public Boolean removeTeamReserve(){
-        this.reservestatus = false;
-
-        return true;
-    }
-
-    public Boolean addTeamReserve(Team team1){
-        if (getTeamReserve() == false){
-            this.reservestatus = true;
-            return this.reservestatus;
-        }
-        return false;
-    }
 
     public void setName(String name){
         this.name = name;
@@ -84,7 +65,7 @@ public class Facilities {
      * Method to get the string representation of an item object
      */
     public String toString(){
-        return ("Facility Name = " + name + "\nFacility Location= " + location + "\nFacility Id = " + facility_id + "Reserved?: " + reservestatus);
+        return ("Facility Name = " + name + "\nFacility Location= " + location + "\nFacility Id = " + facility_id );
     }
 }
 

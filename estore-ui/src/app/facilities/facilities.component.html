@@ -15,17 +15,26 @@
     
     <h1>Welcome to the Facilities Page!</h1>
 
-    <button> <img src='https://www.creativefabrica.com/wp-content/uploads/2020/03/09/Magnifying-Glass-Graphics-3548942-1.png' width="50" height="50">
-      Search</button>
+    <div class = "horizontal_stack">
+      <button (click)="searchFacilities()"> <img src='https://i.pinimg.com/originals/fb/75/89/fb7589b0358c18319cad472c9f2dc872.png' width="50" height="50">
+        Search Facilities </button>
 
-    <h2>Facilities</h2>
-    <ul class="facilities">
-      <li *ngFor="let facility of facilities">
-        <button [class.selected]="facility === selectedFacility" type="button" (click)="goToPage('stadium')">
-          <span class="button">{{facility.name}}, {{facility.location}}</span>
-        </button>
+      <button (click)="goToPage('facilityBack')"> Edit Facilities </button>
+    </div>
+
+    
+
+    <div class="horizontal_stack">
+      <li *ngFor = "let facility of Facilities">
+      <div class="card">
+          <img src="https://magazine.northeast.aaa.com/wp-content/uploads/2018/03/yankee-stadium-guide-2.jpg" alt="Stadium Picture" style="width: 50%">
+          <div class="container">
+                  <h4><b>{{facility.name}}</b></h4>
+                  <p>Location: {{facility.location}}, ID: {{facility.facility_id}}</p>
+          </div>
+          <button (click)="goToPage('stadium')"> More Detail</button>
+        </div>
       </li>
-    </ul>
     
 
 

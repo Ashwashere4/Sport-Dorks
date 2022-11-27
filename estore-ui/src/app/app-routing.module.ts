@@ -9,6 +9,8 @@ import { TeamComponent } from './team/team.component';
 import { LeagueComponent } from './league/league.component';
 import { StadiumComponent } from './stadium/stadium.component';
 import { InventoryFrontComponent } from './inventory-front/inventory-front.component';
+import { FacilityBackComponent } from './facility-back/facility-back.component';
+
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -20,6 +22,8 @@ const routes: Routes = [
   {path: 'league', component: LeagueComponent},
   {path:'stadium', component: StadiumComponent},
   {path: 'inventoryFront', component: InventoryFrontComponent},
+  {path: 'facilityBack', component: FacilityBackComponent}
+
 ];
 
 @NgModule({

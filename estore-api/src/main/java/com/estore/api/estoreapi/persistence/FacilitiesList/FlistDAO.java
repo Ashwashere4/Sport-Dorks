@@ -55,6 +55,8 @@ public interface FlistDAO {
      * 
      * @throws IOException if an issue with underlying storage
      */
+    Facilities createFacility(Facilities facility) throws IOException;
+
     Facilities createFacility(String name, String location, int facility_id) throws IOException;
 
     /**

@@ -48,7 +48,7 @@ public class flistController {
      */
     @GetMapping("/{code}") //works 
     public ResponseEntity<Facilities> getFacility(@PathVariable int code) {
-        LOG.info("GET /facilities/" + code);
+        LOG.info("GET /Facilities/" + code);
         try {
             Facilities team = flistDAO.getFacility(code);
             if (team != null)
@@ -72,7 +72,7 @@ public class flistController {
      */
     @GetMapping("") //works
     public ResponseEntity<Facilities[]> getFacilities() {
-        LOG.info("GET /facilities");
+        LOG.info("GET /Facilities");
         Facilities[] facilicies;
         try {
             facilicies = flistDAO.getFacilities();
@@ -98,7 +98,7 @@ public class flistController {
      */
     @GetMapping("/")//works
     public ResponseEntity<Facilities[]> searchFacilities(@RequestParam String name) {
-        LOG.info("GET /facilities/?name="+name);
+        LOG.info("GET /Facilities/?name="+name);
         try {
             Facilities[] teams = flistDAO.searchFacilities(name);
             return new ResponseEntity<Facilities[]>(teams,HttpStatus.OK);
@@ -120,12 +120,13 @@ public class flistController {
      * ResponseEntity with HTTP status of CONFLICT if {@link Facilities Team} object already exists<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
-    @PostMapping("/create")//doesnt
-    public ResponseEntity<Facilities> createFacility(@RequestBody String name, String location, Integer facility_id){
-        LOG.info("POST /facilities"+ name + location + facility_id);
+    @PostMapping("")//doesnt
+    public ResponseEntity<Facilities> createFacility(@RequestBody Facilities facility){
+        LOG.info("POST /Facilities"+ facility);
 
         try {
-            Facilities newFacilities = flistDAO.createFacility(name, location, facility_id);
+            Facilities newFacilities = flistDAO.createFacility(facility);
+
             if (newFacilities == null){
                 return new ResponseEntity<Facilities>(HttpStatus.CONFLICT);
             }
@@ -150,7 +151,7 @@ public class flistController {
      */
     @PutMapping("/update")//doesnt
     public ResponseEntity<Facilities> updateFacility(@RequestBody Facilities team, String name, String location, int facility_id) {
-        LOG.info("PUT /facilities "+ team);
+        LOG.info("PUT /Facilities "+ team);
         if(getFacility(team.getFacility_id()) != null) {
             try {
                 Facilities updatedteam = flistDAO.updateFacility(team, name, location, facility_id);
@@ -178,7 +179,7 @@ public class flistController {
      */
     @DeleteMapping("/delete/{code}")//Works
     public ResponseEntity<Boolean> deleteFacility(@PathVariable int code) {
-        LOG.info("DELETE /facilities/" + code);
+        LOG.info("DELETE /Facilities/" + code);
         try {
             boolean deleted = this.flistDAO.deleteFacility(code);
             if (deleted == false){

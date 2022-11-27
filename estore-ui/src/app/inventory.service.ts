@@ -56,13 +56,18 @@ private handleError<T>(operation = 'operation', result?: T) {
     };
   }
 
-  /** PUT: update the hero on the server */
-// updateItem(item: Item, name: string, quantity: number, cost: number): Observable<any> {
-//   return this.http.put(this.inventoryUrl, item, this.httpOptions).pipe(
-//     tap(_ => this.log(`updated item quantity=${item.quantity} and cost=${item.cost}`)),
-//     catchError(this.handleError<any>('updateItem'))
-//   );
-// }
+  /** PUT: update the Item on the server */
+updateItem(item: string, name: string, quantity: string, cost: string): Observable<any> {
+
+    
+
+  return this.http.put<Item>(this.inventoryUrl, {item, name, quantity, cost}, this.httpOptions).pipe(
+    tap((updateItem: Item) => this.log(`updated item w/ name, quantity, cost = ${updateItem.name}, ${updateItem.quantity}, ${updateItem.cost}`)),
+    catchError(this.handleError<Item>('updateItem'))
+  );
+  
+
+}
 
 createItem(name: string, quantity: number, cost: number): Item {
   return {name, quantity, cost};
