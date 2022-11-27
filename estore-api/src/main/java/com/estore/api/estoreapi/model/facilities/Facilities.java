@@ -20,8 +20,8 @@ public class Facilities {
         this.name = name;
         this.location = location;
         this.facility_id = facility_id;
-        this.reservestatus = false;
     };
+
 
     /**
      * Accessor for the name of a team
@@ -47,27 +47,7 @@ public class Facilities {
         return this.location;
     }
 
-    public Boolean getTeamReserve(){
 
-        return this.reservestatus;
-    }
-
-    public Boolean removeTeamReserve(){
-        this.reservestatus = false;
-
-        return true;
-    }
-
-    public Boolean addTeamReserve(Team team1){
-
-        if (getTeamReserve() == false){
-
-
-            return true;
-        }
-
-        return false;
-    }
 
     public void setName(String name){
         this.name = name;
@@ -86,7 +66,7 @@ public class Facilities {
      * Method to get the string representation of an item object
      */
     public String toString(){
-        return ("Facility Name = " + name + "\nFacility Location= " + location + "\nFacility Id = " + facility_id + "Reserved?: " + reservestatus);
+        return ("Facility Name = " + name + "\nFacility Location= " + location + "\nFacility Id = " + facility_id );
     }
 }
 

@@ -7,7 +7,6 @@ import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import com.estore.api.estoreapi.model.Teams.Team;
 import com.estore.api.estoreapi.model.facilities.Facilities;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -94,11 +93,19 @@ public class FlistFileDAO implements FlistDAO {
     }
 
     @Override
-    public Facilities createFacility(String name, String location, int facility_id) throws IOException {
-        Facilities newTeam = new Facilities(name, location, facility_id);
-        flist.put(facility_id, newTeam);
+    public Facilities createFacility(Facilities facility) throws IOException {
+        Facilities newfacility = new Facilities(facility.getName(), facility.getLocation(), facility.getFacility_id());
+        flist.put(facility.getFacility_id(), newfacility);
         saveInventory();
-        return newTeam;
+        return newfacility;
+    }
+
+    @Override
+    public Facilities createFacility(String name, String location, int facility_id) throws IOException{
+        Facilities newfacility = new Facilities(name, location, facility_id);
+        flist.put(facility_id, newfacility);
+        saveInventory();
+        return newfacility;
     }
 
     @Override

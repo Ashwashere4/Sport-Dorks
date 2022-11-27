@@ -15,11 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.estore.api.estoreapi.model.Inventory.Item;
 import com.estore.api.estoreapi.persistence.Inventory.InventoryDAO;
 
-import java.io.Console;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import com.estore.api.estoreapi.persistence.Inventory.InventoryDAO;
 
 @RestController
 @RequestMapping("Inventory")

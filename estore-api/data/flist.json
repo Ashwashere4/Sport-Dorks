@@ -1,9 +1,1 @@
-[
-    {"name":"Stadium1","location":"Bronx","facility_id":0},
-    {"name":"Stadium2","location":"Florida","facility_id":1},
-    {"name":"Stadium3","location":"England","facility_id":2},
-    {"name":"Stadium4","location":"Space","facility_id":3},
-    {"name":"Stadium5","location":"The Great Beyond","facility_id":4},
-    {"name":"Batting Cages","location":"Somewhere in this world","facility_id":5},
-    {"name":"The wonders of the universe","location":"Bronx","facility_id":6}
-]
+[{"name":"Stadium1","location":"Bronx","facility_id":0,"reservestatus":null},{"name":"Stadium2","location":"Florida","facility_id":1,"reservestatus":null},{"name":"Stadium3","location":"England","facility_id":2,"reservestatus":null},{"name":"Stadium4","location":"Space","facility_id":3,"reservestatus":null},{"name":"Stadium5","location":"The Great Beyond","facility_id":4,"reservestatus":null},{"name":"location","location":"bronx","facility_id":21,"reservestatus":null},{"name":"The wonders of the universe","location":"Bronx","facility_id":6,"reservestatus":null}]

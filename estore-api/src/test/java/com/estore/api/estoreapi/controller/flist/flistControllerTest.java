@@ -6,7 +6,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,8 +13,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import com.estore.api.estoreapi.controller.facilities_list.flistController;
-import com.estore.api.estoreapi.model.Teams.Player;
-import com.estore.api.estoreapi.model.Teams.Team;
 import com.estore.api.estoreapi.model.facilities.Facilities;
 import com.estore.api.estoreapi.persistence.FacilitiesList.FlistDAO;
 
@@ -118,9 +115,10 @@ public class flistControllerTest {
     public void testcreateFacility() throws IOException{
         Facilities x = new Facilities("George", "Bronx", 21);
 
-        when(mockFlistDAO.createFacility("George", "Bronx", 21)).thenReturn(x);
+        when(mockFlistDAO.createFacility(x)).thenReturn(x);
 
-        ResponseEntity<Facilities> response = flistController.createFacility("George", "Bronx", 21);
+        Facilities facility = mockFlistDAO.createFacility("George", "Bronx", 21);
+        ResponseEntity<Facilities> response = flistController.createFacility(x);
 
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
         assertEquals(x, response.getBody());
@@ -128,11 +126,10 @@ public class flistControllerTest {
 
     @Test
     public void testcreateFacilityFailed() throws IOException{
-        // Facilities x = new Facilities("Jays", "Bronx", 0);
 
         when(mockFlistDAO.createFacility("Jays", "Bronx", 0)).thenReturn(null);
-
-        ResponseEntity<Facilities> response = flistController.createFacility("Jays", "Bronx", 0);
+        Facilities facility = mockFlistDAO.createFacility("Jays", "Bronx", 0);
+        ResponseEntity<Facilities> response = flistController.createFacility(facility);
 
         assertEquals(HttpStatus.CONFLICT, response.getStatusCode());
     }
@@ -141,7 +138,8 @@ public class flistControllerTest {
     public void testcreateFacilityHandleException() throws IOException{
     
         doThrow(new IOException()).when(mockFlistDAO).createFacility("Jays", "Bronx", 0);
-        ResponseEntity<Facilities> response = flistController.createFacility("Jays", "Bronx", 0);
+        Facilities facility = mockFlistDAO.createFacility("Jays", "Bronx", 0);
+        ResponseEntity<Facilities> response = flistController.createFacility(facility);
 
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
     }
@@ -186,6 +184,7 @@ public class flistControllerTest {
   
         assertEquals(HttpStatus.OK,response.getStatusCode());
     }
+}
 
     // @Test
     // public void testDeleteHeroNotFound() throws IOException { 
@@ -214,7 +213,7 @@ public class flistControllerTest {
         
     //     assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
     // }
-    }
+    
 
     // @Test
     // public void testreserveFacility() throws IOException{
