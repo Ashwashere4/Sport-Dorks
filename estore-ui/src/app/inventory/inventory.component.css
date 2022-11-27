@@ -68,3 +68,11 @@
 #navbar-self{
   width: 100%
 }
+
+.horizontal_stack{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 25px 25px;
+  flex-wrap: wrap;
+}

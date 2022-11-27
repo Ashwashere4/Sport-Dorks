@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { Facilities } from '../facilities';
 import { MessageService } from '../message.service';
@@ -6,12 +6,12 @@ import { MessageService } from '../message.service';
 import { FacilityService } from '../facilities.service';
 
 @Component({
-  selector: 'app-facilities',
-  templateUrl: './facilities.component.html',
-  styleUrls: ['./facilities.component.css']
+  selector: 'app-facility-back',
+  templateUrl: './facility-back.component.html',
+  styleUrls: ['./facility-back.component.css']
 })
 
-export class facilitiesComponent implements OnInit {
+export class FacilityBackComponent implements OnInit {
 
   selectedFacility?: Facilities;
 
@@ -23,7 +23,7 @@ export class facilitiesComponent implements OnInit {
     private router:Router,
     private FacilityService : FacilityService,
     private messageSerivce: MessageService
-    ){}
+    ){ }
 
   goToPage(pageName:string):void{
     this.router.navigate([`${pageName}`]);
@@ -37,6 +37,15 @@ export class facilitiesComponent implements OnInit {
   getFacility(): void {
     this.FacilityService.getFacilities().subscribe(facilities => this.Facilities = facilities);
   }
+
+  addFacility(name: string, location: string, facility_id: number): void{
+    name = name.trim();
+    if(!name){return;}
+    const newFacility = this.FacilityService.createFacility(name, location, facility_id)
+    console.log(newFacility)
+    this.FacilityService.addFacility(newFacility).subscribe(newFacility=>{this.Facilities.push(newFacility)})
+    }
+  
 
   deleteFacility(facility: Facilities): void{
     this.Facilities = this.Facilities.filter(i => i !== facility);
@@ -62,5 +71,9 @@ export class facilitiesComponent implements OnInit {
       this.FacilityService.getFacilities().subscribe(facilities => this.Facilities = facilities)
     }
   
+    }
+
+    parseInt(string: string): number {
+      return parseInt(string);
     }
 }

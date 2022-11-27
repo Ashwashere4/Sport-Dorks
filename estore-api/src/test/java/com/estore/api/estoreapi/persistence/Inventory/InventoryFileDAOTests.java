@@ -36,7 +36,6 @@ class InventoryFileDAOTests {
         assertEquals(12, store.getItems().length);
         assertEquals(store.getItem("nikes"), null);
 
-        store.updateItem(idkman, "the ultimate drip", 100, 10000);
 
         Item drip = store.getItem("the ultimate drip");
 

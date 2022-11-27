@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable, of} from 'rxjs';
 import { catchError, map, tap } from 'rxjs';
 
-import { Facilities } from '../facilities';
-import { FACILITIES } from '../mock_facilities';
-import { MessageService } from '../message.service';
+import { Facilities } from './facilities';
+import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
@@ -24,7 +23,7 @@ export class FacilityService {
       (catchError(this.handleError<Facilities[]>('getFacilities', [])));
   }
 
-  getFacility(code: BigInteger): Observable<Facilities> {
+  getFacility(code: number): Observable<Facilities> {
     const url = `${this.FacilityURL}/${code}`;
     return this.http.get<Facilities>(url).pipe
       (tap(_ => this.log(`fetched facilities code=${code}`), 
@@ -64,17 +63,17 @@ private handleError<T>(operation = 'operation', result?: T) {
 //   );
 // }
 
-// createItem(name: string, quantity: number, cost: number): Item {
-//   return {name, quantity, cost};
-// }
+createFacility(name: string, location: string, facility_id: number): Facilities {
+  return {name, location, facility_id};
+}
 
-// /** POST: add a new hero to the server */
-// addItem(item: Item): Observable<Item> {
-//   return this.http.post<Item>(this.inventoryUrl, item, this.httpOptions).pipe(
-//     tap((newItem: Item) => this.log(`added hero w/ quantity=${newItem.quantity} and cost=${newItem.cost}`)),
-//     catchError(this.handleError<Item>('addItem'))
-//   );
-// }
+/** POST: add a new hero to the server */
+addFacility(facility: Facilities): Observable<Facilities> {
+  return this.http.post<Facilities>(this.FacilityURL, facility, this.httpOptions).pipe(
+    tap((newFacility: Facilities) => this.log(`added hero w/ location=${newFacility.location} and =${newFacility.facility_id}`)),
+    catchError(this.handleError<Facilities>('addFacility'))
+  );
+}
 
 /** DELETE: delete the hero from the server */
 deleteFacility(code: number): Observable<Facilities> {

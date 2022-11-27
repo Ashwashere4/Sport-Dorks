@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    h1 {text-align: center;}
+    
+
+</style>
+
+<h1>Edit Facilities</h1>
+<form action="" method="post" class="new-facility">
+    <div class="new-facility">
+      <label for="name">Enter Facility name: </label>
+      <input type="text" facilityName="name" id="name" required #facilityName>
+    </div>
+    <div class="new-facility">
+      <label for="location">Enter Facility location: </label>
+      <input type="text" facilityLocation="location" id="location" required #facilityLocation>
+    </div>
+    <div class="new-facility">
+      <label for="id">Enter Facility ID: </label>
+      <input type="number" facilityId="id" id="id" required #facilityId>
+    </div>
+    <div>
+      <!-- (click) passes input value to add() and then clears the input -->
+      <button type="button" class="add-button" (click)="addFacility(facilityName.value, facilityLocation.value, parseInt(facilityId.value));">
+        Add
+      </button>
+    </div>
+  </form>
+
+<body>
+<ul class = "items">'
+    
+    <li *ngFor = "let facility of Facilities">
+    <span class="badge"></span> {{facility.name}}, {{facility.location}}, {{facility.facility_id}}
+    <button type="button" class="delete" title="delete item" (click)='deleteFacility(facility)'>x</button>
+    </li> 
+</ul>
+</body>

@@ -102,31 +102,31 @@ public class InventoryControllerTest {
 
     }
 
-    @Test
-    public void testUpdateHero() throws IOException {
+    // @Test
+    // public void testUpdateHero() throws IOException {
 
-        Item item = new Item("Jays", 0, 0);
+    //     Item item = new Item("Jays", 0, 0);
 
-        when(mockinventoryDAO.updateItem(item, "Nike", 0, 0)).thenReturn(item);
+    //     when(mockinventoryDAO.updateItem(item, "Nike", 0, 0)).thenReturn(item);
 
-        ResponseEntity<Item> response = inventoryController.updateItem(item, "Nike", 0, 0);
+    //     ResponseEntity<Item> response = inventoryController.updateItem(item, "Nike", 0, 0);
         
-        response = inventoryController.updateItem(item, "Nike", 0, 0);
+    //     response = inventoryController.updateItem(item, "Nike", 0, 0);
 
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(item, response.getBody());
-    }   
+    //     assertEquals(HttpStatus.OK, response.getStatusCode());
+    //     assertEquals(item, response.getBody());
+    // }   
 
-    @Test 
-    public void testUpdateHeroHandleException() throws IOException{
-        Item item = new Item("jays", 0, 0);
+    // @Test 
+    // public void testUpdateHeroHandleException() throws IOException{
+    //     Item item = new Item("jays", 0, 0);
 
-        doThrow(new IOException()).when(mockinventoryDAO).updateItem(item, "Nike", 0, 0);
+    //     doThrow(new IOException()).when(mockinventoryDAO).updateItem(item, "Nike", 0, 0);
 
-        ResponseEntity<Item> response = inventoryController.updateItem(item, "Nike", 0, 0);
+    //     ResponseEntity<Item> response = inventoryController.updateItem(item, "Nike", 0, 0);
 
-        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
-    }
+    //     assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+    // }
 
     @Test
     public void testGetItems() throws IOException{

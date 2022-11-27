@@ -144,11 +144,16 @@ public class InventoryController {
      * @return ResponseEntity with updated {@link Item item} object and HTTP status of OK if updated<br>
      * ResponseEntity with HTTP status of OK if not found<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     * @throws IOException
      */
     @PutMapping("")
-    public ResponseEntity<Item> updateItem(@RequestBody Item item, String name, int quantity, int cost) {
-        LOG.info("PUT /inventory " + item);
-        if(getItem(item.getName()) != null) {
+    public ResponseEntity<Item> updateItem(@RequestBody String item, String name, String quantity, String cost) throws IOException {
+
+        Item updateditem = inventoryDAO.getItem(item);
+        
+        
+        LOG.info("PUT /inventory " + updateditem);
+        if(updateditem!= null) {
             try {
                 Item newItem = inventoryDAO.updateItem(item, name, quantity, cost);
                 return new ResponseEntity<Item>(newItem,HttpStatus.OK);
