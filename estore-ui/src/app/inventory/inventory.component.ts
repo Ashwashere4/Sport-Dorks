@@ -3,8 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { Item } from '../item';
 import { InventoryService } from '../inventory.service';
 import { MessageService } from '../message.service';
-import { Route, RouterOutlet } from '@angular/router';
-import { IfStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-inventory',

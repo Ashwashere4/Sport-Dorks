@@ -117,7 +117,6 @@ public class flistControllerTest {
 
         when(mockFlistDAO.createFacility(x)).thenReturn(x);
 
-        Facilities facility = mockFlistDAO.createFacility("George", "Bronx", 21);
         ResponseEntity<Facilities> response = flistController.createFacility(x);
 
         assertEquals(HttpStatus.CREATED, response.getStatusCode());

@@ -147,13 +147,12 @@ public class InventoryController {
      * @throws IOException
      */
     @PutMapping("")
-    public ResponseEntity<Item> updateItem(@RequestBody String item, String name, String quantity, String cost) throws IOException {
+    public ResponseEntity<Item> updateItem(@RequestBody Item item, String name, int quantity, int cost) throws IOException {
 
-        Item updateditem = inventoryDAO.getItem(item);
         
         
-        LOG.info("PUT /inventory " + updateditem);
-        if(updateditem!= null) {
+        LOG.info("PUT /inventory " + item);
+        if(item!= null) {
             try {
                 Item newItem = inventoryDAO.updateItem(item, name, quantity, cost);
                 return new ResponseEntity<Item>(newItem,HttpStatus.OK);

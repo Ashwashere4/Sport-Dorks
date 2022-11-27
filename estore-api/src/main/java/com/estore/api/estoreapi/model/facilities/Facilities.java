@@ -1,6 +1,5 @@
 package com.estore.api.estoreapi.model.facilities;
 
-import com.estore.api.estoreapi.model.Teams.Team;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Facilities {
