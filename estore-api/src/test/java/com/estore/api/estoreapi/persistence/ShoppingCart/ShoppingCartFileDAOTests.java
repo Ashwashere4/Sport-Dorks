@@ -40,7 +40,7 @@ class ShoppingCartFileDAOTests {
        //tests purchase item class
        cart.purchaseItem("airpods");
        assertEquals(cart.getCart().length, 3);
-       assertEquals(13, store.getItems().length);
+       assertEquals(15, store.getItems().length);
     }
     
 }

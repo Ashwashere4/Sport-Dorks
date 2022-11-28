@@ -29,15 +29,15 @@ public class FlistFileDAOTests {
         flist.createFacility("something boring", "Bronx", 003);
 
         // Checks to see if a facility exists for something (should return 3 because i am really original with names)
-        assertEquals(flist.searchFacilities("something").length, 2);
+        assertEquals(2, flist.searchFacilities("something").length);
 
 
         // Checks to see if all the faciltites  were added properly (4 stadiums)
-        assertEquals(flist.getFacilities().length, 4);
+        assertEquals(8, flist.getFacilities().length);
 
         //deletes the one facility with a semi unique name because originally should be punished 
         flist.deleteFacility(001);
-        assertEquals(flist.getFacilities().length, 3);
+        assertEquals(flist.getFacilities().length, 7);
         assertEquals(flist.getFacility(001), null);
 
         //Since the facilities are now boycotting, something cool should become "The amazing stadium"
