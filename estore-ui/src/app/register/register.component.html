@@ -18,8 +18,14 @@
     <title>Document</title>
 </head>
 <body>
-    <textarea name="username" id="username" cols="30" rows="1" placeholder="username"></textarea>
-    <textarea name="password" id="password" cols="30" rows="1" placeholder="password"></textarea>
-    <a href="home"><button>register</button></a>
+    <p><input type="text" id="username" name="username" [(ngModel)]="username" placeholder="username"></p>
+    <h1> {{username}}</h1>
+    <!-- <textarea name="username" id="username" cols="100" rows="1" placeholder="username"></textarea> -->
+    <textarea name="password" id="password" cols="23" rows="1" placeholder="passsword"></textarea>
+
+    <a href="/home">
+        <button type = "button" (click)="saveData() " >register</button>
+    </a>
+
 </body>
 </html>
