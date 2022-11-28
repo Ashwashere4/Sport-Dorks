@@ -60,29 +60,10 @@ public class FlistFileDAOTests {
         roster2.add(new Player("Kyle", 19, 67));
         roster2.add(new Player("Jamse", 18, 88));
 
-        // Team team1 = new Team(roster, 0);
-        // Team team2 = new Team(roster2, 1);
+        Facilities newFacility=flist.createFacility("obama", "bronx", 21);
 
-        // // Some dude wants to reserve the Yankee Stadium for a more realistic practice
+        assertEquals(flist.createFacility(newFacility).getName(), "obama");
 
-        // Facilities test_facility = flist.getFacility(1);
-
-        // // reserve status should default to false always
-        // assertEquals(test_facility.getTeamReserve(), false);
-
-        // // Jordan reserves the facility
-        // test_facility.addTeamReserve(team1);
-
-        // //this becomes true
-        // assertEquals(test_facility.getTeamReserve(), true);
-
-        // //this is false because jordan already reserved it
-        // assertEquals(test_facility.addTeamReserve(team2), false);
-
-        // test_facility.removeTeamReserve();
-
-        // //with the removal of the team reserve, it is now available
-        // assertEquals(test_facility.getTeamReserve(), false);
 
     }
     

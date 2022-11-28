@@ -41,29 +41,15 @@ public class ShoppingCartFileDAO implements ShoppingCartDAO{
         }
     }
 
-    // private void loadInventory() throws IOException {
-    //     inventory = new TreeMap<>();
-    //     Item[] inventoryArray = objectMapper.readValue(new File(inventoryFilename), Item[].class);
-    //     for (Item item : inventoryArray) {
-    //         inventory.put(item.getName(), item);
-    //     }
-    // }
 
     private ArrayList<Item> getShoppingCartArray() {
         return new ArrayList<>(shoppingCart.values());
     }
     
-    // private ArrayList<Item> getInventoryArray() {
-    //     return new ArrayList<>(inventory.values());
-    // }
 
     private void saveCart() throws IOException {
         objectMapper.writeValue(new File(filename), getShoppingCartArray());
     }
-
-    // private void saveInventory() throws IOException {
-    //     objectMapper.writeValue(new File(inventoryFilename), getInventoryArray());
-    // }
 
 
 

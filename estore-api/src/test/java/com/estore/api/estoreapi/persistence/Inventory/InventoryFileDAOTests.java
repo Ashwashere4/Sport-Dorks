@@ -35,13 +35,18 @@ class InventoryFileDAOTests {
         assertEquals(14, store.getItems().length); //notice this one
         assertEquals(store.getItem("nikes"), null);
 
+        Item updatedItem = store.updateItem(idkman, "Nikez", 21, 10);
+
+        assertEquals("Nikez", updatedItem.getName());
 
         Item drip = store.getItem("the ultimate drip");
 
+
+
         assertNotNull(drip);
-        assertEquals(drip.getCost(), 25);
-        assertEquals(drip.getName(), "the ultimate drip");
-        assertEquals(drip.getQuantity(), 16);
+        assertEquals(10, drip.getCost());
+        assertEquals("Nikez", drip.getName());
+        assertEquals(21, drip.getQuantity());
 
         store = new InventoryFileDAO(name, objectMapper);
         //tests create item class

@@ -134,17 +134,16 @@ public class flistControllerTest {
         assertEquals(HttpStatus.CONFLICT, response.getStatusCode());
     }
 
-    // @Test 
-    // public void testcreateFacilityHandleException() throws IOException{
+    @Test 
+    public void testcreateFacilityHandleException() throws IOException{
 
-    //     Facilities facility = mockFlistDAO.createFacility("Jays", "Bronx", 0);
+        Facilities facility = mockFlistDAO.createFacility("Jays", "Bronx", 0);
     
-    //     doThrow(new IOException()).when(mockFlistDAO).createFacility(facility);
-    //     Facilities test_facility = mockFlistDAO.createFacility(facility);
-    //     ResponseEntity<Facilities> response = flistController.createFacility(test_facility);
+        doThrow(new IOException()).when(mockFlistDAO).createFacility(facility);
+        ResponseEntity<Facilities> response = flistController.createFacility(facility);
 
-    //     assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
-    // }
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+    }
 
     @Test
     public void testUpdateFacility() throws IOException{
@@ -186,74 +185,36 @@ public class flistControllerTest {
   
         assertEquals(HttpStatus.OK,response.getStatusCode());
     }
+
+
+    @Test
+    public void testDeleteHeroNotFound() throws IOException { 
+       
+        int code = 12;
+       
+        when(mockFlistDAO.deleteFacility(code)).thenReturn(false);
+
+        
+        ResponseEntity<Boolean> response = flistController.deleteFacility(code);
+
+        
+        assertEquals(HttpStatus.NOT_FOUND,response.getStatusCode());
+    }
+
+    @Test
+    public void testDeleteHeroHandleException() throws IOException { 
+        
+        int code = 12;
+        
+        doThrow(new IOException()).when(mockFlistDAO).deleteFacility(code);
+
+        
+        ResponseEntity<Boolean> response = flistController.deleteFacility(code);
+
+        
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
+    }
 }
-
-    // @Test
-    // public void testDeleteHeroNotFound() throws IOException { 
-       
-    //     int code = 12;
-       
-    //     when(mockFlistDAO.deleteFacility(code)).thenReturn(false);
-
-        
-    //     ResponseEntity<Boolean> response = flistController.deleteFacility(code);
-
-        
-    //     assertEquals(HttpStatus.NOT_FOUND,response.getStatusCode());
-    // }
-
-    // @Test
-    // public void testDeleteHeroHandleException() throws IOException { 
-        
-    //     int code = 12;
-        
-    //     doThrow(new IOException()).when(mockFlistDAO).deleteFacility(code);
-
-        
-    //     ResponseEntity<Boolean> response = flistController.deleteFacility(code);
-
-        
-    //     assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
-    // }
     
 
-    // @Test
-    // public void testreserveFacility() throws IOException{
-
-    //     ArrayList<Player> roster = new ArrayList<>();
-    //     roster.add(new Player("Jordan", 17, 86));
-    //     roster.add(new Player("Mike", 20, 55));
-    //     roster.add(new Player("Aaron", 19, 99));
-
-    //     Team team = new Team(roster, 21);
-    //     Facilities facility = new Facilities("Bomber stadium", "bronx", 12);
-
-    //     when(mockFlistDAO.addTeam_reserve(team,facility)).thenReturn(true);
-
-     
-    //     ResponseEntity<Boolean> response = flistController.addTeamReserve(team, facility);
-
-    //     assertEquals(HttpStatus.OK,response.getStatusCode());
-
-    // }
     
-//     @Test
-//     public void testremovereserveFacility() throws IOException{
-
-//         ArrayList<Player> roster = new ArrayList<>();
-//         roster.add(new Player("Jordan", 17, 86));
-//         roster.add(new Player("Mike", 20, 55));
-//         roster.add(new Player("Aaron", 19, 99));
-
-//         Team team = new Team(roster, 21);
-//         Facilities facility = new Facilities("Bomber stadium", "bronx", 12);
-
-//         flistController.removeTeamReserve(facility);
-
-//         when(mockFlistDAO.removeTeam_reserve(facility)).thenReturn(true);
-
-//         ResponseEntity<Boolean> response = flistController.removeTeamReserve(facility);
-
-//         assertEquals(HttpStatus.OK, response.getStatusCode());
-//     }
-// }
