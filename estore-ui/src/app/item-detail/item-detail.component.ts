@@ -34,10 +34,7 @@ export class ItemDetailComponent implements OnInit {
   }
 
   getItem(): void {
-    const itemname = this.route.snapshot.paramMap.get('name')!;
-    this.inventoryService.getItem(itemname)
-      .subscribe(item => this.item[0] = item);
-    this.item.push(this.inventoryService.createItem(itemname, 1, 1));
+
   }
 
   goBack(): void {

@@ -46,7 +46,7 @@ export class InventoryFrontComponent implements OnInit {
   }
 
   getItem(detailItem: Item){
-    
+   
   }
 
   getItems(): void {

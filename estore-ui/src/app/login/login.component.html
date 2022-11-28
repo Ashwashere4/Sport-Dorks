@@ -9,12 +9,11 @@
 <body>
     <!-- <input type="text" name="username" [(ngModel)]="username" placeholder="Username" /> -->
     <p><input type="text" id="username" name="username" [(ngModel)]="username" placeholder="username" required #name></p>
-    <h1> {{username}}</h1>
     <!-- <textarea name="username" id="username" cols="100" rows="1" placeholder="username"></textarea> -->
     <textarea name="password" id="password" cols="23" rows="1" placeholder="passsword" required #pass></textarea>
 
-    <a>
-        <button type = "button">login</button>
+    <a href = "home">
+        <button type = "button" (click)="saveData() " >login</button>
     </a>
 
 </body>

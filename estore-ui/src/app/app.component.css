@@ -4,8 +4,13 @@
 
 .name {
   position: absolute;
-  right: 50px ;
+  right: 130px ;
   color: rgb(19, 27, 24);
+}
+
+.logout{
+  position: absolute;
+  right:50px;
 }
 
 .cart{

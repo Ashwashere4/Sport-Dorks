@@ -14,10 +14,11 @@ export class AppComponent {
   json = require('./items.json');
 
   username = localStorage.getItem("key")
+  itemDetail = localStorage.getItem("key")
 
   public logout() {
     localStorage.removeItem("key")
-    this.username = " "
-    window.open('https://javascript.info')
+    this.username = " ";
   }
+
 }
