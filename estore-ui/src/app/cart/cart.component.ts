@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+
 import { CartService } from '../cart.service';
 import { Item } from '../item';
+import { MessageService } from '../message.service';
 
 @Component({
   selector: 'app-cart',
@@ -8,19 +10,60 @@ import { Item } from '../item';
   styleUrls: ['./cart.component.css']
 })
 
-export class CartComponent {
+export class CartComponent implements OnInit{
 
-  items = this.cartService.getItems();
+  title:any;
 
   constructor(
-    private cartService: CartService
-  ) { }
+    private cartService: CartService,
+    private messageService: MessageService) { }
 
-  deleteItem(){
-    this.cartService.removelastItem;
+  ngOnInit(): void {
+    this.getCart();
   }
 
-  addItem(item: Item){
-    this.cartService.addToCart(item);
+  selectedItem?: Item;
+  json = require('../shoppingCart.json')
+  
+  cart: Item[] = [];
+  updatedItem?: Item;
+
+  onSelect(item: Item): void{
+    this.selectedItem = item;
+    this.messageService.add(`CartComponent: Selected item name=${item.name}`)
+  }
+
+  getCart(): void{
+    this.cartService.getCart().subscribe(cart => this.cart = cart);
+  }
+
+  add(name: string, quantity: number, cost: number): void {
+    name = name.trim();
+    if (!name) { return; }
+    const newItem = this.cartService.createItem(name, quantity, cost);;
+    this.cartService.addItem(newItem)
+      .subscribe(newItem => {
+        this.cart.push(newItem);
+      });
+  }
+
+  delete(item: Item): void {
+    this.cart = this.cart.filter(i => i !== item);
+    this.cartService.deleteItem(item.name).subscribe();
+  }
+
+  purchaseAll(): void{
+    this.cart.forEach(this.delete);
+  }
+
+  update(item: string, name: string, quantity: string, cost: string): void{
+
+    console.log(item)
+    this.cartService.updateItem(item, name, quantity, cost).subscribe();
+
+  }
+
+  parseInt(string: string): number {
+    return parseInt(string);
   }
 }

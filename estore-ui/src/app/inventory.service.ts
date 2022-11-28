@@ -3,7 +3,6 @@ import { Observable, of} from 'rxjs';
 import { catchError, map, tap } from 'rxjs';
 
 import { Item } from './item';
-import { ITEMS } from './mock-inventory';
 import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 

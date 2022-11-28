@@ -4,8 +4,7 @@
 
 .name {
   position: absolute;
-  align-content: right;
-  margin-right: 50px ;
+  right: 50px ;
   color: rgb(19, 27, 24);
 }
 

@@ -27,8 +27,10 @@ export class RegisterComponent implements OnInit {
       this.userService.getUsers().subscribe(users => this.users = users);
   }
 
+
   add(userName: string, pass: string, admin: boolean, towner: boolean): void {
     userName = userName.trim();
+    pass = pass.trim();
     if (!userName) { return; }  
     if (!pass) { return; }
     const newUser = this.userService.createUser(userName, pass, admin, towner);;

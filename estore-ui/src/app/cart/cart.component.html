@@ -1,8 +1,14 @@
 <h3>Cart</h3>
 
-<div class="cart-item" *ngFor="let item of items">
+<div class ="checkout">
+  <button type="button" class="button" (click)="purchaseAll">Checkout</button>
+</div>
+ 
+<ul class="items">
+<div class="cart" *ngFor="let item of cart">
   <span>{{ item.name }} </span>
   <span>{{ item.cost | currency }} </span>
-  <span>Quantity: {{item.quantity}}</span>
-  <button type="button" class="delete" title="delete item"(click)="deleteItem">x</button>
+  <span>Quantity: {{item.quantity}}</span> 
+  <button type="button" class="delete" (click)="delete(item)">remove from cart</button>
 </div>
+</ul>
