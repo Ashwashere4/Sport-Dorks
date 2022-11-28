@@ -11,32 +11,22 @@ import { UserService } from '../user.service';
 export class RegisterComponent implements OnInit {
   title: any;
 
-  constructor(
-    private userService: UserService,
-    private messageService: MessageService) { }
+  constructor() {}
 
   json = require('../users.json')
 
   ngOnInit(): void {
-    this.getUsers();
+  }
+
+  username: String = '';
+
+  public saveData() {
+    let name: string = this.username as string;
+    localStorage.setItem("key", name);
+    // console.log(localStorage.getItem("key"))
+    console.log(this.username)
   }
 
   users: User[] = [];
 
-  getUsers(): void {
-      this.userService.getUsers().subscribe(users => this.users = users);
-  }
-
-
-  add(userName: string, pass: string, admin: boolean, towner: boolean): void {
-    userName = userName.trim();
-    pass = pass.trim();
-    if (!userName) { return; }  
-    if (!pass) { return; }
-    const newUser = this.userService.createUser(userName, pass, admin, towner);;
-    this.userService.addUser(newUser)
-      .subscribe(newUser => {
-        this.users.push(newUser);
-      }); 
-  }
 }
