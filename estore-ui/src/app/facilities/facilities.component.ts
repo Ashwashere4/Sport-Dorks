@@ -28,7 +28,6 @@ export class facilitiesComponent implements OnInit {
   goToPage(pageName:string):void{
     this.router.navigate([`${pageName}`]);
   }
-  
 
   ngOnInit(): void {
     this.getFacility();

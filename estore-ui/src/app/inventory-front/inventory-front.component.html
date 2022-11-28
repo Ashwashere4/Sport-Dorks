@@ -8,7 +8,7 @@
 </head>
 <style>
     h1 {text-align: center;}
-    
+     
 </style>
 
 <h1 align = 'center'>Current Inventory</h1>
@@ -28,9 +28,10 @@
 <div class="card">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDJN_Gn4K9siHpbvf_B9X_Tax9B4irpC2LWg&usqp=CAU" alt="Sport Picture" style="width: 50%">
     <div class="container">
-            <h4><b>{{item.name}}</b></h4>
+            <h4><a [title]="item.name + ' details'"
+              [routerLink]="['/items', item.name]" (click)="getItem(item)">{{item.name}}</a></h4>
             <p>Quantity: {{item.quantity}}, Cost: ${{item.cost}}</p>
-            <!--<button to go to details>-->
+            <button type="button" (click)="addToCart(item)">add to cart</button>
     </div>
   </div>
 </li>

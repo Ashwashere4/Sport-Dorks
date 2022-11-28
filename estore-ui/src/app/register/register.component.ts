@@ -37,6 +37,6 @@ export class RegisterComponent implements OnInit {
     this.userService.addUser(newUser)
       .subscribe(newUser => {
         this.users.push(newUser);
-      });
+      }); 
   }
 }

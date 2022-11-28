@@ -52,9 +52,9 @@ export class InventoryComponent implements OnInit {
   }
 
 
-  update(item: string, name: string, quantity: string, cost: string): void{
+  update(item: Item, name: string, quantity: number, cost: number): void{
 
-    console.log(item)
+    console.log(item);
     this.inventoryService.updateItem(item, name, quantity, cost).subscribe();
 
   }

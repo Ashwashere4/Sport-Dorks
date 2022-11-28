@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { Item } from '../item';
+import { Inventory } from '../Inventory';
 import { InventoryService } from '../inventory.service';
 import { CartService } from '../cart.service';
 
@@ -12,7 +13,9 @@ import { CartService } from '../cart.service';
   styleUrls: [ './item-detail.component.css' ]
 })
 export class ItemDetailComponent implements OnInit {
-  item: Item | undefined;
+  item: Item[] = [];
+  name: string | any;
+  items: Item[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -21,7 +24,7 @@ export class ItemDetailComponent implements OnInit {
     private cartService: CartService
   ) {}
 
-  addToCart(item: Item) {
+  addToCart(item: Item, quantity: number) {
     this.cartService.addItem(item);
     window.alert('Your product has been added to the cart!');
   }
@@ -31,19 +34,24 @@ export class ItemDetailComponent implements OnInit {
   }
 
   getItem(): void {
-    const name = this.route.snapshot.paramMap.get('name')!;
-    this.inventoryService.getItem(name)
-      .subscribe(item => this.item = item);
+    const itemname = this.route.snapshot.paramMap.get('name')!;
+    this.inventoryService.getItem(itemname)
+      .subscribe(item => this.item[0] = item);
+    this.item.push(this.inventoryService.createItem(itemname, 1, 1));
   }
 
   goBack(): void {
     this.location.back();
   }
 
-  // save(): void {
-  //   if (this.item) {
-  //     this.inventoryService.updateItem(this.item)
-  //       .subscribe(() => this.goBack());
-  //   }
-  // }
+  parseInt(string: string): number {
+    return parseInt(string);
+  }
+
+  save(quantity: number): void {
+    if (this.item) {
+      this.inventoryService.updateItem(this.item[0], this.item[0].name, quantity, this.item[0].cost)
+        .subscribe(() => this.goBack());
+    }
+  }
 }

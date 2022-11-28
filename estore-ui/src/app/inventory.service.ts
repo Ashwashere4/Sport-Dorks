@@ -56,7 +56,7 @@ private handleError<T>(operation = 'operation', result?: T) {
   }
 
   /** PUT: update the Item on the server */
-updateItem(item: string, name: string, quantity: string, cost: string): Observable<any> {
+updateItem(item: Item, name: string, quantity: number, cost: number): Observable<any> {
 
     
 
