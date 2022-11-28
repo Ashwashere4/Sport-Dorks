@@ -137,6 +137,14 @@ If the project were to continue, we would add additional functions like reservin
 
 Any further improvements regarding the static code analysis would be to manage time better and to understand what you are given. We did not need to make this the best website and we got a big carried away with adding more features than necessary.
 
+![Static Code Analysis + Code Coverage](static_code_analysis1.png)
+
+Any further improvements regarding the static code analysis would be to manage time better and to understand what you are given. We did not need to make this the best website and we got a big carried away with adding more features than necessary. Another thing we would like to do is improve our code to prevent "smelly code".
+
+![Smelly Graph](progressivebar.png)
+
+The more we were coding, while we didn't have many vulnerabilities, the code started to smell really bad. This is likely because instead of deleting code that is not being used, we comment it out. 
+
 ## Testing
 > _This section will provide information about the testing performed
 > and the results of the testing._
@@ -148,5 +156,8 @@ Most of the user stories were passed and some of the more advanced one were not.
 Most of the code we wrote were based of other components of the project. Therefore, we tested to make sure that the code worked properly.
 This included getting the right numbers, returning the right errors if necessary. We focued on making sure the code was functional and we 
 handled it pretty well. Below you can see our code coverage.
+
+![test_coverage](test_coverage.png)
+
 
 
