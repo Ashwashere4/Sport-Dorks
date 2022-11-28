@@ -2,6 +2,7 @@ package com.estore.api.estoreapi.persistence.Team;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.io.IOException;
 
@@ -32,6 +33,8 @@ class TeamFileDAOTests {
         assertEquals(aaron, team.createPlayer(aaron));
         Player kyle = new Player("Kyle", 16, 70);
         assertEquals(kyle.getName(), team.createPlayer("Kyle", 16, 70).getName());
+        assertNull(team.createPlayer(kyle));
+
 
         Player[] foundJordan = new Player[1];
         foundJordan[0] = jordan;
@@ -60,6 +63,11 @@ class TeamFileDAOTests {
         assertEquals(72, mike.getRating());
         
         assertNotNull(team.searchTeam(""));
+        assertNotNull(team.searchTeam("Mike"));
+        assertNotNull(team.searchTeam("NotARealPlayer"));
+
+        assertNull(team.updatePlayer(aaron, "Aaron", 19, 66));
+
 
         // Cleaning up
         team.deletePlayer("Jordan");
