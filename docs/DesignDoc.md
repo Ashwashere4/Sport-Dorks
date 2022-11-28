@@ -66,6 +66,20 @@ manager is able to reserve a facilities. The facilities page is a group of facil
 ## Architecture and Design
 
 This section describes the application architecture.
+
+### Design Principals
+Dependency inversion:
+
+>_Critical for doing unit testing since we can inject test/mock objects. This was used for the tests with the mock*insertfilehere*dao. We were able to create mockDAO for testing.
+
+Single Responsibility:
+
+>_Both inventory and facilities use single responsibility, they run on a inventory system meaning that they have different classes for different functions. They each have a controller, model, and persistence that each have their own functions.
+
+Open/Close Principle:
+
+>_ By creating interfaces like InventoryDAO, we can create new classes that interact inventoryDAO without affect any other classes. We can use this to create for example a database that consists of all the things in the inventory. From there we can inject it into other classes so instead of interacting with json, it can interact with the database
+
 ### Summary
 
 The following Tiers/Layers model shows a high-level view of the webapp's architecture.
@@ -122,16 +136,6 @@ Facilities works very similarly. Each facility has a name, id, and location. Eac
 These were all included together in the same UML diagram since they build off of each other. A team consists of a roster of players and a league consists of a list of teams. A team can get the details of all players in the roster and a league can get all the details of every team in the league.
 
 ### Static Code Analysis/Design Improvements
-> _Discuss design improvements that you would make if the project were
-> to continue. These improvement should be based on your direct
-> analysis of where there are problems in the code base which could be
-> addressed with design changes, and describe those suggested design
-> improvements._
-
-> _With the results from the Static Code Analysis exercise, 
-> discuss the resulting issues/metrics measurements along with your analysis
-> and recommendations for further improvements. Where relevant, include 
-> screenshots from the tool and/or corresponding source code that was flagged._
 
 If the project were to continue, we would add additional functions like reserving a facility and having a better front end. Having a wishlist was also one of our plans that we ran out of time to implement. 
 
