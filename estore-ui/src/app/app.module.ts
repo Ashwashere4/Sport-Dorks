@@ -45,11 +45,11 @@ import { CartComponent } from './cart/cart.component';
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot([
+      { path: '', pathMatch: 'full', redirectTo: 'home' },
+      { path: 'home', component: HomeComponent},
       { path: '', component: InventoryFrontComponent },
       { path: 'items/:itemName', component: ItemDetailComponent },
       { path: 'cart', component: CartComponent },
-      { path: '', pathMatch: 'full', redirectTo: 'home' },
-      { path: 'home', component: HomeComponent}
     ])
   ],
   providers: [],
