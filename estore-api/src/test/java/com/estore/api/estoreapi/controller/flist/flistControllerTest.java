@@ -15,7 +15,6 @@ import org.springframework.http.ResponseEntity;
 import com.estore.api.estoreapi.controller.facilities_list.flistController;
 import com.estore.api.estoreapi.model.facilities.Facilities;
 import com.estore.api.estoreapi.persistence.FacilitiesList.FlistDAO;
-import com.fasterxml.jackson.core.sym.Name;
 
 public class flistControllerTest {
 
