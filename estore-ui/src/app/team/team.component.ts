@@ -42,11 +42,6 @@ export class TeamComponent implements OnInit {
     this.teamService.deletePlayer(player.name).subscribe();
   }
 
-  update(player: Player, age: number, rating: number): void {
-    const newPlayer = this.teamService.createPlayer(player.name, age, rating);
-    this.teamService.updatePlayer(newPlayer).subscribe();
-  }
-
   parseInt(string: string): number {
     return parseInt(string);
   }

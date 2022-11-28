@@ -95,10 +95,18 @@ The user first begins at the homepage with the options to go shopping or search 
 
 Facilities page work similarily. When taken to the facilities page, they are given a list of facilities and when clicked on will give a description of it.
 
+![League Flow Chart](Player_Management.png)
+
+When going to either the league or team page, all the players in said league or team will be shown. In the league page each team will be separated and each individual team roster shown.
+
 ### ViewModel Tier
 ![Item and Facilities diagram](item_facilities.png)
 
 The controllers control the data that the persistance contains. Both inventory and facilities work similar as in both use a inventory system. There are interactions the website has, like pressing buttons that command the control the model. From there the website is updated, and so is the api that records the data for the website.
+
+![League and Teams diagram](leagues_teams.png)
+
+The model can update the view of the teams by adding or removing players as well as adding or removing teams. 
 
 ### Model Tier
 ![Item class diagram](Item_class.png)
@@ -108,6 +116,10 @@ The model is a very simple class set up. Each item has a name, cost, and quantit
 ![Facility class diagram](facility_class.png)
 
 Facilities works very similarly. Each facility has a name, id, and location. Each attribute has a getter and setter for easy updating. After a facility is created, they are put into a f_list(Facility List) hashmap. The key is the id of the faciliity and the value is the facility itself.
+
+![Players/Teams/Leagues class diagram](Teams_and_Leagues.png)
+
+These were all included together in the same UML diagram since they build off of each other. A team consists of a roster of players and a league consists of a list of teams. A team can get the details of all players in the roster and a league can get all the details of every team in the league.
 
 ### Static Code Analysis/Design Improvements
 > _Discuss design improvements that you would make if the project were

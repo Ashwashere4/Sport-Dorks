@@ -40,7 +40,6 @@
       <td style="width:15"><input type="number" ng-model= "age" name="age" value="{{player.age}}" id="age" placeholder="Enter age" #age></td>
       <td style="width:15"><input type="number" ng-model= "rating" name="rating" value="{{player.rating}}" id="rating" placeholder="Enter rating" #rating></td>
       <button type="button" class="btn btn-outline-danger" (click)="delete(player)"><span class="glyphicon glyphicon-remove"></span> Delete</button>
-      <button type="button" class="btn btn-outline-info" (click)="update(player, parseInt(age.value), parseInt(rating.value))"><span class="glyphicon glyphicon-cog"></span> Update</button>
     </tr>
   </table>
   

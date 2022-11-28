@@ -12,7 +12,6 @@
   <table style="width:50%" ng-cloak class="table table-hover table-condensed" ng-show="players.length" *ngFor="let team of teams">
     <thead><tr style="font-size:30px;"><strong>Team #{{team.id}} </strong>
       <button type="button" class="btn btn-outline-danger" (click)="delete(team)"><span class="glyphicon glyphicon-remove"></span> Delete</button>
-      <button type="button" class="btn btn-outline-info" (click)="update(team, team.team)"><span class="glyphicon glyphicon-cog"></span> Update</button>
     </tr> 
     <tr>
         <th>Name</th>
