@@ -45,6 +45,7 @@ import { FacilityBackComponent } from './facility-back/facility-back.component';
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot([
+      { path: '', pathMatch: 'full', redirectTo: 'home' },
       { path: 'home', component: HomeComponent}
     ])
   ],

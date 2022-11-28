@@ -1,7 +1,6 @@
-body {
-    background-color: black;
-}
+p {
+    margin-right: 200px;
+    margin-left: 200px;
+    font-size: 25px;
 
-h1 {
-    color: aliceblue;
 }
