@@ -21,28 +21,35 @@ class InventoryFileDAOTests {
     
     @Test 
     void testInventoryFileDAO() throws IOException{
-
         InventoryFileDAO store = new InventoryFileDAO(name, objectMapper);
+
+        store.deleteItem("jordans");
+        store.deleteItem("nikes");
+        store.deleteItem("airpods");
+        store.deleteItem("the ultimate drip");
+        store.deleteItem("baseballHat");
+        int beforeTests = store.getItems().length;
+
         store.createItem("jordans", 12, 10);
         store.createItem("nikes", 10, 1);
         store.createItem("airpods", 5, 100);
-        Item idkman = store.createItem("idkman", 16, 25);
+        Item idkman = store.createItem("the ultimate drip", 16, 25);
 
         assertEquals(store.searchItems("jordans").length, 1);
 
-        assertEquals(13, store.getItems().length);
+        assertEquals(beforeTests + 4, store.getItems().length);
 
         store.deleteItem("nikes");
-        assertEquals(12, store.getItems().length);
+        assertEquals(beforeTests + 3, store.getItems().length);
         assertEquals(store.getItem("nikes"), null);
 
 
         Item drip = store.getItem("the ultimate drip");
 
         assertNotNull(drip);
-        assertEquals(drip.getCost(), 10000);
+        assertEquals(drip.getCost(), 25);
         assertEquals(drip.getName(), "the ultimate drip");
-        assertEquals(drip.getQuantity(), 100);
+        assertEquals(drip.getQuantity(), 16);
 
         store = new InventoryFileDAO(name, objectMapper);
         //tests create item class

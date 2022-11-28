@@ -23,6 +23,17 @@ class ShoppingCartFileDAOTests {
 
         InventoryFileDAO store = new InventoryFileDAO(name, objectMapper);
         ShoppingCartFileDAO cart = new ShoppingCartFileDAO(cartname, objectMapper, store);
+
+        store.deleteItem("jordans");
+        cart.deleteItem("jordans");
+        store.deleteItem("nikes");
+        cart.deleteItem("nikes");
+        store.deleteItem("airpods");
+        cart.deleteItem("airpods");
+
+        int beforeTestStore = store.getItems().length;
+        int beforeTestsCart = cart.getCart().length;
+
         store.createItem("jordans", 12, 10);
         cart.addItem("jordans");
         store.createItem("nikes", 10, 1);
@@ -31,16 +42,16 @@ class ShoppingCartFileDAOTests {
         cart.addItem("airpods");
 
        // Checks to see if all the items were added properly
-       assertEquals(cart.getCart().length, 5);
+       assertEquals(cart.getCart().length, beforeTestsCart + 3);
 
        // Checks to see if nikes was deleted properly
        cart.deleteItem("nikes");    
-       assertEquals(cart.getCart().length, 4);
+       assertEquals(cart.getCart().length, beforeTestsCart + 2);
 
        //tests purchase item class
        cart.purchaseItem("airpods");
-       assertEquals(cart.getCart().length, 3);
-       assertEquals(13, store.getItems().length);
+       assertEquals(cart.getCart().length, beforeTestsCart + 1);
+       assertEquals(beforeTestStore + 3, store.getItems().length);
     }
     
 }

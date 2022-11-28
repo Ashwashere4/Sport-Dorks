@@ -30,6 +30,7 @@ class UserFileDAOTests {
         users.deleteUser("newuser2");
                 
         int beforeTests = users.getUsers().length;
+        
         users.creatUser("user1", "pass", false,false);
         users.creatUser("user2", "pass", false, false);
         users.creatUser("user3", "pass", false, false);

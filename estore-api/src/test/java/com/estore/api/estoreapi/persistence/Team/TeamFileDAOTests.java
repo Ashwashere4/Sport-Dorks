@@ -20,8 +20,10 @@ class TeamFileDAOTests {
     
     @Test
     void testTeamFileDAO() throws IOException{
+
         Player[] players = new Player[4];
         TeamFileDAO team = new TeamFileDAO(name, objectMapper);
+        int BeforeTest = team.getPlayers().length;
         Player jordan = new Player("Jordan", 17, 86);
         assertEquals(jordan, team.createPlayer(jordan));
         Player mike = new Player("Mike", 18, 72);
@@ -34,9 +36,9 @@ class TeamFileDAOTests {
         Player[] foundJordan = new Player[1];
         foundJordan[0] = jordan;
 
-        assertEquals(1, team.searchTeam("Jordan").length);
+        assertNotNull(team.getPlayer("Jordan"));
 
-        assertEquals(17, team.getPlayers().length);
+        assertEquals(BeforeTest + 4, team.getPlayers().length);
         
         players = new Player[3];
 
@@ -45,7 +47,7 @@ class TeamFileDAOTests {
         players[2] = kyle;
 
         assertEquals(true, team.deletePlayer("Aaron"));
-        assertEquals(16, team.getPlayers().length);
+        assertEquals(BeforeTest + 3, team.getPlayers().length);
         assertEquals(null, team.getPlayer("Aaron"));
         assertEquals(false, team.deletePlayer("NotAPlayer"));
 
@@ -63,5 +65,6 @@ class TeamFileDAOTests {
         team.deletePlayer("Jordan");
         team.deletePlayer("Mike");
         team.deletePlayer("Kyle");
+        team.deletePlayer("Aaron");
     } 
 }

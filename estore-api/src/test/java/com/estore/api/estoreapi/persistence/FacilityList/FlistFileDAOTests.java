@@ -24,6 +24,12 @@ public class FlistFileDAOTests {
     void testFlistfileDAO() throws IOException{
 
         FlistFileDAO flist = new FlistFileDAO(name, objectMapper);
+
+        flist.deleteFacility(001);
+        flist.deleteFacility(002);
+        flist.deleteFacility(003);
+        int beforeTests = flist.getFacilities().length;
+
         flist.createFacility("That one stadium", "Bronx", 001);
         Facilities dummy_test = flist.createFacility("something cool", "Bronx", 002);
         flist.createFacility("something boring", "Bronx", 003);
@@ -32,12 +38,12 @@ public class FlistFileDAOTests {
         assertEquals(flist.searchFacilities("something").length, 2);
 
 
-        // Checks to see if all the faciltites  were added properly (4 stadiums)
-        assertEquals(flist.getFacilities().length, 4);
+        // Checks to see if all the faciltites  were added properly (3 stadiums)
+        assertEquals(flist.getFacilities().length, beforeTests + 3);
 
         //deletes the one facility with a semi unique name because originally should be punished 
         flist.deleteFacility(001);
-        assertEquals(flist.getFacilities().length, 3);
+        assertEquals(flist.getFacilities().length, beforeTests + 2);
         assertEquals(flist.getFacility(001), null);
 
         //Since the facilities are now boycotting, something cool should become "The amazing stadium"
