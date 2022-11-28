@@ -7,9 +7,6 @@ import { RouterEvent } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  public kalen = "kalen123";
-  public password = "pass";
-
   constructor() {
    }
 
@@ -21,17 +18,6 @@ export class LoginComponent implements OnInit {
     // console.log(localStorage.getItem("key"))
     console.log(this.username)
 
-  }
-
-  login(name: string, pass: string): boolean{
-    if(name == this.kalen && pass == this.password){
-      this.saveData;
-      return true;
-    }
-    else{
-      window.alert('username or password does not compute');
-      return false;
-    }
   }
 
   ngOnInit(): void {

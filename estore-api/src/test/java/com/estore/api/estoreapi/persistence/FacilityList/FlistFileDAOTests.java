@@ -38,21 +38,12 @@ public class FlistFileDAOTests {
         assertEquals(2, flist.searchFacilities("something").length);
 
 
-<<<<<<< HEAD
         // Checks to see if all the faciltites  were added properly (3 stadiums)
         assertEquals(flist.getFacilities().length, beforeTests + 3);
 
         //deletes the one facility with a semi unique name because originally should be punished 
         flist.deleteFacility(001);
         assertEquals(flist.getFacilities().length, beforeTests + 2);
-=======
-        // Checks to see if all the faciltites  were added properly (4 stadiums)
-        assertEquals(8, flist.getFacilities().length);
-
-        //deletes the one facility with a semi unique name because originally should be punished 
-        flist.deleteFacility(001);
-        assertEquals(flist.getFacilities().length, 7);
->>>>>>> d59402e65a8c3b498cf79c460e18f22d741f5a8b
         assertEquals(flist.getFacility(001), null);
 
         //Since the facilities are now boycotting, something cool should become "The amazing stadium"
