@@ -52,7 +52,7 @@ public class TeamFileDAO implements TeamDAO {
     @Override 
     public Player getPlayer(String name) throws IOException{
         for(Player player : team) {
-            if(player.getName() == name) {
+            if(player.getName().equals(name)) {
                 return player;
             }
         }
@@ -62,7 +62,7 @@ public class TeamFileDAO implements TeamDAO {
     @Override
     public Player createPlayer(Player player) throws IOException {
         for(Player aPlayer: team) {
-            if(aPlayer.getName() == player.getName()) {
+            if(aPlayer.getName().equals(player.getName())) {
                 return null;
             }
         }
@@ -82,7 +82,7 @@ public class TeamFileDAO implements TeamDAO {
     @Override
     public boolean deletePlayer(String name) throws IOException{
         for(Player player: team) {    
-            if(player.getName() == name) {
+            if(player.getName().equals(name)) {
                 team.remove(player);
                 saveTeam();
                 return true;
@@ -114,7 +114,7 @@ public class TeamFileDAO implements TeamDAO {
     @Override
     public Player updatePlayer(Player player, String name, int age, int rating) throws IOException {
         for(Player aPlayer: team) {
-            if(aPlayer.getName() == player.getName()) {
+            if(aPlayer.getName().equals(player.getName())) {
                 aPlayer.name = name;
                 aPlayer.age = age;
                 aPlayer.rating = rating;

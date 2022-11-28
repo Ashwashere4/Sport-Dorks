@@ -66,6 +66,20 @@ manager is able to reserve a facilities. The facilities page is a group of facil
 ## Architecture and Design
 
 This section describes the application architecture.
+
+### Design Principals
+Dependency inversion:
+
+>_Critical for doing unit testing since we can inject test/mock objects. This was used for the tests with the mock*insertfilehere*dao. We were able to create mockDAO for testing.
+
+Single Responsibility:
+
+>_Both inventory and facilities use single responsibility, they run on a inventory system meaning that they have different classes for different functions. They each have a controller, model, and persistence that each have their own functions.
+
+Open/Close Principle:
+
+>_ By creating interfaces like InventoryDAO, we can create new classes that interact inventoryDAO without affect any other classes. We can use this to create for example a database that consists of all the things in the inventory. From there we can inject it into other classes so instead of interacting with json, it can interact with the database
+
 ### Summary
 
 The following Tiers/Layers model shows a high-level view of the webapp's architecture.
@@ -95,10 +109,18 @@ The user first begins at the homepage with the options to go shopping or search 
 
 Facilities page work similarily. When taken to the facilities page, they are given a list of facilities and when clicked on will give a description of it.
 
+![League Flow Chart](Player_Management.png)
+
+When going to either the league or team page, all the players in said league or team will be shown. In the league page each team will be separated and each individual team roster shown.
+
 ### ViewModel Tier
 ![Item and Facilities diagram](item_facilities.png)
 
 The controllers control the data that the persistance contains. Both inventory and facilities work similar as in both use a inventory system. There are interactions the website has, like pressing buttons that command the control the model. From there the website is updated, and so is the api that records the data for the website.
+
+![League and Teams diagram](leagues_teams.png)
+
+The model can update the view of the teams by adding or removing players as well as adding or removing teams. 
 
 ### Model Tier
 ![Item class diagram](Item_class.png)
@@ -109,21 +131,23 @@ The model is a very simple class set up. Each item has a name, cost, and quantit
 
 Facilities works very similarly. Each facility has a name, id, and location. Each attribute has a getter and setter for easy updating. After a facility is created, they are put into a f_list(Facility List) hashmap. The key is the id of the faciliity and the value is the facility itself.
 
-### Static Code Analysis/Design Improvements
-> _Discuss design improvements that you would make if the project were
-> to continue. These improvement should be based on your direct
-> analysis of where there are problems in the code base which could be
-> addressed with design changes, and describe those suggested design
-> improvements._
+![Players/Teams/Leagues class diagram](Teams_and_Leagues.png)
 
-> _With the results from the Static Code Analysis exercise, 
-> discuss the resulting issues/metrics measurements along with your analysis
-> and recommendations for further improvements. Where relevant, include 
-> screenshots from the tool and/or corresponding source code that was flagged._
+These were all included together in the same UML diagram since they build off of each other. A team consists of a roster of players and a league consists of a list of teams. A team can get the details of all players in the roster and a league can get all the details of every team in the league.
+
+### Static Code Analysis/Design Improvements
 
 If the project were to continue, we would add additional functions like reserving a facility and having a better front end. Having a wishlist was also one of our plans that we ran out of time to implement. 
 
 Any further improvements regarding the static code analysis would be to manage time better and to understand what you are given. We did not need to make this the best website and we got a big carried away with adding more features than necessary.
+
+![Static Code Analysis + Code Coverage](static_code_analysis1.png)
+
+Any further improvements regarding the static code analysis would be to manage time better and to understand what you are given. We did not need to make this the best website and we got a big carried away with adding more features than necessary. Another thing we would like to do is improve our code to prevent "smelly code".
+
+![Smelly Graph](progressivebar.png)
+
+The more we were coding, while we didn't have many vulnerabilities, the code started to smell really bad. This is likely because instead of deleting code that is not being used, we comment it out. 
 
 ## Testing
 > _This section will provide information about the testing performed
@@ -136,5 +160,8 @@ Most of the user stories were passed and some of the more advanced one were not.
 Most of the code we wrote were based of other components of the project. Therefore, we tested to make sure that the code worked properly.
 This included getting the right numbers, returning the right errors if necessary. We focued on making sure the code was functional and we 
 handled it pretty well. Below you can see our code coverage.
+
+![test_coverage](test_coverage.png)
+
 
 

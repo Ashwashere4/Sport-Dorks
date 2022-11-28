@@ -69,7 +69,7 @@ public interface InventoryDAO {
      * 
      * @throws IOException if underlying storage cannot be accessed
      */
-    Item updateItem(Item item, String name, int quantity, int cost) throws IOException;
+Item updateItem(Item item, String name, int quantity, int cost) throws IOException;
 
     /**
      * Deletes a {@linkplain Item item} with the given name

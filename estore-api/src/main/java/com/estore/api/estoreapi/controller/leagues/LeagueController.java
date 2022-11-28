@@ -124,7 +124,6 @@ public class LeagueController {
             return new ResponseEntity<Team>(newTeam,HttpStatus.CREATED);
         }
         catch (IOException e) {
-            e.printStackTrace();
             return new ResponseEntity<Team>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
         
@@ -149,7 +148,6 @@ public class LeagueController {
                 return new ResponseEntity<Team>(newTeam,HttpStatus.OK);
             }
             catch (IOException e) {
-                e.printStackTrace();
                 return new ResponseEntity<Team>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
         } else {

@@ -83,20 +83,6 @@ public class UserFileDAO implements UserDAO {
         }
 
 
-    // @Override
-    // public User[] seachUsers(String text) throws IOException {
-    //     if (text.length() == 0)
-    //         return new User[0];
-
-    //     ArrayList<User> Users = new ArrayList<>();
-    //     for (User user : users.values()) {
-    //         if (user.getUserName().toLowerCase().contains(text.toLowerCase())) {
-    //             Users.add(user);
-    //         }
-    //     }
-
-    //     return Users.toArray(new User[0]);
-    // }
     
     private void saveUsers() throws IOException {
         objectMapper.writeValue(new File(filename), getUsersArray());

@@ -48,8 +48,8 @@ import { CartComponent } from './cart/cart.component';
       { path: '', component: InventoryFrontComponent },
       { path: 'items/:itemName', component: ItemDetailComponent },
       { path: 'cart', component: CartComponent },
+      { path: '', pathMatch: 'full', redirectTo: 'home' },
       { path: 'home', component: HomeComponent}
-
     ])
   ],
   providers: [],

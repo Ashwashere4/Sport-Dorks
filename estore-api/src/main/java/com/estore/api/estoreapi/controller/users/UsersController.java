@@ -81,34 +81,6 @@ public class UsersController {
         return new ResponseEntity<User[]>(users, HttpStatus.OK);
     }
 
-    // /**
-    //  * Responds to the GET request for all {@linkplain Item item} whose name contains
-    //  * the text in name
-    //  * 
-    //  * @param name The name parameter which contains the text used to find the {@link Item item}
-    //  * 
-    //  * @return ResponseEntity with array of {@link Item item} objects (may be empty) and
-    //  * HTTP status of OK<br>
-    //  * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
-    //  * <p>
-    //  * Example: Find all heroes that contain the text "ma"
-    //  * GET http://localhost:8080/heroes/?name=ma
-    //  */
-    // @GetMapping("/")
-    // public ResponseEntity<User[]> seachUsers(@RequestParam String name) {
-    //     LOG.info("GET /users/?name="+name);
-    //     try {
-    //         User[] items = userDAO.seachUsers(name);
-    //         return new ResponseEntity<User[]>(items,HttpStatus.OK);
-
-    //     } catch (Exception e) {
-    //         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-    //     }
-
-
-    //     // Replace below with your implementation
-    // }
-
     /**
      * Creates a {@linkplain Item item} with the provided item object
      * 
@@ -129,7 +101,6 @@ public class UsersController {
             return new ResponseEntity<User>(newUser,HttpStatus.CREATED);
         }
         catch (IOException e) {
-            e.printStackTrace();
             return new ResponseEntity<User>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
         
@@ -153,7 +124,6 @@ public class UsersController {
                 return new ResponseEntity<User>(newItem,HttpStatus.OK);
             }
             catch (IOException e) {
-                e.printStackTrace();
                 return new ResponseEntity<User>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
         } else {

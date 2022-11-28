@@ -16,6 +16,7 @@ import com.estore.api.estoreapi.model.Inventory.Item;
 import com.estore.api.estoreapi.persistence.Inventory.InventoryDAO;
 
 import java.io.IOException;
+import java.lang.ProcessHandle.Info;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -158,7 +159,6 @@ public class InventoryController {
                 return new ResponseEntity<Item>(newItem,HttpStatus.OK);
             }
             catch (IOException e) {
-                e.printStackTrace();
                 return new ResponseEntity<Item>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
         } else {
