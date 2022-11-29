@@ -7,13 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <p><input type="text" id="username" name="username" [(ngModel)]="username" placeholder="username"></p>
+    <p><input type="text" id="username" name="username" [(ngModel)]="username" placeholder="username" required #name></p>
 
     <!-- <textarea name="username" id="username" cols="100" rows="1" placeholder="username"></textarea> -->
-    <textarea name="password" id="password" cols="23" rows="1" placeholder="passsword"></textarea>
+    <textarea name="password" id="password" cols="23" rows="1" placeholder="passsword" required #pass></textarea>
 
     <a href="/home">
-        <button type = "button" (click)="saveData() " >register</button>
+        <button type = "button" (click)="register(name.value, pass.value) " >register</button>
     </a>
 
 </body>
