@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from '../cart.service';
 import { Item } from '../item';
 import { MessageService } from '../message.service';
-import { ITEMS } from '../mock-inventory';
 
 @Component({
   selector: 'app-cart',
@@ -53,8 +52,9 @@ export class CartComponent implements OnInit{
     this.cartService.deleteItem(item.name).subscribe();
   }
 
-  purchaseAll(): void{
-    this.cartService.deleteAll();
+  purchaseItem(item: Item): void{
+    this.cart = this.cart.filter(i => i !== item);
+    this.cartService.deleteItem(item.name).subscribe();
   }
 
   update(item: string, name: string, quantity: string, cost: string): void{

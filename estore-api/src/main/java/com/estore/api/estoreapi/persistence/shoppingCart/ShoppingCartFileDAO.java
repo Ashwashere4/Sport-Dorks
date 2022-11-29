@@ -16,21 +16,18 @@ import com.estore.api.estoreapi.persistence.Inventory.InventoryDAO;
 @Component
 public class ShoppingCartFileDAO implements ShoppingCartDAO{
     private Map<String,Item> shoppingCart;
-    //private Map<String, Item> inventory;
+    
     private InventoryDAO InventoryDAO;
 
     private String filename;
 
     private ObjectMapper objectMapper;
-
-    //private String inventoryFilename;
     
     public ShoppingCartFileDAO(@Value("${shoppingCart.filename}") String filename, ObjectMapper objectMapper, InventoryDAO InventoryDAO) throws IOException {
         this.filename = filename;
         this.objectMapper = objectMapper;
         this.InventoryDAO = InventoryDAO;
         loadShoppingCart();
-        //loadInventory();
     }
 
     private void loadShoppingCart() throws IOException {

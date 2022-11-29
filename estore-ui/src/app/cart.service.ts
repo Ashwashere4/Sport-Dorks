@@ -18,10 +18,6 @@ export class CartService {
     private http: HttpClient
   ){}
 
-  deleteAll(){
-    
-  }
-
   getCart():Observable<Item[]> {
     return this.http.get<Item[]>(this.cartUrl).pipe
       (catchError(this.handleError<Item[]>('getShoppingCart', [])));
@@ -75,33 +71,20 @@ private handleError<T>(operation = 'operation', result?: T) {
 
   /** POST: add a new item to the server */
   addItem(item: Item): Observable<Item> {
+
     return this.http.post<Item>(this.cartUrl, item, this.httpOptions).pipe(
       tap((newItem: Item) => this.log(`added item w/ quantity=${newItem.quantity} and cost=${newItem.cost}`)),
       catchError(this.handleError<Item>('addItem'))
     );
   }
 
-  /** DELETE: delete the hero from the server */
+  /** DELETE: delete the item from the server */
   deleteItem(name: string): Observable<Item> {
     const url = `${this.cartUrl}/${name}`;
 
     return this.http.delete<Item>(url, this.httpOptions).pipe(
       tap(_ => this.log(`deleted item name=${name}`)),
       catchError(this.handleError<Item>('deleteItem'))
-    );
-  }
-
-  /* GET items whose name contains search term */
-  searchCart(term: string): Observable<Item[]> {
-    if (!term.trim()) {
-      // if not search term, return empty hero array.
-      return of([]);
-    }
-    return this.http.get<Item[]>(`${this.cartUrl}/?name=${term}`).pipe(
-      tap(x => x.length ?
-        this.log(`found items matching "${term}"`) :
-        []),
-      catchError(this.handleError<Item[]>('searchCart', []))
     );
   }
 

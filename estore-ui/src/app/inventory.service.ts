@@ -72,10 +72,10 @@ createItem(name: string, quantity: number, cost: number): Item {
   return {name, quantity, cost};
 }
 
-/** POST: add a new hero to the server */
+/** POST: add a new item to the server */
 addItem(item: Item): Observable<Item> {
   return this.http.post<Item>(this.inventoryUrl, item, this.httpOptions).pipe(
-    tap((newItem: Item) => this.log(`added hero w/ quantity=${newItem.quantity} and cost=${newItem.cost}`)),
+    tap((newItem: Item) => this.log(`added item w/ quantity=${newItem.quantity} and cost=${newItem.cost}`)),
     catchError(this.handleError<Item>('addItem'))
   );
 }

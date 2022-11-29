@@ -2,11 +2,11 @@
   
     <h2>{{item.name | uppercase}} Details</h2>
     <div><span>quantity: </span>{{item.quantity}}</div>
-    <div><span>cost: </span>{{item.cost}}</div>
+    <div><span>cost: $</span>{{item.cost}}</div>
     <div>
       <label for="item-quantity">Item quantity: </label>
       <input id="item-quantity" [(ngModel)]="item.quantity" placeholder="quantity" required #quantity>
-      <label for="item-cost">Item cost: </label>
+      <label for="item-cost">Item cost: $</label>
       <input id="item-cost" [(ngModel)]="item.cost" placeholder="cost" require #cost>
       <button type="button" (click)="save(parseInt(quantity.value))">save</button>
     </div>
