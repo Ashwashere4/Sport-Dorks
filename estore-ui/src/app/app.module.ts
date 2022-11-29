@@ -19,6 +19,7 @@ import { StadiumComponent } from './stadium/stadium.component';
 import { InventoryFrontComponent } from './inventory-front/inventory-front.component';
 import { FacilityBackComponent } from './facility-back/facility-back.component';
 import { CartComponent } from './cart/cart.component';
+import { ListComponent } from './list/list.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { CartComponent } from './cart/cart.component';
     InventoryFrontComponent,
     FacilityBackComponent,
     CartComponent,
+    ListComponent,
   ],
 
   imports: [
@@ -50,6 +52,7 @@ import { CartComponent } from './cart/cart.component';
       { path: '', component: InventoryFrontComponent },
       { path: 'items/:itemName', component: ItemDetailComponent },
       { path: 'cart', component: CartComponent },
+      { path: 'list', component: ListComponent }
     ])
   ],
   providers: [],

@@ -71,7 +71,6 @@ private handleError<T>(operation = 'operation', result?: T) {
 
   /** POST: add a new item to the server */
   addItem(item: Item): Observable<Item> {
-
     return this.http.post<Item>(this.cartUrl, item, this.httpOptions).pipe(
       tap((newItem: Item) => this.log(`added item w/ quantity=${newItem.quantity} and cost=${newItem.cost}`)),
       catchError(this.handleError<Item>('addItem'))

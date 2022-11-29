@@ -1,0 +1,11 @@
+<h3>Wish List</h3>
+ 
+<ul class="items">
+<div class="cart" *ngFor="let item of list">
+  <span>{{ item.name }} </span>
+  <span> {{ item.cost | currency }} </span>
+  <span>Quantity: {{item.quantity}} </span> 
+  <button type="button" class="button" (click)="addtocart(item)">add to cart</button>
+  <button type="button" class="delete" (click)="delete(item)"> remove from wish list </button>
+</div>
+</ul>

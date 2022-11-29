@@ -10,11 +10,17 @@
 
 .logout{
   position: absolute;
-  right:50px;
+  right:120px;
 }
 
 .cart{
   position: absolute;
-  right: 10px;
+  right: 90px;
   font-size: xx-large;
+}
+
+.list{
+  position: absolute;
+  right: 10px;
+  font-size: large;
 }

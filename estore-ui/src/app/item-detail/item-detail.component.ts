@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 import { Item } from '../item';
 import { InventoryService } from '../inventory.service';
 import { CartService } from '../cart.service';
+import { WishListService } from '../wish-list.service';
 
 @Component({
   selector: 'app-item-detail',
@@ -23,14 +24,12 @@ export class ItemDetailComponent implements OnInit {
 
   constructor(
     private cartService: CartService,
+    private listService: WishListService,
     private inventoryService: InventoryService,
     private location: Location
   ) {}
 
   addToCart(item: Item, quantity: number) {
-    // localStorage.setItem("cartItem", item.name);
-    // localStorage.setItem("cartItemQ", String(item.quantity));
-    this.getCart
     const newItem = this.inventoryService.createItem(item.name, quantity, item.cost);;
     this.cartService.addItem(newItem)
       .subscribe(newItem => {
@@ -38,6 +37,10 @@ export class ItemDetailComponent implements OnInit {
       });
 
     window.alert('Your product has been added to the cart!');
+  }
+
+  addtoList(item: Item){
+    this.listService.addToList(item).subscribe();
   }
 
   getCart(): void {
