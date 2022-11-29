@@ -7,10 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   
-  username = localStorage.getItem("key")
+  username = localStorage.getItem("user")
 
   public logout() {
-    localStorage.removeItem("key")
+    localStorage.removeItem("user")
     this.username = " ";
   }
 
