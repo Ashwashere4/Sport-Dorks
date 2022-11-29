@@ -18,6 +18,10 @@ export class CartService {
     private http: HttpClient
   ){}
 
+  deleteAll(){
+    
+  }
+
   getCart():Observable<Item[]> {
     return this.http.get<Item[]>(this.cartUrl).pipe
       (catchError(this.handleError<Item[]>('getShoppingCart', [])));

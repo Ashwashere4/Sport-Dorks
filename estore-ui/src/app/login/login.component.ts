@@ -15,7 +15,6 @@ export class LoginComponent implements OnInit {
   public saveData() {
     let name: string = this.username as string;
     localStorage.setItem("key", name);
-    // console.log(localStorage.getItem("key"))
     console.log(this.username)
 
   }

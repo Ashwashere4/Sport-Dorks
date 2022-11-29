@@ -14,7 +14,7 @@ import { CartService } from '../cart.service';
 })
 export class InventoryFrontComponent implements OnInit {
 
-  item: Item | undefined;
+  item: Item | undefined ;
   selectedItem?: Item;
   json = require('../items.json')
   items: Item[] = [];
@@ -46,7 +46,8 @@ export class InventoryFrontComponent implements OnInit {
   }
 
   getItem(detailItem: Item){
-   
+    localStorage.setItem("itemName", detailItem.name);
+    localStorage.setItem("itemCost", String(detailItem.cost));
   }
 
   getItems(): void {

@@ -13,7 +13,9 @@ import { CartService } from '../cart.service';
   styleUrls: [ './item-detail.component.css' ]
 })
 export class ItemDetailComponent implements OnInit {
-  item: Item[] = [];
+  item: Item | undefined;
+  itemName: string | undefined;
+  itemCost: number | undefined;
   name: string | any;
   items: Item[] = [];
 
@@ -34,7 +36,9 @@ export class ItemDetailComponent implements OnInit {
   }
 
   getItem(): void {
-
+    this.itemName = localStorage.getItem("itemName")?? '';
+    this.itemCost = parseInt(localStorage.getItem("itemCost")?? '');
+    this.item = this.inventoryService.createItem(this.itemName, 1, this.itemCost);
   }
 
   goBack(): void {
@@ -47,7 +51,7 @@ export class ItemDetailComponent implements OnInit {
 
   save(quantity: number): void {
     if (this.item) {
-      this.inventoryService.updateItem(this.item[0], this.item[0].name, quantity, this.item[0].cost)
+      this.inventoryService.updateItem(this.item, this.item.name, quantity, this.item.cost)
         .subscribe(() => this.goBack());
     }
   }

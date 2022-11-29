@@ -1,16 +1,16 @@
 <div *ngIf="item">
   
-    <h2>{{item[0].name | uppercase}} Details</h2>
-    <div><span>quantity: </span>{{item[0].quantity}}</div>
-    <div><span>cost: </span>{{item[0].cost}}</div>
+    <h2>{{item.name | uppercase}} Details</h2>
+    <div><span>quantity: </span>{{item.quantity}}</div>
+    <div><span>cost: </span>{{item.cost}}</div>
     <div>
       <label for="item-quantity">Item quantity: </label>
-      <input id="item-quantity" [(ngModel)]="item[0].quantity" placeholder="quantity" required #quantity>
+      <input id="item-quantity" [(ngModel)]="item.quantity" placeholder="quantity" required #quantity>
       <label for="item-cost">Item cost: </label>
-      <input id="item-cost" [(ngModel)]="item[0].cost" placeholder="cost" require #cost>
+      <input id="item-cost" [(ngModel)]="item.cost" placeholder="cost" require #cost>
       <button type="button" (click)="save(parseInt(quantity.value))">save</button>
     </div>
-    <button type="button" (click)="addToCart(item[0], parseInt(quantity.value))">add to cart</button>
+    <button type="button" (click)="addToCart(item, parseInt(quantity.value))">add to cart</button>
   </div>
 
   
