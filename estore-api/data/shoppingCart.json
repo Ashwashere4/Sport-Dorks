@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-[{"name":"jordans","quantity":1,"cost":10},{"name":"airpods","quantity":1,"cost":100}]
-=======
-[{"name":"test","quantity":1,"cost":10},{"name":"football","quantity":1,"cost":100},{"name":"jordans","quantity":2,"cost":10},{"name":"airpods","quantity":1,"cost":100}]
->>>>>>> 16ab47d30e7c4cc9cd6f75d4095dc65ef8a35fa2
+[{"name":"airpods","quantity":1,"cost":100}]
