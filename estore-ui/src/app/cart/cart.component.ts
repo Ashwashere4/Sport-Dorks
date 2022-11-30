@@ -53,7 +53,8 @@ export class CartComponent implements OnInit{
   }
 
   purchaseAll(): void{
-    this.cart.forEach(this.delete);
+    // this.cart.forEach(this.delete);
+    window.open("localhost:4200/home")
   }
 
   update(item: string, name: string, quantity: string, cost: string): void{
