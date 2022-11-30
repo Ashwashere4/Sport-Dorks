@@ -14,8 +14,9 @@ export class InventoryComponent implements OnInit {
 
   constructor(
     private inventoryService: InventoryService, 
-    private messageService: MessageService) { }
-
+    private messageService: MessageService
+  ) { }
+  
   selectedItem?: Item;
   json = require('../items.json')
 

@@ -10,23 +10,38 @@ import { UserService } from '../user.service';
 })
 export class RegisterComponent implements OnInit {
   title: any;
-
-  constructor() {}
-
   json = require('../users.json')
+  users: User[] = [];
+
+  constructor(
+    private userService: UserService
+  ) {}
 
   ngOnInit(): void {
+    this.getUsers();
   }
 
   username: String = '';
 
   public saveData() {
     let name: string = this.username as string;
-    localStorage.setItem("key", name);
+    localStorage.setItem("user", name);
     // console.log(localStorage.getItem("key"))
     console.log(this.username)
   }
 
-  users: User[] = [];
+  register(name: string, pass: string){
+    name = name.trim();
+    pass = pass.trim();
+    if (!name) { window.alert('need username') }
+    if (!pass) { window.alert('need password') }
+    const newUser = this.userService.createUser(name, pass, false, false);
+    this.userService.addUser(newUser).subscribe();
+    //this.userService.addUser(newUser).subscribe(newUser => {this.users.push(newUser);});
+    this.saveData();
+  }
 
+  getUsers(){
+    this.userService.getUsers().subscribe(users => this.users = users);
+  }
 }

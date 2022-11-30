@@ -1,30 +1,32 @@
 import { Component, OnInit } from '@angular/core';
-
 import { CartService } from '../cart.service';
 import { Item } from '../item';
 import { MessageService } from '../message.service';
+import { WishListService } from '../wish-list.service';
 
 @Component({
-  selector: 'app-cart',
-  templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css']
+  selector: 'app-list',
+  templateUrl: './list.component.html',
+  styleUrls: ['./list.component.css']
 })
-
-export class CartComponent implements OnInit{
+export class ListComponent implements OnInit {
 
   title:any;
 
   constructor(
+    private listService: WishListService,
     private cartService: CartService,
     private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.getCart();
+    this.getList();
   }
 
   selectedItem?: Item;
-  json = require('../shoppingCart.json')
+  json = require('../wishlist.json')
   
+  list: Item[] = [];
   cart: Item[] = [];
   updatedItem?: Item;
 
@@ -33,6 +35,9 @@ export class CartComponent implements OnInit{
     this.messageService.add(`CartComponent: Selected item name=${item.name}`)
   }
 
+  getList():void {
+    this.listService.getList().subscribe(list => this.list = list);
+  }
   getCart(): void{
     this.cartService.getCart().subscribe(cart => this.cart = cart);
   }
@@ -41,27 +46,21 @@ export class CartComponent implements OnInit{
     name = name.trim();
     if (!name) { return; }
     const newItem = this.cartService.createItem(name, quantity, cost);;
-    this.cartService.addItem(newItem)
+    this.listService.addToList(newItem)
       .subscribe(newItem => {
         this.cart.push(newItem);
       });
   }
 
   delete(item: Item): void {
-    this.cart = this.cart.filter(i => i !== item);
-    this.cartService.deleteItem(item.name).subscribe();
+    this.list = this.list.filter(i => i !== item);
+    this.listService.deleteItem(item.name).subscribe();
   }
 
-  purchaseItem(item: Item): void{
-    this.cart = this.cart.filter(i => i !== item);
-    this.cartService.deleteItem(item.name).subscribe();
-  }
-
-  update(item: string, name: string, quantity: string, cost: string): void{
-
-    console.log(item)
-    this.cartService.updateItem(item, name, quantity, cost).subscribe();
-
+  addtocart(item: Item): void{
+    this.list = this.cart.filter(i => i !== item);
+    this.cartService.addItem(item).subscribe();
+    this.listService.deleteItem(item.name).subscribe();
   }
 
   parseInt(string: string): number {
